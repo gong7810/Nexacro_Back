@@ -96,7 +96,7 @@
    ]]>
    </select>
 
-    <!-- 미처리 전표 조회 -->
+    <!-- 미결 전표 조회 -->
    <select id="fetchUnProSlipList" resultMap="slipResult">
    <![CDATA[
        SELECT
