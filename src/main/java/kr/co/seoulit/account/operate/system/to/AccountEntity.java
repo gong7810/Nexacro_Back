@@ -1,21 +1,15 @@
 package kr.co.seoulit.account.operate.system.to;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import kr.co.seoulit.account.sys.base.to.BaseBean;
-import kr.co.seoulit.account.sys.common.annotation.Dataset;
+import kr.co.seoulit.erp.sys.base.to.BaseBean;
+import kr.co.seoulit.erp.sys.common.annotation.Dataset;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

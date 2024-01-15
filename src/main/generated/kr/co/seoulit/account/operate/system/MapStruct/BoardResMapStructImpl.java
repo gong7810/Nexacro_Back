@@ -9,42 +9,38 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-<<<<<<< HEAD
-    date = "2024-01-12T14:08:38+0900",
-=======
-    date = "2024-01-11T21:46:33+0900",
->>>>>>> a3f95cf3cf3a3e411483cfffa2de3e74090c0ee1
+    date = "2024-01-13T10:35:35+0900",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class BoardResMapStructImpl implements BoardResMapStruct {
 
     @Override
-    public BoardResDto toDto(BoardEntity entity) {
-        if ( entity == null ) {
+    public BoardResDto toDto(BoardEntity arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
         BoardResDto boardResDto = new BoardResDto();
 
-        boardResDto.setId( entity.getId() );
-        boardResDto.setTitle( entity.getTitle() );
-        boardResDto.setContents( entity.getContents() );
-        boardResDto.setWrittenBy( entity.getWrittenBy() );
-        boardResDto.setWriteDate( entity.getWriteDate() );
-        boardResDto.setUpdateDateTime( entity.getUpdateDateTime() );
+        boardResDto.setId( arg0.getId() );
+        boardResDto.setTitle( arg0.getTitle() );
+        boardResDto.setContents( arg0.getContents() );
+        boardResDto.setWrittenBy( arg0.getWrittenBy() );
+        boardResDto.setWriteDate( arg0.getWriteDate() );
+        boardResDto.setUpdateDateTime( arg0.getUpdateDateTime() );
 
         return boardResDto;
     }
 
     @Override
-    public List<BoardResDto> toDto(List<BoardEntity> entities) {
-        if ( entities == null ) {
+    public List<BoardResDto> toDto(List<BoardEntity> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<BoardResDto> list = new ArrayList<BoardResDto>( entities.size() );
-        for ( BoardEntity boardEntity : entities ) {
+        List<BoardResDto> list = new ArrayList<BoardResDto>( arg0.size() );
+        for ( BoardEntity boardEntity : arg0 ) {
             list.add( toDto( boardEntity ) );
         }
 

@@ -1,10 +1,9 @@
 package kr.co.seoulit.account.posting.ledger.entity;
 
-import kr.co.seoulit.account.sys.common.annotation.ColumnName;
+import kr.co.seoulit.erp.sys.common.annotation.ColumnName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.redis.core.RedisHash;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

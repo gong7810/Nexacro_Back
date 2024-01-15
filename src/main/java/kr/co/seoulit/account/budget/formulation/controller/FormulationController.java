@@ -2,10 +2,8 @@ package kr.co.seoulit.account.budget.formulation.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
 
 import kr.co.seoulit.account.budget.formulation.to.*;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -16,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nexacro.java.xapi.data.PlatformData;
 
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
-import kr.co.seoulit.account.sys.common.util.BeanCreator;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
+import kr.co.seoulit.erp.sys.common.util.BeanCreator;
 
 import kr.co.seoulit.account.budget.formulation.service.FormulationService;
 
@@ -30,7 +28,7 @@ public class FormulationController{
 	@Autowired
 	private FormulationService formulationService;
 	@Autowired
-	private DatasetBeanMapper datasetBeanMapper;
+	private DatasetToBeanMapper datasetToBeanMapper;
 
 	BeanCreator beanCreator  = BeanCreator.getInstance();
 
@@ -51,7 +49,7 @@ public class FormulationController{
 
 		System.out.println(" WWW");
     	 ArrayList<BudgetCodeBean> bean = formulationService.findBudgetCode();
-  		  datasetBeanMapper.beansToDataset(resData, bean, BudgetCodeBean.class);
+  		  datasetToBeanMapper.beansToDataset(resData, bean, BudgetCodeBean.class);
 
     	return null;
     }
@@ -68,7 +66,7 @@ public class FormulationController{
  		 String budgetingCode=reqData.getVariable("budgetingCode").getString();
  		 String accountInnerCode=reqData.getVariable("accountInnerCode").getString();
 
-    	BudgetBean obj = datasetBeanMapper.datasetToBean(reqData,BudgetBean.class);
+    	BudgetBean obj = datasetToBeanMapper.datasetToBean(reqData,BudgetBean.class);
     	obj.setDeptCode(deptCode);
     	obj.setWorkplaceCode(workplaceCode);
     	obj.setAccountPeriodNo(accountPeriodNo);
@@ -89,7 +87,7 @@ public class FormulationController{
     	map.put("budgetCode", budgetCode);
     	map.put("budgetingCode", budgetingCode);
  		  ArrayList<BudgetBean> bean =  formulationService.formationBudget(map);
-   		  datasetBeanMapper.beansToDataset(resData, bean, BudgetBean.class);
+   		  datasetToBeanMapper.beansToDataset(resData, bean, BudgetBean.class);
     }
 
     @RequestMapping("/budgetlist")
@@ -103,7 +101,7 @@ public class FormulationController{
 	      		 map.put("budgetingCode", budgetingCode);
 	   		  ArrayList<BudgetBean> bean =  formulationService.findBudgetList(map);
 
-	   		  datasetBeanMapper.beansToDataset(resData, bean, BudgetBean.class);
+	   		  datasetToBeanMapper.beansToDataset(resData, bean, BudgetBean.class);
 
 		 return null;
 
@@ -123,7 +121,7 @@ public class FormulationController{
 
 		BudgetRequest result = formulationService.budgetListForComp(budgetRequest);
 
-		datasetBeanMapper.beanToDataset(resData, result, BudgetRequest.class);
+		datasetToBeanMapper.beanToDataset(resData, result, BudgetRequest.class);
 
 		return null;
 
@@ -139,7 +137,7 @@ public class FormulationController{
 		 String accountInnerCode=reqData.getVariable("accountInnerCode").getString();
 		 String budgetingCode=reqData.getVariable("budgetingCode").getString();
 
-		 BudgetRequest updateRequest = datasetBeanMapper.datasetToBean(reqData, BudgetRequest.class);
+		 BudgetRequest updateRequest = datasetToBeanMapper.datasetToBean(reqData, BudgetRequest.class);
 		 updateRequest.setAccountInnerCode(accountInnerCode);
 		 updateRequest.setAccountPeriodNo(accountPeriodNo);
 		 updateRequest.setDeptCode(deptCode);
@@ -165,7 +163,7 @@ public class FormulationController{
 
 		BudgetRequestForRecon result = formulationService.budgetRequestForRecon(budgetRequestForRecon);
 
-		datasetBeanMapper.beanToDataset(resData, result, BudgetRequestForRecon.class);
+		datasetToBeanMapper.beanToDataset(resData, result, BudgetRequestForRecon.class);
 
 		return null;
 	}
@@ -179,7 +177,7 @@ public class FormulationController{
 		String accountInnerCode=reqData.getVariable("accountInnerCode").getString();
 		String budgetingCode=reqData.getVariable("budgetingCode").getString();
 
-		BudgetRequestForRecon updateRequest = datasetBeanMapper.datasetToBean(reqData, BudgetRequestForRecon.class);
+		BudgetRequestForRecon updateRequest = datasetToBeanMapper.datasetToBean(reqData, BudgetRequestForRecon.class);
 		updateRequest.setAccountInnerCode(accountInnerCode);
 		updateRequest.setAccountPeriodNo(accountPeriodNo);
 		updateRequest.setDeptCode(deptCode);
@@ -215,7 +213,7 @@ public class FormulationController{
 
 		ArrayList<BudgetStatusBean> result = formulationService.findBudgetStatus(budgetBean);
 
-		datasetBeanMapper.beansToDataset(resData, result, BudgetStatusBean.class);
+		datasetToBeanMapper.beansToDataset(resData, result, BudgetStatusBean.class);
 
 		return null;
 	}
@@ -236,7 +234,7 @@ public class FormulationController{
 
 		ArrayList<BudgetComparisonBean> result = formulationService.findBudgetComparison(budgetBean);
 
-		datasetBeanMapper.beansToDataset(resData, result, BudgetComparisonBean.class);
+		datasetToBeanMapper.beansToDataset(resData, result, BudgetComparisonBean.class);
 
 		return null;
 	}

@@ -3,7 +3,7 @@ package kr.co.seoulit.account.settlement.costStatement.controller;
 import com.nexacro.java.xapi.data.PlatformData;
 import kr.co.seoulit.account.settlement.costStatement.service.CostStatementService;
 import kr.co.seoulit.account.settlement.costStatement.to.CostStatementBean;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ public class CostStatementController {
     @Autowired
     private CostStatementService costStatementService;
     @Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
     //원가명세서 조회
     @RequestMapping(value = "/selectedDate")
@@ -33,7 +33,7 @@ public class CostStatementController {
         params.put("selectedDate",selectedDate); // 데이터를 map에 담음
 
         ArrayList<CostStatementBean> costStatementList = costStatementService.findCostStatement(params); // Facade 호출
-        datasetBeanMapper.beansToDataset(resData, costStatementList, CostStatementBean.class); // DTO -> Dataset
+        datasetToBeanMapper.beansToDataset(resData, costStatementList, CostStatementBean.class); // DTO -> Dataset
         return null;
     }
 }

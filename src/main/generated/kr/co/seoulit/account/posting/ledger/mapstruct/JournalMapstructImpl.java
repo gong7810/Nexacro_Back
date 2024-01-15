@@ -11,45 +11,41 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-<<<<<<< HEAD
-    date = "2024-01-12T14:08:38+0900",
-=======
-    date = "2024-01-11T21:46:33+0900",
->>>>>>> a3f95cf3cf3a3e411483cfffa2de3e74090c0ee1
+    date = "2024-01-13T10:24:16+0900",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class JournalMapstructImpl implements JournalMapstruct {
 
     @Override
-    public JournalDtoRes toDto(JournalResEntity entity) {
-        if ( entity == null ) {
+    public JournalDtoRes toDto(JournalResEntity arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
         JournalDtoRes journalDtoRes = new JournalDtoRes();
 
-        journalDtoRes.setStatus( entity.getStatus() );
-        journalDtoRes.setJournalNo( entity.getJournalNo() );
-        journalDtoRes.setSlipNo( entity.getSlipNo() );
-        journalDtoRes.setBalanceDivision( entity.getBalanceDivision() );
-        journalDtoRes.setAccountInnerCode( entity.getAccountInnerCode() );
-        journalDtoRes.setAccountName( entity.getAccountName() );
-        journalDtoRes.setLeftDebtorPrice( entity.getLeftDebtorPrice() );
-        journalDtoRes.setRightCreditsPrice( entity.getRightCreditsPrice() );
-        journalDtoRes.setJournalDetailList( journalDetailResEntityListToJournalDetailresDtoList( entity.getJournalDetailList() ) );
+        journalDtoRes.setStatus( arg0.getStatus() );
+        journalDtoRes.setJournalNo( arg0.getJournalNo() );
+        journalDtoRes.setSlipNo( arg0.getSlipNo() );
+        journalDtoRes.setBalanceDivision( arg0.getBalanceDivision() );
+        journalDtoRes.setAccountInnerCode( arg0.getAccountInnerCode() );
+        journalDtoRes.setAccountName( arg0.getAccountName() );
+        journalDtoRes.setLeftDebtorPrice( arg0.getLeftDebtorPrice() );
+        journalDtoRes.setRightCreditsPrice( arg0.getRightCreditsPrice() );
+        journalDtoRes.setJournalDetailList( journalDetailResEntityListToJournalDetailresDtoList( arg0.getJournalDetailList() ) );
 
         return journalDtoRes;
     }
 
     @Override
-    public List<JournalDtoRes> toDto(List<JournalResEntity> entities) {
-        if ( entities == null ) {
+    public List<JournalDtoRes> toDto(List<JournalResEntity> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<JournalDtoRes> list = new ArrayList<JournalDtoRes>( entities.size() );
-        for ( JournalResEntity journalResEntity : entities ) {
+        List<JournalDtoRes> list = new ArrayList<JournalDtoRes>( arg0.size() );
+        for ( JournalResEntity journalResEntity : arg0 ) {
             list.add( toDto( journalResEntity ) );
         }
 

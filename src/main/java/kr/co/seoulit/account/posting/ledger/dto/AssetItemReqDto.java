@@ -1,6 +1,6 @@
 package kr.co.seoulit.account.posting.ledger.dto;
 
-import kr.co.seoulit.account.sys.common.annotation.Dataset;
+import kr.co.seoulit.erp.sys.common.annotation.Dataset;
 import lombok.Data;
 
 import java.io.Serializable;

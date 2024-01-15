@@ -1,14 +1,13 @@
 package kr.co.seoulit.account.operate.system.to;
 
-import kr.co.seoulit.account.sys.base.to.BaseBean;
-import kr.co.seoulit.account.sys.common.annotation.Dataset;
+import kr.co.seoulit.erp.sys.base.to.BaseBean;
+import kr.co.seoulit.erp.sys.common.annotation.Dataset;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
-import java.util.List;
 
 
 @Data

@@ -1,7 +1,7 @@
 package kr.co.seoulit.account.budget.formulation.Entity;
 
 import kr.co.seoulit.account.budget.formulation.to.BudgetPK;
-import kr.co.seoulit.account.sys.base.to.BaseBean;
+import kr.co.seoulit.erp.sys.base.to.BaseBean;
 import lombok.*;
 
 import javax.persistence.*;

@@ -1,7 +1,7 @@
 package kr.co.seoulit.account.operate.system.to;
 
 
-import kr.co.seoulit.account.sys.common.annotation.Dataset;
+import kr.co.seoulit.erp.sys.common.annotation.Dataset;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

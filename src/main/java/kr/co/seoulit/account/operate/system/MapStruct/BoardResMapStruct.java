@@ -3,7 +3,7 @@ package kr.co.seoulit.account.operate.system.MapStruct;
 
 import kr.co.seoulit.account.operate.system.entity.BoardEntity;
 import kr.co.seoulit.account.operate.system.to.BoardResDto;
-import kr.co.seoulit.account.sys.common.Mapstruct.EntityResMapper;
+import kr.co.seoulit.erp.sys.common.Mapstruct.EntityResMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

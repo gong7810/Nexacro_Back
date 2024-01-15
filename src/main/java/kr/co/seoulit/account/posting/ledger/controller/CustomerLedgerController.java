@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import kr.co.seoulit.account.posting.ledger.service.LedgerService;
 import kr.co.seoulit.account.posting.ledger.dto.CustomerLedgerBean;
 import kr.co.seoulit.account.posting.ledger.dto.CustomerLedgerDetailResDto;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +21,12 @@ public class CustomerLedgerController {
     @Autowired
     private LedgerService ledgerService;
     @Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
     @Autowired
-    public CustomerLedgerController(LedgerService ledgerService,DatasetBeanMapper datasetBeanMapper) {
+    public CustomerLedgerController(LedgerService ledgerService, DatasetToBeanMapper datasetToBeanMapper) {
         this.ledgerService=ledgerService;
-        this.datasetBeanMapper=datasetBeanMapper;
+        this.datasetToBeanMapper = datasetToBeanMapper;
     }
 
 
@@ -39,7 +39,7 @@ public class CustomerLedgerController {
 
         ArrayList<CustomerLedgerBean> customerLedgerList = ledgerService.findCustomerLedger(fromDate, toDate);
         System.out.println("%%%%%%%"+customerLedgerList.get(0).getCustomerName());
-        datasetBeanMapper.beansToDataset(resData, customerLedgerList, CustomerLedgerBean.class);
+        datasetToBeanMapper.beansToDataset(resData, customerLedgerList, CustomerLedgerBean.class);
 
     }
 
@@ -51,7 +51,7 @@ public class CustomerLedgerController {
 
         ArrayList<CustomerLedgerDetailResDto> customerLedgerDetailList = ledgerService.findCustomerLedgerDetailList(customerCode);
         //System.out.println("%%%%%%%"+customerLedgerDetailList.get(0).getReportingDate());
-        datasetBeanMapper.beansToDataset(resData, customerLedgerDetailList, CustomerLedgerDetailResDto.class);
+        datasetToBeanMapper.beansToDataset(resData, customerLedgerDetailList, CustomerLedgerDetailResDto.class);
 
     }
 }

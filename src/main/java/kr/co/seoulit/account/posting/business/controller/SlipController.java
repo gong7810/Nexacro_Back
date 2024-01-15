@@ -18,10 +18,8 @@ import kr.co.seoulit.account.posting.business.service.BusinessService;
 import kr.co.seoulit.account.posting.business.Entity.JournalEntity;
 import kr.co.seoulit.account.posting.business.Entity.JournalDetailEntity;
 import kr.co.seoulit.account.posting.business.Entity.SlipEntity;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 import net.sf.json.JSONObject;
-import net.sf.json.JSONArray;
-import com.google.gson.Gson;
 import com.nexacro.java.xapi.data.PlatformData;
 
 
@@ -33,7 +31,7 @@ public class SlipController {
     @Autowired
     private BusinessService businessService;
     @Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
 
     ModelAndView mav = null;
@@ -43,11 +41,11 @@ public class SlipController {
     public void addSlip(@RequestAttribute("reqData") PlatformData reqData,
                         @RequestAttribute("resData") PlatformData resData) throws Exception{
         // 넘어온 dataset 데이터를 Bean객체로 파싱
-        SlipEntity slipObj = datasetBeanMapper.datasetToBean(reqData, SlipEntity.class); // 전표추가는 한번에 하나 가능
+        SlipEntity slipObj = datasetToBeanMapper.datasetToBean(reqData, SlipEntity.class); // 전표추가는 한번에 하나 가능
         System.out.println("분개 받아오기");
-        ArrayList<JournalEntity> journal = (ArrayList<JournalEntity>)datasetBeanMapper.datasetToBeans(reqData, JournalEntity.class); // 분개
+        ArrayList<JournalEntity> journal = (ArrayList<JournalEntity>) datasetToBeanMapper.datasetToBeans(reqData, JournalEntity.class); // 분개
         System.out.println("addSlip 실행");
-        ArrayList<JournalDetailEntity> journalDetail = (ArrayList<JournalDetailEntity>)datasetBeanMapper.datasetToBeans(reqData, JournalDetailEntity.class);
+        ArrayList<JournalDetailEntity> journalDetail = (ArrayList<JournalDetailEntity>) datasetToBeanMapper.datasetToBeans(reqData, JournalDetailEntity.class);
 
         String empCode = reqData.getVariable("empCode").getString();
         String deptCode = reqData.getVariable("deptCode").getString();
@@ -65,8 +63,8 @@ public class SlipController {
     public void modifySlip(@RequestAttribute("reqData") PlatformData reqData,
                            @RequestAttribute("resData") PlatformData resData) throws Exception {
         System.out.println(reqData);
-        SlipreqDto slipreqdto= datasetBeanMapper.datasetToBean(reqData, SlipreqDto.class);
-        ArrayList<JournalreqDto> journalObj=(ArrayList<JournalreqDto>)datasetBeanMapper.datasetToBeans(reqData, JournalreqDto.class);
+        SlipreqDto slipreqdto= datasetToBeanMapper.datasetToBean(reqData, SlipreqDto.class);
+        ArrayList<JournalreqDto> journalObj=(ArrayList<JournalreqDto>) datasetToBeanMapper.datasetToBeans(reqData, JournalreqDto.class);
 
 
   //      ArrayList<JournalreqDto> journaldtos=new ArrayList<>();
@@ -140,7 +138,7 @@ public class SlipController {
     @RequestMapping("/approveSlip")
     public void approveSlip(@RequestAttribute("reqData") PlatformData reqData,
                             @RequestAttribute("resData") PlatformData resData) throws Exception{
-        ArrayList<SlipreqDto> slipDtos =(ArrayList<SlipreqDto>) datasetBeanMapper.datasetToBeans(reqData, SlipreqDto.class);
+        ArrayList<SlipreqDto> slipDtos =(ArrayList<SlipreqDto>) datasetToBeanMapper.datasetToBeans(reqData, SlipreqDto.class);
 
         businessService.approveSlip(slipDtos);
 
@@ -180,7 +178,7 @@ public class SlipController {
         param.put("toDate", to);
         param.put("slipStatus", slipStatus);
         ArrayList<SlipresDto> slipList =  businessService.findRangedSlipList(param);
-        datasetBeanMapper.beansToDataset(resData, slipList, SlipresDto.class);
+        datasetToBeanMapper.beansToDataset(resData, slipList, SlipresDto.class);
 
     }
 

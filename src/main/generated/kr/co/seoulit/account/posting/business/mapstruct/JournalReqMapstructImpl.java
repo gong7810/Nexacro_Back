@@ -11,47 +11,43 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-<<<<<<< HEAD
-    date = "2024-01-12T14:08:38+0900",
-=======
-    date = "2024-01-11T21:46:33+0900",
->>>>>>> a3f95cf3cf3a3e411483cfffa2de3e74090c0ee1
+    date = "2024-01-13T10:24:16+0900",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class JournalReqMapstructImpl implements JournalReqMapstruct {
 
     @Override
-    public JournalEntity toEntity(JournalreqDto dto) {
-        if ( dto == null ) {
+    public JournalEntity toEntity(JournalreqDto arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
         JournalEntity journalEntity = new JournalEntity();
 
-        journalEntity.setStatus( dto.getStatus() );
-        journalEntity.setJournalNo( dto.getJournalNo() );
-        journalEntity.setSlipNo( dto.getSlipNo() );
-        journalEntity.setBalanceDivision( dto.getBalanceDivision() );
-        journalEntity.setAccountInnerCode( dto.getAccountInnerCode() );
-        journalEntity.setAccountName( dto.getAccountName() );
-        journalEntity.setCustomerCode( dto.getCustomerCode() );
-        journalEntity.setCustomerName( dto.getCustomerName() );
-        journalEntity.setLeftDebtorPrice( dto.getLeftDebtorPrice() );
-        journalEntity.setRightCreditsPrice( dto.getRightCreditsPrice() );
-        journalEntity.setJournalDetailList( journalDetailreqDtoListToJournalDetailEntityList( dto.getJournalDetailList() ) );
+        journalEntity.setStatus( arg0.getStatus() );
+        journalEntity.setJournalNo( arg0.getJournalNo() );
+        journalEntity.setSlipNo( arg0.getSlipNo() );
+        journalEntity.setBalanceDivision( arg0.getBalanceDivision() );
+        journalEntity.setAccountInnerCode( arg0.getAccountInnerCode() );
+        journalEntity.setAccountName( arg0.getAccountName() );
+        journalEntity.setCustomerCode( arg0.getCustomerCode() );
+        journalEntity.setCustomerName( arg0.getCustomerName() );
+        journalEntity.setLeftDebtorPrice( arg0.getLeftDebtorPrice() );
+        journalEntity.setRightCreditsPrice( arg0.getRightCreditsPrice() );
+        journalEntity.setJournalDetailList( journalDetailreqDtoListToJournalDetailEntityList( arg0.getJournalDetailList() ) );
 
         return journalEntity;
     }
 
     @Override
-    public List<JournalEntity> toEntity(List<JournalreqDto> dtos) {
-        if ( dtos == null ) {
+    public List<JournalEntity> toEntity(List<JournalreqDto> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<JournalEntity> list = new ArrayList<JournalEntity>( dtos.size() );
-        for ( JournalreqDto journalreqDto : dtos ) {
+        List<JournalEntity> list = new ArrayList<JournalEntity>( arg0.size() );
+        for ( JournalreqDto journalreqDto : arg0 ) {
             list.add( toEntity( journalreqDto ) );
         }
 

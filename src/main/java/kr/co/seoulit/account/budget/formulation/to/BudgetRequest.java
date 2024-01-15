@@ -1,8 +1,8 @@
 package kr.co.seoulit.account.budget.formulation.to;
 
 import kr.co.seoulit.account.budget.formulation.Entity.BudgetEntity;
-import kr.co.seoulit.account.sys.base.to.BaseBean;
-import kr.co.seoulit.account.sys.common.annotation.Dataset;
+import kr.co.seoulit.erp.sys.base.to.BaseBean;
+import kr.co.seoulit.erp.sys.common.annotation.Dataset;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

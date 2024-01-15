@@ -9,17 +9,15 @@ import kr.co.seoulit.account.posting.ledger.dto.AssetResDto;
 import kr.co.seoulit.account.posting.ledger.dto.DeptResDto;
 import kr.co.seoulit.account.posting.ledger.entity.AssetEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nexacro.java.xapi.data.PlatformData;
 
 import kr.co.seoulit.account.posting.ledger.service.LedgerService;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 
 @Tag(name = "AssetManagementController", description = "<b>[posting/ledger]</b> 자산관리대장 API")
 @RestController
@@ -29,14 +27,14 @@ public class AssetManagementController{
 	@Autowired
     private LedgerService ledgerService;
 	@Autowired
-	private DatasetBeanMapper datasetBeanMapper;
+	private DatasetToBeanMapper datasetToBeanMapper;
 
 	@RequestMapping("/assetList")
 	public ArrayList<AssetEntity> assetList(@RequestAttribute("reqData") PlatformData reqData,
 											@RequestAttribute("resData") PlatformData resData) throws Exception {
 
 		ArrayList<AssetResDto> AssetList = ledgerService.findAssetList();
-		datasetBeanMapper.beansToDataset(resData, AssetList, AssetResDto.class);
+		datasetToBeanMapper.beansToDataset(resData, AssetList, AssetResDto.class);
 		return null;
 	}
 
@@ -46,7 +44,7 @@ public class AssetManagementController{
         String assetCode = reqData.getVariable("assetCode").getString();
 
         	ArrayList<AssetItemResDto> AssetItemList = ledgerService.findAssetItemList(assetCode);
-        	datasetBeanMapper.beansToDataset(resData, AssetItemList, AssetItemResDto.class);
+        	datasetToBeanMapper.beansToDataset(resData, AssetItemList, AssetItemResDto.class);
         	return null;
     }
 
@@ -62,7 +60,7 @@ public class AssetManagementController{
 
 		System.out.println("부서목록 조회 소요시간 : "+(finish-start)+"ms");
 
-		datasetBeanMapper.beansToDataset(resData, DeptList, DeptResDto.class);
+		datasetToBeanMapper.beansToDataset(resData, DeptList, DeptResDto.class);
 
 		return null;
 	}
@@ -71,7 +69,7 @@ public class AssetManagementController{
 	public void assetStorage(@RequestAttribute("reqData") PlatformData reqData,
 							 @RequestAttribute("resData") PlatformData resData) throws Exception {
 
-		AssetItemReqDto assetItemReqDto = datasetBeanMapper.datasetToBean(reqData, AssetItemReqDto.class);
+		AssetItemReqDto assetItemReqDto = datasetToBeanMapper.datasetToBean(reqData, AssetItemReqDto.class);
 		ledgerService.assetStorage(assetItemReqDto);
 
 	}

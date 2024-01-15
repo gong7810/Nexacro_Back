@@ -1,10 +1,8 @@
 package kr.co.seoulit.account.operate.system.entity;
 
-import kr.co.seoulit.account.sys.base.to.BaseBean;
-import kr.co.seoulit.account.sys.common.annotation.Dataset;
-import lombok.AllArgsConstructor;
+import kr.co.seoulit.erp.sys.base.to.BaseBean;
+import kr.co.seoulit.erp.sys.common.annotation.Dataset;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -14,7 +12,6 @@ import java.util.Date;
 
 
 @Entity
-@Table(name="BOARD")
 @Dataset(name="ds_board")
 @Data
 @ToString

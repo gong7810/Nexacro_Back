@@ -3,16 +3,12 @@ package kr.co.seoulit.account.operate.humanresource.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,19 +18,18 @@ import kr.co.seoulit.account.operate.humanresource.service.HumanResourceService;
 
 import kr.co.seoulit.account.operate.humanresource.to.DepartmentBean;
 import kr.co.seoulit.account.operate.humanresource.to.EmployeeEntity;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
-import net.sf.json.JSONObject;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 
 @RestController
 @RequestMapping("/operate")
 public class HRController {
 
     private HumanResourceService humanResourceService;
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
     @Autowired
-    public HRController(HumanResourceService humanResourceService, DatasetBeanMapper datasetBeanMapper) {
+    public HRController(HumanResourceService humanResourceService, DatasetToBeanMapper datasetToBeanMapper) {
     	this.humanResourceService=humanResourceService;
-    	this.datasetBeanMapper=datasetBeanMapper;
+    	this.datasetToBeanMapper = datasetToBeanMapper;
     }
 
     ModelAndView mav;
@@ -50,7 +45,7 @@ public class HRController {
   public void registerEmployee(@RequestAttribute("reqData")PlatformData reqData,
                                @RequestAttribute("resData")PlatformData resData)throws Exception{
          System.out.println("request has arrived at registerEmployee");
-         EmployeeEntity employeeEntity= datasetBeanMapper.datasetToBean(reqData,EmployeeEntity.class);
+         EmployeeEntity employeeEntity= datasetToBeanMapper.datasetToBean(reqData,EmployeeEntity.class);
          humanResourceService.registerEmployee(employeeEntity);
 
   }
@@ -61,7 +56,7 @@ public class HRController {
                                                     @RequestAttribute("resData") PlatformData resData) throws Exception{
       System.out.println("request has arrived at findEmployeeList");
       ArrayList<EmployeeEntity> empList= humanResourceService.findEmployeeList();
-      datasetBeanMapper.beansToDataset(resData, empList, EmployeeEntity.class);
+      datasetToBeanMapper.beansToDataset(resData, empList, EmployeeEntity.class);
       return null;
   }
 
@@ -69,7 +64,7 @@ public class HRController {
   public void modifyEmployee(@RequestAttribute("reqData")PlatformData reqData,
                              @RequestAttribute("resData")PlatformData resData)throws Exception{
       System.out.println("request has arrived at modifyEmployee");
-      EmployeeEntity employeeEntity=datasetBeanMapper.datasetToBean(reqData, EmployeeEntity.class);
+      EmployeeEntity employeeEntity= datasetToBeanMapper.datasetToBean(reqData, EmployeeEntity.class);
       humanResourceService.modifyEmployee(employeeEntity);
 
   }
@@ -127,7 +122,7 @@ public class HRController {
                                                   @RequestAttribute("resData") PlatformData resData) throws Exception {
 
             ArrayList<DepartmentBean> deptList = humanResourceService.findDeptList();
-            datasetBeanMapper.beansToDataset(resData, deptList, DepartmentBean.class);
+            datasetToBeanMapper.beansToDataset(resData, deptList, DepartmentBean.class);
 
         return null;
     }
@@ -137,7 +132,7 @@ public class HRController {
                                                          @RequestAttribute("resData") PlatformData resData) throws Exception{
 
             ArrayList<DepartmentBean> workplaceList = humanResourceService.selectworkplaceCode();
-            datasetBeanMapper.beansToDataset(resData, workplaceList, DepartmentBean.class);
+            datasetToBeanMapper.beansToDataset(resData, workplaceList, DepartmentBean.class);
 
         return null;
     }
@@ -147,7 +142,7 @@ public class HRController {
     		String code=reqData.getVariable("code").getString();
 
     	ArrayList<DepartmentBean> deptList = humanResourceService.selectdeptCode(code);
-    	datasetBeanMapper.beansToDataset(resData, deptList, DepartmentBean.class);
+    	datasetToBeanMapper.beansToDataset(resData, deptList, DepartmentBean.class);
 
     	return null;
         }

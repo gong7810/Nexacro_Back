@@ -13,7 +13,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 
 import kr.co.seoulit.account.posting.ledger.service.LedgerService;
 import kr.co.seoulit.account.posting.ledger.dto.CashJournalBean;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 
 @Tag(name = "TotalCashJournalController", description = "<b>[posting/ledger]</b> 총계정원장 API")
 @RestController
@@ -21,12 +21,12 @@ import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
 public class TotalCashJournalController {
 
     private LedgerService ledgerService;
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
     
     @Autowired
-    public TotalCashJournalController(LedgerService ledgerService,DatasetBeanMapper datasetBeanMapper) {
+    public TotalCashJournalController(LedgerService ledgerService, DatasetToBeanMapper datasetToBeanMapper) {
     	this.ledgerService=ledgerService;
-    	this.datasetBeanMapper=datasetBeanMapper;
+    	this.datasetToBeanMapper = datasetToBeanMapper;
     }
 
    // @RequestMapping("/ledgerbyaccount")
@@ -45,7 +45,7 @@ public class TotalCashJournalController {
 
     	
             ArrayList<CashJournalBean> cashJournalList = ledgerService.findTotalCashJournal(map);
-            datasetBeanMapper.beansToDataset(resData, cashJournalList, CashJournalBean.class);
+            datasetToBeanMapper.beansToDataset(resData, cashJournalList, CashJournalBean.class);
             return null;
     }
 

@@ -1,6 +1,6 @@
 # 2024.01.11 yaml fix
 server:
-  port: 9162
+  port: 8484
 
 # ajpPort
 tomcat:

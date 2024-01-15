@@ -4,7 +4,7 @@ package kr.co.seoulit.account.settlement.monthIncomeStatement.controller;
 import com.nexacro.java.xapi.data.PlatformData;
 import kr.co.seoulit.account.settlement.monthIncomeStatement.service.MonthIncomeStatementService;
 import kr.co.seoulit.account.settlement.monthIncomeStatement.to.MonthIncomeStatementBean;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class MonthIncomeStatementController {
     private MonthIncomeStatementService monthIncomeStatementService;
 
     @Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
     //월별손익계산서 조회
     @RequestMapping("/monthIncomeStatement")
@@ -35,7 +35,7 @@ public class MonthIncomeStatementController {
         params.put("selectedDate",selectedDate);
 
         ArrayList<MonthIncomeStatementBean> monthIncomeStatementList = monthIncomeStatementService.findMonthIncomeStatement(params);
-        datasetBeanMapper.beansToDataset(resData, monthIncomeStatementList, MonthIncomeStatementBean.class);
+        datasetToBeanMapper.beansToDataset(resData, monthIncomeStatementList, MonthIncomeStatementBean.class);
         return null;
 
 

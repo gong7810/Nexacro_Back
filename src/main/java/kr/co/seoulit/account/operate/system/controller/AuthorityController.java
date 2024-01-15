@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nexacro.java.xapi.data.PlatformData;
 
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 import kr.co.seoulit.account.operate.system.service.SystemService;
 
 import kr.co.seoulit.account.operate.system.to.AuthorityEmpBean;
@@ -26,12 +26,12 @@ import kr.co.seoulit.account.operate.system.to.AuthorityMenuEntity;
 public class AuthorityController {
 
 	private SystemService systemService;
-	private DatasetBeanMapper datasetBeanMapper;
+	private DatasetToBeanMapper datasetToBeanMapper;
 
     @Autowired
-	public AuthorityController(SystemService systemService, DatasetBeanMapper datasetBeanMapper) {
+	public AuthorityController(SystemService systemService, DatasetToBeanMapper datasetToBeanMapper) {
 		this.systemService=systemService;
-		this.datasetBeanMapper=datasetBeanMapper;
+		this.datasetToBeanMapper = datasetToBeanMapper;
 		
 	}
     /* nexacro */
@@ -40,7 +40,7 @@ public class AuthorityController {
                                @RequestAttribute("resData") PlatformData resData)throws Exception{
         String empCode = reqData.getVariable("empCode").getString();
         ArrayList<AuthorityMenuEntity> authorityList = systemService.findEmpAuthorityList(empCode);
-        datasetBeanMapper.beansToDataset(resData, authorityList, AuthorityMenuEntity.class);
+        datasetToBeanMapper.beansToDataset(resData, authorityList, AuthorityMenuEntity.class);
     }
 
 
@@ -55,7 +55,7 @@ public class AuthorityController {
 
 
         List<AuthorityEmpBean> authorityEmp = systemService.findEmpAuthorityList();
-        datasetBeanMapper.beansToDataset(resData,authorityEmp, AuthorityEmpBean.class);
+        datasetToBeanMapper.beansToDataset(resData,authorityEmp, AuthorityEmpBean.class);
 
 
     }
@@ -67,7 +67,7 @@ public class AuthorityController {
 
         String empCode= reqData.getVariable("empCode").getString();
         List<AuthorityEmpBean> authorityEmp = systemService.findEmpAuthorityDetailList(empCode);
-        datasetBeanMapper.beansToDataset(resData,authorityEmp, AuthorityEmpBean.class);
+        datasetToBeanMapper.beansToDataset(resData,authorityEmp, AuthorityEmpBean.class);
 
     }
 
@@ -76,7 +76,7 @@ public class AuthorityController {
     public void registerAuthorityEmp(@RequestAttribute("reqData")PlatformData reqData,
                                      @RequestAttribute("resData")PlatformData resData)throws Exception{
         System.out.println("<<<<< data has benn arrived at registerAuthorityEmp Controller!!!");
-        AuthorityEmpBean authorityEmpBean=datasetBeanMapper.datasetToBean(reqData,AuthorityEmpBean.class);
+        AuthorityEmpBean authorityEmpBean= datasetToBeanMapper.datasetToBean(reqData,AuthorityEmpBean.class);
         systemService.registerAuthorityEmp(authorityEmpBean);
         System.out.println(">>>>> data has benn inserted to DB from registerAuthorityEmp Controller!!!");
 

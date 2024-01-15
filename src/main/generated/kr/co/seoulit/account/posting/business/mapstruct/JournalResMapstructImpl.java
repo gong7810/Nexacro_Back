@@ -11,47 +11,43 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-<<<<<<< HEAD
-    date = "2024-01-12T14:08:38+0900",
-=======
-    date = "2024-01-11T21:46:33+0900",
->>>>>>> a3f95cf3cf3a3e411483cfffa2de3e74090c0ee1
+    date = "2024-01-13T10:24:16+0900",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class JournalResMapstructImpl implements JournalResMapstruct {
 
     @Override
-    public JournalresDto toDto(JournalEntity entity) {
-        if ( entity == null ) {
+    public JournalresDto toDto(JournalEntity arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
         JournalresDto journalresDto = new JournalresDto();
 
-        journalresDto.setStatus( entity.getStatus() );
-        journalresDto.setJournalNo( entity.getJournalNo() );
-        journalresDto.setSlipNo( entity.getSlipNo() );
-        journalresDto.setBalanceDivision( entity.getBalanceDivision() );
-        journalresDto.setAccountInnerCode( entity.getAccountInnerCode() );
-        journalresDto.setAccountName( entity.getAccountName() );
-        journalresDto.setCustomerCode( entity.getCustomerCode() );
-        journalresDto.setCustomerName( entity.getCustomerName() );
-        journalresDto.setLeftDebtorPrice( entity.getLeftDebtorPrice() );
-        journalresDto.setRightCreditsPrice( entity.getRightCreditsPrice() );
-        journalresDto.setJournalDetailList( journalDetailEntityListToJournalDetailreqDtoList( entity.getJournalDetailList() ) );
+        journalresDto.setStatus( arg0.getStatus() );
+        journalresDto.setJournalNo( arg0.getJournalNo() );
+        journalresDto.setSlipNo( arg0.getSlipNo() );
+        journalresDto.setBalanceDivision( arg0.getBalanceDivision() );
+        journalresDto.setAccountInnerCode( arg0.getAccountInnerCode() );
+        journalresDto.setAccountName( arg0.getAccountName() );
+        journalresDto.setCustomerCode( arg0.getCustomerCode() );
+        journalresDto.setCustomerName( arg0.getCustomerName() );
+        journalresDto.setLeftDebtorPrice( arg0.getLeftDebtorPrice() );
+        journalresDto.setRightCreditsPrice( arg0.getRightCreditsPrice() );
+        journalresDto.setJournalDetailList( journalDetailEntityListToJournalDetailreqDtoList( arg0.getJournalDetailList() ) );
 
         return journalresDto;
     }
 
     @Override
-    public List<JournalresDto> toDto(List<JournalEntity> entities) {
-        if ( entities == null ) {
+    public List<JournalresDto> toDto(List<JournalEntity> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<JournalresDto> list = new ArrayList<JournalresDto>( entities.size() );
-        for ( JournalEntity journalEntity : entities ) {
+        List<JournalresDto> list = new ArrayList<JournalresDto>( arg0.size() );
+        for ( JournalEntity journalEntity : arg0 ) {
             list.add( toDto( journalEntity ) );
         }
 

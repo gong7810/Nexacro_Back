@@ -3,9 +3,7 @@ package kr.co.seoulit.account.posting.business.controller;
 import java.util.ArrayList;
 
 import io.swagger.v3.oas.annotations.Hidden;
-import kr.co.seoulit.account.posting.business.DTO.JournalDetailreqDto;
 import kr.co.seoulit.account.posting.business.DTO.JournalDetailresDto;
-import kr.co.seoulit.account.posting.business.DTO.JournalreqDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +17,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 
 import kr.co.seoulit.account.posting.business.service.BusinessService;
 import kr.co.seoulit.account.posting.business.Entity.JournalDetailEntity;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 
 @Hidden //swagger test : 일단 ledger부분만 나오도록 설정해둠
 @RestController
@@ -30,7 +28,7 @@ public class JournalDetailController {
     private BusinessService businessService;
 
     @Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
 
     ModelAndView mav = null;
@@ -44,7 +42,7 @@ public class JournalDetailController {
         System.out.println(journalNo+"😡😡😡😡"); // 저널 번호 넘어 온다.
         ArrayList<JournalDetailresDto> journalDetailList = businessService.findJournalDetailList(journalNo);
         System.out.println(journalDetailList+"💀💀💀");
-        datasetBeanMapper.beansToDataset(resData, journalDetailList, JournalDetailresDto.class);
+        datasetToBeanMapper.beansToDataset(resData, journalDetailList, JournalDetailresDto.class);
     }
 
     @RequestMapping(value = "/journalDetailAccountList")
@@ -53,7 +51,7 @@ public class JournalDetailController {
         String accountCode = reqData.getVariable("accountCode").getString();
 
         ArrayList<JournalDetailEntity> List = businessService.detailAccountList(accountCode);
-        datasetBeanMapper.beansToDataset(resData, List, JournalDetailEntity.class);
+        datasetToBeanMapper.beansToDataset(resData, List, JournalDetailEntity.class);
 
 
         return null;

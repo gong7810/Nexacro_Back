@@ -9,43 +9,39 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-<<<<<<< HEAD
-    date = "2024-01-12T14:08:38+0900",
-=======
-    date = "2024-01-11T21:46:32+0900",
->>>>>>> a3f95cf3cf3a3e411483cfffa2de3e74090c0ee1
+    date = "2024-01-13T10:35:35+0900",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class BoardReqMapStructImpl implements BoardReqMapStruct {
 
     @Override
-    public BoardEntity toEntity(BoardReqDto dto) {
-        if ( dto == null ) {
+    public BoardEntity toEntity(BoardReqDto arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
         BoardEntity boardEntity = new BoardEntity();
 
-        boardEntity.setStatus( dto.getStatus() );
-        boardEntity.setId( dto.getId() );
-        boardEntity.setTitle( dto.getTitle() );
-        boardEntity.setContents( dto.getContents() );
-        boardEntity.setWrittenBy( dto.getWrittenBy() );
-        boardEntity.setWriteDate( dto.getWriteDate() );
-        boardEntity.setUpdateDateTime( dto.getUpdateDateTime() );
+        boardEntity.setStatus( arg0.getStatus() );
+        boardEntity.setId( arg0.getId() );
+        boardEntity.setTitle( arg0.getTitle() );
+        boardEntity.setContents( arg0.getContents() );
+        boardEntity.setWrittenBy( arg0.getWrittenBy() );
+        boardEntity.setWriteDate( arg0.getWriteDate() );
+        boardEntity.setUpdateDateTime( arg0.getUpdateDateTime() );
 
         return boardEntity;
     }
 
     @Override
-    public List<BoardEntity> toEntity(List<BoardReqDto> dtos) {
-        if ( dtos == null ) {
+    public List<BoardEntity> toEntity(List<BoardReqDto> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<BoardEntity> list = new ArrayList<BoardEntity>( dtos.size() );
-        for ( BoardReqDto boardReqDto : dtos ) {
+        List<BoardEntity> list = new ArrayList<BoardEntity>( arg0.size() );
+        for ( BoardReqDto boardReqDto : arg0 ) {
             list.add( toEntity( boardReqDto ) );
         }
 

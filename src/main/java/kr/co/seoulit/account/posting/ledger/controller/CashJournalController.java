@@ -16,7 +16,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 
 import kr.co.seoulit.account.posting.ledger.service.LedgerService;
 import kr.co.seoulit.account.posting.ledger.dto.CashJournalBean;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 
 @Tag(name = "CashJournalController", description = "<b>[posting/ledger]</b> 현급출납장 API")
 @RestController
@@ -26,7 +26,7 @@ public class CashJournalController {
 	@Autowired
     private LedgerService ledgerService;
 	@Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
 
     ModelAndView mav = null;
@@ -45,7 +45,7 @@ public class CashJournalController {
     	System.out.println(toDate+"@@@@@@@@@@@@@@@@@@");
 
         ArrayList<CashJournalBean> cashJournalList = ledgerService.findCashJournal(fromDate, toDate, account);
-        datasetBeanMapper.beansToDataset(resData, cashJournalList, CashJournalBean.class);
+        datasetToBeanMapper.beansToDataset(resData, cashJournalList, CashJournalBean.class);
         return null;
     }
 }

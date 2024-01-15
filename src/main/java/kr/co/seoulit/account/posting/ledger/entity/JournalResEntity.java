@@ -1,6 +1,6 @@
 package kr.co.seoulit.account.posting.ledger.entity;
 
-import kr.co.seoulit.account.sys.base.to.BaseBean;
+import kr.co.seoulit.erp.sys.base.to.BaseBean;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

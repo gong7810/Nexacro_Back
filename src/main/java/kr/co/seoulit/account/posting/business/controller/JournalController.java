@@ -6,8 +6,8 @@ import io.swagger.v3.oas.annotations.Hidden;
 import kr.co.seoulit.account.posting.business.DTO.JournalresDto;
 import kr.co.seoulit.account.posting.business.service.BusinessService;
 import kr.co.seoulit.account.posting.business.Entity.JournalEntity;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
-import kr.co.seoulit.account.sys.common.util.BeanCreator;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
+import kr.co.seoulit.erp.sys.common.util.BeanCreator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +29,7 @@ public class JournalController {
     @Autowired
     private BusinessService businessService;
     @Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
 
     //@GetMapping("/singlejournallist")
@@ -38,7 +38,7 @@ public class JournalController {
                                                           @RequestAttribute("resData")PlatformData resData) throws Exception {
         String slipNo = reqData.getVariable("slipNo").getString();
         ArrayList<JournalEntity> journalList = businessService.findSingleJournalList(slipNo);
-        datasetBeanMapper.beansToDataset(resData, journalList, JournalEntity.class);
+        datasetToBeanMapper.beansToDataset(resData, journalList, JournalEntity.class);
         return null;
 //        ArrayList<JournalEntity> journalList = businessService.findSingleJournalList(slipNo);
 //
@@ -53,7 +53,7 @@ public class JournalController {
         String toDate = reqData.getVariable("endDate").getString();
 
         ArrayList<JournalresDto> journalList = businessService.findRangedJournalList(fromDate,toDate);
-        datasetBeanMapper.beansToDataset(resData, journalList, JournalresDto.class);
+        datasetToBeanMapper.beansToDataset(resData, journalList, JournalresDto.class);
     }
 
     @GetMapping("/journalremoval")

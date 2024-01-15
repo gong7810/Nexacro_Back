@@ -9,46 +9,42 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-<<<<<<< HEAD
-    date = "2024-01-12T14:08:38+0900",
-=======
-    date = "2024-01-11T21:46:33+0900",
->>>>>>> a3f95cf3cf3a3e411483cfffa2de3e74090c0ee1
+    date = "2024-01-13T10:24:16+0900",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class SlipResMapstructImpl implements SlipResMapstruct {
 
     @Override
-    public SlipresDto toDto(SlipEntity entity) {
-        if ( entity == null ) {
+    public SlipresDto toDto(SlipEntity arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
         SlipresDto slipresDto = new SlipresDto();
 
-        slipresDto.setStatus( entity.getStatus() );
-        slipresDto.setSlipNo( entity.getSlipNo() );
-        slipresDto.setAccountPeriodNo( entity.getAccountPeriodNo() );
-        slipresDto.setSlipType( entity.getSlipType() );
-        slipresDto.setExpenseReport( entity.getExpenseReport() );
-        slipresDto.setReportingEmpCode( entity.getReportingEmpCode() );
-        slipresDto.setReportingDate( entity.getReportingDate() );
-        slipresDto.setApprovalEmpCode( entity.getApprovalEmpCode() );
-        slipresDto.setApprovalDate( entity.getApprovalDate() );
-        slipresDto.setSlipStatus( entity.getSlipStatus() );
+        slipresDto.setStatus( arg0.getStatus() );
+        slipresDto.setSlipNo( arg0.getSlipNo() );
+        slipresDto.setAccountPeriodNo( arg0.getAccountPeriodNo() );
+        slipresDto.setSlipType( arg0.getSlipType() );
+        slipresDto.setExpenseReport( arg0.getExpenseReport() );
+        slipresDto.setReportingEmpCode( arg0.getReportingEmpCode() );
+        slipresDto.setReportingDate( arg0.getReportingDate() );
+        slipresDto.setApprovalEmpCode( arg0.getApprovalEmpCode() );
+        slipresDto.setApprovalDate( arg0.getApprovalDate() );
+        slipresDto.setSlipStatus( arg0.getSlipStatus() );
 
         return slipresDto;
     }
 
     @Override
-    public List<SlipresDto> toDto(List<SlipEntity> entities) {
-        if ( entities == null ) {
+    public List<SlipresDto> toDto(List<SlipEntity> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<SlipresDto> list = new ArrayList<SlipresDto>( entities.size() );
-        for ( SlipEntity slipEntity : entities ) {
+        List<SlipresDto> list = new ArrayList<SlipresDto>( arg0.size() );
+        for ( SlipEntity slipEntity : arg0 ) {
             list.add( toDto( slipEntity ) );
         }
 

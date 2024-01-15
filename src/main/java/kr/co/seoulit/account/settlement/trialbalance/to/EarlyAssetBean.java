@@ -1,6 +1,6 @@
 package kr.co.seoulit.account.settlement.trialbalance.to;
 
-import kr.co.seoulit.account.sys.base.to.BaseBean;
+import kr.co.seoulit.erp.sys.base.to.BaseBean;
 
 public class EarlyAssetBean extends BaseBean {
     private String gropuCode;

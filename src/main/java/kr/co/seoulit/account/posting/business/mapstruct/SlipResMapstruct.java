@@ -2,7 +2,7 @@ package kr.co.seoulit.account.posting.business.mapstruct;
 
 import kr.co.seoulit.account.posting.business.DTO.SlipresDto;
 import kr.co.seoulit.account.posting.business.Entity.SlipEntity;
-import kr.co.seoulit.account.sys.common.Mapstruct.EntityResMapper;
+import kr.co.seoulit.erp.sys.common.Mapstruct.EntityResMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

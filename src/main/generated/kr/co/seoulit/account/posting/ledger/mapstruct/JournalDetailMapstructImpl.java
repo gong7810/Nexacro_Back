@@ -9,41 +9,37 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-<<<<<<< HEAD
-    date = "2024-01-12T14:08:38+0900",
-=======
-    date = "2024-01-11T21:46:33+0900",
->>>>>>> a3f95cf3cf3a3e411483cfffa2de3e74090c0ee1
+    date = "2024-01-13T10:24:16+0900",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class JournalDetailMapstructImpl implements JournalDetailMapstruct {
 
     @Override
-    public JournalDetailDtoRes toDto(JournalDetailResEntity entity) {
-        if ( entity == null ) {
+    public JournalDetailDtoRes toDto(JournalDetailResEntity arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
         JournalDetailDtoRes journalDetailDtoRes = new JournalDetailDtoRes();
 
-        journalDetailDtoRes.setStatus( entity.getStatus() );
-        journalDetailDtoRes.setJournalDetailNo( entity.getJournalDetailNo() );
-        journalDetailDtoRes.setJournalNo( entity.getJournalNo() );
-        journalDetailDtoRes.setAccountControlDescription( entity.getAccountControlDescription() );
-        journalDetailDtoRes.setAccountControlName( entity.getAccountControlName() );
+        journalDetailDtoRes.setStatus( arg0.getStatus() );
+        journalDetailDtoRes.setJournalDetailNo( arg0.getJournalDetailNo() );
+        journalDetailDtoRes.setJournalNo( arg0.getJournalNo() );
+        journalDetailDtoRes.setAccountControlDescription( arg0.getAccountControlDescription() );
+        journalDetailDtoRes.setAccountControlName( arg0.getAccountControlName() );
 
         return journalDetailDtoRes;
     }
 
     @Override
-    public List<JournalDetailDtoRes> toDto(List<JournalDetailResEntity> entities) {
-        if ( entities == null ) {
+    public List<JournalDetailDtoRes> toDto(List<JournalDetailResEntity> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<JournalDetailDtoRes> list = new ArrayList<JournalDetailDtoRes>( entities.size() );
-        for ( JournalDetailResEntity journalDetailResEntity : entities ) {
+        List<JournalDetailDtoRes> list = new ArrayList<JournalDetailDtoRes>( arg0.size() );
+        for ( JournalDetailResEntity journalDetailResEntity : arg0 ) {
             list.add( toDto( journalDetailResEntity ) );
         }
 

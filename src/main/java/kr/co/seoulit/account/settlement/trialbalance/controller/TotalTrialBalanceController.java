@@ -4,21 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nexacro.java.xapi.data.PlatformData;
 
 import kr.co.seoulit.account.settlement.trialbalance.service.TrialBalanceService;
 import kr.co.seoulit.account.settlement.trialbalance.to.TotalTrialBalanceBean;
-import kr.co.seoulit.account.sys.base.service.BaseService;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.base.service.BaseService;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 
 @RestController
 @RequestMapping("/settlement")
@@ -27,7 +22,7 @@ public class TotalTrialBalanceController {
 
 	private final TrialBalanceService trialBalanceService;
 
-	private final DatasetBeanMapper datasetBeanMapper;
+	private final DatasetToBeanMapper datasetToBeanMapper;
 
 	private final BaseService baseService;
 
@@ -69,7 +64,7 @@ public class TotalTrialBalanceController {
 		trialBalanceService.findTotalTrialBalance(params);
 		System.out.println("@@@@@@@@@@@@@@@"+params);
 		ArrayList<TotalTrialBalanceBean>  bean = (ArrayList<TotalTrialBalanceBean>) params.get("totalTrialBalance");
-	  	datasetBeanMapper.beansToDataset(resData, bean, TotalTrialBalanceBean.class);
+	  	datasetToBeanMapper.beansToDataset(resData, bean, TotalTrialBalanceBean.class);
 
 
         return null;
@@ -93,7 +88,7 @@ public class TotalTrialBalanceController {
 		trialBalanceService.findEarlyStatements(params);
 		System.out.println("@@@@@@@@@@@@@@@"+params);
 		ArrayList<TotalTrialBalanceBean>  bean = (ArrayList<TotalTrialBalanceBean>) params.get("totalTrialBalance");
-	    datasetBeanMapper.beansToDataset(resData, bean, TotalTrialBalanceBean.class);
+	    datasetToBeanMapper.beansToDataset(resData, bean, TotalTrialBalanceBean.class);
 
 
         return null;

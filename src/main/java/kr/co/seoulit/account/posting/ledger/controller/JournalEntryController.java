@@ -6,7 +6,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kr.co.seoulit.account.posting.ledger.dto.JournalDetailDtoRes;
 import kr.co.seoulit.account.posting.ledger.dto.JournalDtoRes;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class JournalEntryController {
     @Autowired
     private LedgerService ledgerService;
     @Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
     @RequestMapping("/findRangedJournalList2")
 	public ArrayList<JournalDtoRes> findRangedJournalList(@RequestAttribute("reqData") PlatformData reqData,
@@ -32,7 +32,7 @@ public class JournalEntryController {
 
         ArrayList<JournalDtoRes> journalList = ledgerService.findRangedJournalList(fromDate, toDate);
 
-        datasetBeanMapper.beansToDataset(resData, journalList, JournalDtoRes.class);
+        datasetToBeanMapper.beansToDataset(resData, journalList, JournalDtoRes.class);
 
         return null;
     }
@@ -48,7 +48,7 @@ public class JournalEntryController {
 
         ArrayList<JournalDetailDtoRes> journalDetailDtoRes = ledgerService.findJournalDetailList(journalNo);
 
-        datasetBeanMapper.beansToDataset(resData, journalDetailDtoRes, JournalDetailDtoRes.class);
+        datasetToBeanMapper.beansToDataset(resData, journalDetailDtoRes, JournalDetailDtoRes.class);
 
         return null;
     }

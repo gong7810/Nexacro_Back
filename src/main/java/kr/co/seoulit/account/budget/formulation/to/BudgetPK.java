@@ -1,10 +1,7 @@
 package kr.co.seoulit.account.budget.formulation.to;
 
-import kr.co.seoulit.account.sys.base.to.BaseBean;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;

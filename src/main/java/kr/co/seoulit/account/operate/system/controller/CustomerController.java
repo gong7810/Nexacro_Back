@@ -4,7 +4,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 import kr.co.seoulit.account.operate.system.entity.Customer;
 import kr.co.seoulit.account.operate.system.service.CustomerService;
 import kr.co.seoulit.account.operate.system.to.CustomerUpdateRequest;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
     @Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
     ModelAndView mav;
     ModelMap map = new ModelMap();
@@ -39,7 +39,7 @@ public class CustomerController {
     @RequestMapping("/registerCustomer")
     public void registerCustomer(@RequestAttribute("reqData")PlatformData reqData,
                                  @RequestAttribute("resData")PlatformData resData) throws Exception {
-        CustomerUpdateRequest customerUpdateRequest = datasetBeanMapper.datasetToBean(reqData, CustomerUpdateRequest.class);
+        CustomerUpdateRequest customerUpdateRequest = datasetToBeanMapper.datasetToBean(reqData, CustomerUpdateRequest.class);
         customerService.registerCustomer(customerUpdateRequest);
     }
 
@@ -50,14 +50,14 @@ public class CustomerController {
         System.out.println("@@@@customerList@@@@");
         List<Customer> customerList = customerService.findCustomerList();
         System.out.println("customerList = " + customerList);
-        datasetBeanMapper.beansToDataset(resData, customerList, Customer.class);
+        datasetToBeanMapper.beansToDataset(resData, customerList, Customer.class);
     }
 
 
     @RequestMapping("/updateCustomer")
     public void updateCustomer(@RequestAttribute("reqData")PlatformData reqData,
                                @RequestAttribute("resData")PlatformData resData) throws Exception {
-        CustomerUpdateRequest customerUpdateRequest = datasetBeanMapper.datasetToBean(reqData, CustomerUpdateRequest.class);
+        CustomerUpdateRequest customerUpdateRequest = datasetToBeanMapper.datasetToBean(reqData, CustomerUpdateRequest.class);
         customerService.updateCustomer(customerUpdateRequest);
 
     }

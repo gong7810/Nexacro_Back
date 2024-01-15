@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.seoulit.account.sys.base.mapper.DetailCodeMapper;
+import kr.co.seoulit.erp.sys.base.mapper.DetailCodeMapper;
 
 import kr.co.seoulit.account.operate.humanresource.mapper.EmployeeMapper;
 import kr.co.seoulit.account.operate.humanresource.mapper.UserAuthorityGroupMapper;

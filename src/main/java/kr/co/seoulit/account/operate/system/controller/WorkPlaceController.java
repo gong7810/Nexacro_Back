@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nexacro.java.xapi.data.PlatformData;
 
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 
 import kr.co.seoulit.account.operate.system.service.SystemService;
 import kr.co.seoulit.account.operate.system.to.BusinessBean;
@@ -30,7 +30,7 @@ public class WorkPlaceController {
     @Autowired
     private SystemService systemService;
     @Autowired
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
 
     ModelAndView mav;
@@ -59,7 +59,7 @@ public class WorkPlaceController {
     @RequestMapping("/registerworkplace")
     public void registerworkPlace(@RequestAttribute("reqData") PlatformData reqData,
                                   @RequestAttribute("resData") PlatformData resData) throws Exception {
-        WorkplaceEntity obj = datasetBeanMapper.datasetToBean(reqData, WorkplaceEntity.class);
+        WorkplaceEntity obj = datasetToBeanMapper.datasetToBean(reqData, WorkplaceEntity.class);
         systemService.registerWorkplace(obj);
 //        JSONObject workplaceAddItemsAll = JSONObject.fromObject(workplaceAddItems);
 //        WorkplaceEntity workplaceEntity = BeanCreator.getInstance().create(workplaceAddItemsAll, WorkplaceEntity.class);
@@ -94,7 +94,7 @@ public class WorkPlaceController {
         System.out.println("@@@@WorkplaceController@@@@");
         ArrayList<WorkplaceEntity> allWorkplaceList = systemService.findAllWorkplaceList();
         System.out.println("workplaceList = " + allWorkplaceList);
-        datasetBeanMapper.beansToDataset(resData, allWorkplaceList, WorkplaceEntity.class);
+        datasetToBeanMapper.beansToDataset(resData, allWorkplaceList, WorkplaceEntity.class);
 
 
     }

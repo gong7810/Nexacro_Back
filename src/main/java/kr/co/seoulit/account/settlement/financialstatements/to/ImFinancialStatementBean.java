@@ -1,6 +1,6 @@
 package kr.co.seoulit.account.settlement.financialstatements.to;
 
-import kr.co.seoulit.account.sys.base.to.BaseBean;
+import kr.co.seoulit.erp.sys.base.to.BaseBean;
 
 public class ImFinancialStatementBean extends BaseBean {
 

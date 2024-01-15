@@ -1,6 +1,5 @@
 package kr.co.seoulit.account.operate.system.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.seoulit.account.operate.system.to.BoardReqDto;
@@ -13,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nexacro.java.xapi.data.PlatformData;
 
 import kr.co.seoulit.account.operate.system.service.SystemService;
-import kr.co.seoulit.account.operate.system.entity.BoardEntity;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 
 @RestController
 @RequestMapping("/operate")
@@ -23,37 +21,17 @@ public class BoardController {
 	@Autowired
 	private SystemService systemService;
 	@Autowired
-	private DatasetBeanMapper datasetBeanMapper;
+	private DatasetToBeanMapper datasetToBeanMapper;
 
 
-											// board CRUD
-
-	@RequestMapping("/registerBoard")
-	public void findBoard(@RequestAttribute("reqData")PlatformData reqData,
-						  @RequestAttribute("resData")PlatformData resData) throws Exception {
-		BoardReqDto boardReqDto = datasetBeanMapper.datasetToBean(reqData, BoardReqDto.class);
-		System.out.println("<<<<<<<<<this is bean for insert!!!>>>>>>>>>>>>"+boardReqDto);
-		systemService.registerBoard(boardReqDto);
-	}
-
-	@RequestMapping("/modifyBoard")
-	public void modifyBoard(@RequestAttribute("reqData")PlatformData reqData,
-							@RequestAttribute("resData")PlatformData resData) throws Exception {
-		System.out.println("This is resData : "+resData);
-		System.out.println("<<<<<<<<<<<<modifyBoard has been called>>>>>>>>>>>>>>>>");
-		BoardReqDto boardReqDto = datasetBeanMapper.datasetToBean(reqData, BoardReqDto.class);
-		System.out.println("<<<<<<<<<<<<<this is Data for modify"+boardReqDto);
-		systemService.modifyBoard(boardReqDto);
-	}
-
-
+	// board CRUD
 
 	@RequestMapping("/findBoardList")
 	public void findBoardList(@RequestAttribute("reqData")PlatformData reqData,
 							  @RequestAttribute("resData")PlatformData resData) throws Exception {
-		System.out.println("<<<<<<<<<<<request arrived at findboardList>>>>>>>>>>>>");
+		System.out.println("<<<<<<<<<<< 게시판 조회 >>>>>>>>>>>>");
 		List<BoardResDto> boardList = systemService.findBoardList();
-		datasetBeanMapper.beansToDataset(resData, boardList, BoardResDto.class);
+		datasetToBeanMapper.beansToDataset(resData, boardList, BoardResDto.class);
 	}
 
 	@RequestMapping("/findBoardDetail")
@@ -63,15 +41,33 @@ public class BoardController {
 		System.out.println("this board info"+boardInfo);
 
 		BoardResDto boardDetail = systemService.findBoardDetail(boardInfo);
-		datasetBeanMapper.beanToDataset(resData, boardDetail, BoardResDto.class);
+		datasetToBeanMapper.beanToDataset(resData, boardDetail, BoardResDto.class);
 
+	}
+
+	@RequestMapping("/registerBoard")
+	public void findBoard(@RequestAttribute("reqData")PlatformData reqData,
+						  @RequestAttribute("resData")PlatformData resData) throws Exception {
+		BoardReqDto boardReqDto = datasetToBeanMapper.datasetToBean(reqData, BoardReqDto.class);
+		System.out.println("<<<<<<<<< 게시판 추가 >>>>>>>>>>>>"+boardReqDto);
+		systemService.registerBoard(boardReqDto);
+	}
+
+	@RequestMapping("/modifyBoard")
+	public void modifyBoard(@RequestAttribute("reqData")PlatformData reqData,
+							@RequestAttribute("resData")PlatformData resData) throws Exception {
+		System.out.println("This is resData : "+resData);
+		System.out.println("<<<<<<<<<<< 게시판 수정 >>>>>>>>>>>>>>>>");
+		BoardReqDto boardReqDto = datasetToBeanMapper.datasetToBean(reqData, BoardReqDto.class);
+		System.out.println("<<<<<<<<<<<<<this is Data for modify"+boardReqDto);
+		systemService.modifyBoard(boardReqDto);
 	}
 
 	@RequestMapping("/removeBoard")
 	public void removeBoard(@RequestAttribute("reqData")PlatformData reqData,
 							@RequestAttribute("resData")PlatformData resData) throws Exception {
 		String boardId = reqData.getVariable("bno").getString();
-		System.out.println("<<<<<<<<<<<<<<<Board "+boardId+" has been arrived at removeBoard!!!");
+		System.out.println(""+boardId+" 게시판 삭제");
 		systemService.removeBoard(boardId);
 
 	}

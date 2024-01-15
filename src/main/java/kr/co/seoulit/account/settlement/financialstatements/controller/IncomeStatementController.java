@@ -1,34 +1,20 @@
 package kr.co.seoulit.account.settlement.financialstatements.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
 
 import com.nexacro.java.xapi.data.PlatformData;
 
-import kr.co.seoulit.account.sys.base.service.BaseService;
-import kr.co.seoulit.account.sys.common.exception.DataAccessException;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
-import lombok.extern.log4j.Log4j2;
+import kr.co.seoulit.erp.sys.base.service.BaseService;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 import kr.co.seoulit.account.settlement.financialstatements.service.FinancialStatementsService;
-import kr.co.seoulit.account.settlement.financialstatements.service.FinancialStatementsServiceImpl;
 import kr.co.seoulit.account.settlement.financialstatements.to.IncomeStatementBean;
-import kr.co.seoulit.account.settlement.trialbalance.to.TotalTrialBalanceBean;
-import net.sf.json.JSONObject;
 
 
 @RestController
@@ -38,7 +24,7 @@ public class IncomeStatementController  {
 	@Autowired
 	private FinancialStatementsService financialStatementsService;
 	@Autowired
-	private DatasetBeanMapper datasetBeanMapper;
+	private DatasetToBeanMapper datasetToBeanMapper;
 	@Autowired
 	private BaseService baseService;
 
@@ -56,7 +42,7 @@ public class IncomeStatementController  {
 		financialStatementsService.findIncomeStatement(params);
 
 			ArrayList<IncomeStatementBean> bean = (ArrayList<IncomeStatementBean>) params.get("incomeStatement");
-			  datasetBeanMapper.beansToDataset(resData, bean, IncomeStatementBean.class);
+			  datasetToBeanMapper.beansToDataset(resData, bean, IncomeStatementBean.class);
         return null;
     }
 
@@ -82,7 +68,7 @@ public class IncomeStatementController  {
 		financialStatementsService.findIncomeStatement(params);
 
 			ArrayList<IncomeStatementBean> bean = (ArrayList<IncomeStatementBean>) params.get("incomeStatement");
-			  datasetBeanMapper.beansToDataset(resData, bean, IncomeStatementBean.class);
+			  datasetToBeanMapper.beansToDataset(resData, bean, IncomeStatementBean.class);
         return null;
     }
 

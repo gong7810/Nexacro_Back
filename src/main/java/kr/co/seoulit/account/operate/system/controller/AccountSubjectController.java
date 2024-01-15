@@ -6,13 +6,11 @@ import java.util.List;
 
 import kr.co.seoulit.account.operate.system.to.AccountDetailEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.nexacro.java.xapi.data.PlatformData;
 
@@ -21,19 +19,19 @@ import kr.co.seoulit.account.operate.system.service.SystemService;
 import kr.co.seoulit.account.operate.system.to.AccountEntity;
 import kr.co.seoulit.account.operate.system.to.AccountControlEntity;
 import kr.co.seoulit.account.operate.system.to.PeriodEntity;
-import kr.co.seoulit.account.sys.common.mapper.DatasetBeanMapper;
+import kr.co.seoulit.erp.sys.common.mapper.DatasetToBeanMapper;
 
 @RestController
 @RequestMapping("/operate")
 public class AccountSubjectController {
 
     private SystemService systemService;
-    private DatasetBeanMapper datasetBeanMapper;
+    private DatasetToBeanMapper datasetToBeanMapper;
 
     @Autowired
-    public AccountSubjectController(SystemService systemService, DatasetBeanMapper datasetBeanMapper) {
+    public AccountSubjectController(SystemService systemService, DatasetToBeanMapper datasetToBeanMapper) {
     	this.systemService=systemService;
-    	this.datasetBeanMapper=datasetBeanMapper;
+    	this.datasetToBeanMapper = datasetToBeanMapper;
 
     }
 
@@ -49,7 +47,7 @@ public class AccountSubjectController {
     public void registerAccountDetail(@RequestAttribute("reqData")PlatformData reqData,
                                       @RequestAttribute("resData")PlatformData  resData )throws Exception{
         System.out.println("<<<<<request has been arrived at registerAccountDetail");
-        AccountDetailEntity bean = datasetBeanMapper.datasetToBean(reqData,AccountDetailEntity.class);
+        AccountDetailEntity bean = datasetToBeanMapper.datasetToBean(reqData,AccountDetailEntity.class);
         System.out.println("<<<<<<<<<< AccountDetailData has been arrived at controller");
         systemService.registerAccountDetail(bean);
     }
@@ -58,14 +56,14 @@ public class AccountSubjectController {
   public void forFindDuplication(@RequestAttribute("reqData")PlatformData reqData,
                           @RequestAttribute("resData")PlatformData resData)throws Exception {
         List<AccountDetailEntity> list=systemService.findDuplication();
-        datasetBeanMapper.beansToDataset(resData,list, AccountDetailEntity.class);
+        datasetToBeanMapper.beansToDataset(resData,list, AccountDetailEntity.class);
     }
 
     //계정과목 가져오기
     @RequestMapping(value = "/findParentAccountList")
     public ArrayList<AccountEntity> findParentAccountList(@RequestAttribute("reqData")PlatformData reqData,
                                                           @RequestAttribute("resData")PlatformData resData) throws Exception {
-        datasetBeanMapper.beansToDataset(resData, systemService.findParentAccountList(), AccountEntity.class);
+        datasetToBeanMapper.beansToDataset(resData, systemService.findParentAccountList(), AccountEntity.class);
 
         return null;
     }
@@ -78,7 +76,7 @@ public class AccountSubjectController {
         System.out.println(parentAccountInnerCode);
 
         ArrayList<AccountDetailEntity> accountList = systemService.findDetailAccountList(parentAccountInnerCode);
-        datasetBeanMapper.beansToDataset(resData, accountList, AccountDetailEntity.class);
+        datasetToBeanMapper.beansToDataset(resData, accountList, AccountDetailEntity.class);
 
         return null;
     }
@@ -89,7 +87,7 @@ public class AccountSubjectController {
 
         String accountInnerCode=reqData.getVariable("accountInnerCode").getString();
         AccountDetailEntity accountDetail=systemService.findAccountDetail(accountInnerCode);
-        datasetBeanMapper.beanToDataset(resData,accountDetail, AccountDetailEntity.class);
+        datasetToBeanMapper.beanToDataset(resData,accountDetail, AccountDetailEntity.class);
 
     }
 
@@ -138,7 +136,7 @@ public class AccountSubjectController {
         String accountCode = reqData.getVariable("accountCode").getString();
 
             ArrayList<AccountControlEntity> accountControlList = systemService.findAccountControlList(accountCode);
-            datasetBeanMapper.beansToDataset(resData, accountControlList, AccountControlEntity.class);
+            datasetToBeanMapper.beansToDataset(resData, accountControlList, AccountControlEntity.class);
 
 
         return null;
@@ -149,7 +147,7 @@ public class AccountSubjectController {
     public ArrayList<AccountEntity> findAccountList(@RequestAttribute("reqData")PlatformData reqData,
                                                     @RequestAttribute("resData")PlatformData resData) throws Exception {
         ArrayList<AccountEntity> accountList = systemService.findAccountList();
-        datasetBeanMapper.beansToDataset(resData, accountList, AccountEntity.class);
+        datasetToBeanMapper.beansToDataset(resData, accountList, AccountEntity.class);
         return null;
     }
 
@@ -159,7 +157,7 @@ public class AccountSubjectController {
                                                                 @RequestAttribute("resData")PlatformData resData) throws Exception {
         System.out.println("전표 화면 출력 시 실행" + "🔥🔥🔥🔥");
         ArrayList<AccountControlEntity> accountDetailList = systemService.findAccountDetailList();
-        datasetBeanMapper.beansToDataset(resData, accountDetailList, AccountControlEntity.class);
+        datasetToBeanMapper.beansToDataset(resData, accountDetailList, AccountControlEntity.class);
         return null;
     }
    // @GetMapping("/accountlistbyname")
@@ -170,7 +168,7 @@ public class AccountSubjectController {
         System.out.println("findAccountListByName의 accountName"+accountName);
         ArrayList<AccountEntity> accountListByName = systemService.findAccountListByName(accountName);
 
-        datasetBeanMapper.beansToDataset(resData, accountListByName, AccountEntity.class);
+        datasetToBeanMapper.beansToDataset(resData, accountListByName, AccountEntity.class);
 
         return null;
     }
@@ -213,7 +211,7 @@ public class AccountSubjectController {
             @RequestAttribute("resData")PlatformData resData) throws Exception {
 
             ArrayList<PeriodEntity> accountPeriodList = systemService.findPeriodList();
-            datasetBeanMapper.beansToDataset(resData, accountPeriodList, PeriodEntity.class);
+            datasetToBeanMapper.beansToDataset(resData, accountPeriodList, PeriodEntity.class);
 
         return null;
     }
