@@ -1,8 +1,8 @@
-package kr.co.seoulit.account.operate.system.MapStruct;
+package kr.co.seoulit.erp.account.operate.system.mapstruct;
 
 import javax.annotation.processing.Generated;
-import kr.co.seoulit.account.operate.system.entity.Customer;
-import kr.co.seoulit.account.operate.system.to.CustomerUpdateRequest;
+import kr.co.seoulit.erp.account.operate.system.entity.Customer;
+import kr.co.seoulit.erp.account.operate.system.to.CustomerUpdateRequest;
 import org.springframework.stereotype.Component;
 
 @Generated(

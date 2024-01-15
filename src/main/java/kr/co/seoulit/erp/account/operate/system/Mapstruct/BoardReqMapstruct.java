@@ -1,22 +1,17 @@
-package kr.co.seoulit.erp.account.operate.system.Mapstruct;
+package kr.co.seoulit.erp.account.operate.system.mapstruct;
 
-import kr.co.seoulit.erp.account.operate.system.DTO.BoardReqDTO;
-import kr.co.seoulit.erp.account.operate.system.Entity.NoticeBoardEntity;
-import kr.co.seoulit.erp.sys.common.Mapstruct.EntityReqMapper;
+
+import kr.co.seoulit.erp.account.operate.system.entity.BoardEntity;
+import kr.co.seoulit.erp.account.operate.system.to.BoardReqDTO;
+import kr.co.seoulit.erp.account.sys.common.mapstruct.EntityReqMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
 
-import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface BoardReqMapstruct extends EntityReqMapper<NoticeBoardEntity, BoardReqDTO> {
+public interface BoardReqMapStruct extends EntityReqMapper<BoardEntity, BoardReqDTO>
+{
 
-    @Override
-    NoticeBoardEntity toEntity(BoardReqDTO dto);
 
-    @Override
-    List<NoticeBoardEntity> toEntity(List<BoardReqDTO> dtos);
-    BoardReqMapstruct MAPPER = Mappers.getMapper(BoardReqMapstruct.class);
+
 }
-

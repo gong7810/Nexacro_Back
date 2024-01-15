@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.seoulit.erp.account.operate.system.dao.BoardDAO">
+
+	<!-- 게시판 조회 -->
+	<select id="findBoardList" resultType="kr.co.seoulit.erp.account.operate.system.entity.BoardEntity">
+		<![CDATA[
+		SELECT
+			Id as id
+			 ,title as title
+			 ,contents as contents
+			 ,written_by as writtenBy
+			 ,update_by as  updateBy
+			 ,write_date as writeDate
+			 ,update_date_time as updateDateTime
+		FROM
+			BOARD
+		ORDER BY id DESC    --최근의 데이터를 최상단에 보여주기 위한 정렬
+		]]>
+	</select>
+
+	<!-- 게시글 상세 조회 -->
+	<select id="findBoardDetail" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.BoardEntity">
+		<![CDATA[
+		SELECT
+			Id as id
+			 ,title as title
+			 ,contents as contents
+			 ,written_by as writtenBy
+			 ,update_by as upDateBy
+			 ,write_date as writeDate
+			 ,update_date_time as updateDateTime
+		FROM BOARD
+		WHERE ID = #{id}
+		]]>
+	</select>
+
+	<!-- 게시판 추가 -->
+	<insert id="insertBoard" parameterType="kr.co.seoulit.erp.account.operate.system.entity.BoardEntity">
+    <![CDATA[
+		INSERT INTO BOARD
+		(
+			id,
+			TITLE,
+			CONTENTS,
+			written_by,
+			write_date
+		)
+		VALUES
+			(
+				BOARD_SQ.NEXTVAL,
+				#{title},
+				#{contents},
+				#{writtenBy},
+				sysdate
+			)
+		]]>
+    </insert>
+
+	<!-- 게시판 수정 -->
+	<update id="updateBoard" parameterType="kr.co.seoulit.erp.account.operate.system.entity.BoardEntity">
+    <![CDATA[
+		UPDATE Board
+		SET
+			title = #{title},
+			contents = #{contents},
+			update_date_time=sysdate
+
+		WHERE
+			ID = #{id}
+		]]>
+    </update>
+
+	<!-- 게시판 삭제 -->
+	<delete id="deleteBoard" parameterType="String">
+		DELETE FROM BOARD
+		WHERE id = #{id}
+	</delete>
+
+</mapper>

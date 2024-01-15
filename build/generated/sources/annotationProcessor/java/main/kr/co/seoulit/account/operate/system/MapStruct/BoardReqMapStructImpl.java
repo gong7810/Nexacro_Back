@@ -1,10 +1,10 @@
-package kr.co.seoulit.account.operate.system.MapStruct;
+package kr.co.seoulit.erp.account.operate.system.mapstruct;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
-import kr.co.seoulit.account.operate.system.entity.BoardEntity;
-import kr.co.seoulit.account.operate.system.to.BoardReqDto;
+import kr.co.seoulit.erp.account.operate.system.entity.BoardEntity;
+import kr.co.seoulit.erp.account.operate.system.to.BoardReqDto;
 import org.springframework.stereotype.Component;
 
 @Generated(

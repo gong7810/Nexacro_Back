@@ -24,8 +24,8 @@ spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:oracle:thin:@//localhost:1521/xe
-    username: acc77
-    password: acc77
+    username: nacc77
+    password: nacc77
   main:
     allow-bean-definition-overriding: true
   jpa:
@@ -69,10 +69,8 @@ spring:
 
 # mybatis
 mybatis:
-  mapper-locations: classpath:/mapper/**/**/**/*.xml
-# 최종마감후 사용
-#  mapper-locations: classpath:/sqlMapper/**/**/sqlMap*.xml
-  type-aliases-package: kr.co.seoulit.account
+  mapper-locations: classpath:/sqlMapper/**/**/*.xml
+  type-aliases-package: kr.co.seoulit.erp.account
   configuration:
     jdbc-type-for-null: NULL
     map-underscore-to-camel-case: true

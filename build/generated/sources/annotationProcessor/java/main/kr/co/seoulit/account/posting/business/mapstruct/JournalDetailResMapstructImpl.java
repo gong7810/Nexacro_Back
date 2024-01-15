@@ -1,10 +1,10 @@
-package kr.co.seoulit.account.posting.business.mapstruct;
+package kr.co.seoulit.erp.account.posting.business.mapstruct;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
-import kr.co.seoulit.account.posting.business.DTO.JournalDetailresDto;
-import kr.co.seoulit.account.posting.business.Entity.JournalDetailEntity;
+import kr.co.seoulit.erp.account.posting.business.dto.JournalDetailresDto;
+import kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity;
 import org.springframework.stereotype.Component;
 
 @Generated(

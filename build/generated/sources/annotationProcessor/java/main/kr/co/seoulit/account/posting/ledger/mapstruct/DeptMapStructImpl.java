@@ -1,12 +1,12 @@
-package kr.co.seoulit.account.posting.ledger.mapstruct;
+package kr.co.seoulit.erp.account.posting.ledger.mapstruct;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
-import kr.co.seoulit.account.posting.ledger.dto.DeptResDto;
-import kr.co.seoulit.account.posting.ledger.entity.AssetItemEntity;
-import kr.co.seoulit.account.posting.ledger.entity.DeptEntity;
+import kr.co.seoulit.erp.account.posting.ledger.dto.DeptResDto;
+import kr.co.seoulit.erp.account.posting.ledger.entity.AssetItemEntity;
+import kr.co.seoulit.erp.account.posting.ledger.entity.DeptEntity;
 import org.springframework.stereotype.Component;
 
 @Generated(
