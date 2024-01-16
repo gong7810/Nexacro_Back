@@ -1,5 +1,6 @@
+# 2024.01.11 yaml fix
 server:
-  port: 9162
+  port: 8484
 
 # ajpPort
 tomcat:
@@ -31,8 +32,10 @@ spring:
     generate-ddl: false
     properties:
       hibernate:
-        #        show-sql: true
         format_sql: true
+        flushMode: COMMIT
+        temp:
+          use_jdbc_metadata_defaults: false
     show-sql: true
     database: oracle
     database-platform: org.hibernate.dialect.Oracle10gDialect
@@ -66,8 +69,8 @@ spring:
 
 # mybatis
 mybatis:
-  mapper-locations: classpath:/mapper/**/*SqlMap.xml
-  type-aliases-package: kr.co.seoulit.account
+  mapper-locations: classpath:/sqlMapper/**/**/*.xml
+  type-aliases-package: kr.co.seoulit.erp.account
   configuration:
     jdbc-type-for-null: NULL
     map-underscore-to-camel-case: true
@@ -87,20 +90,20 @@ decorator:
       enable-logging: true
 
 
-#Swagger
+#swagger
 springdoc:
   api-docs:
-    path: /api-docs		#api-docs url : localhost:8080/api-docs
+    path: /api-docs      #api-docs url : localhost:8080/api-docs
     groups:
-      enabled: true		#group 허용
+      enabled: true      #group 허용
   swagger-ui:
     path: /index.html           # Swagger UI 경로
     enabled: true
-    groups-order: ASC		#group 정렬 오름차순
+    groups-order: ASC      #group 정렬 오름차순
     tags-sorter: alpha            # alpha: 알파벳 순 태그 정렬, method: HTTP Method 순 정렬
     operations-sorter: alpha      # alpha: 알파벳 순 태그 정렬, method: HTTP Method 순 정렬
     display-request-duration: true
-    doc-expansion: none 			#swagger tag 리스트 펼치기 (none : 모두 접기 / list : 파트별 펼치기(내용 감추기)/full : 모두 펼치기)
+    doc-expansion: none          #swagger tag 리스트 펼치기 (none : 모두 접기 / list : 파트별 펼치기(내용 감추기)/full : 모두 펼치기)
   cache:
     disabled: true
   override-with-generic-response: false

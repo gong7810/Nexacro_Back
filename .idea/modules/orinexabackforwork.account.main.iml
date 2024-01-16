@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
-  <component name="NewModuleRootManager">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
     <content url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main">
       <sourceFolder url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
     </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="account.main" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-context:5.3.20" level="project" />
+    <orderEntry type="library" name="J2EE 1.4-J2EE 1.4" level="project" />
   </component>
 </module>
