@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import kr.co.seoulit.erp.account.posting.business.dto.JournalDetailresDto;
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity;
 import kr.co.seoulit.erp.account.posting.business.service.BusinessService;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;

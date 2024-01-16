@@ -6,8 +6,8 @@ import java.util.HashMap;
 import kr.co.seoulit.erp.account.posting.business.dto.JournalDetailresDto;
 import org.apache.ibatis.annotations.Mapper;
 
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalEntity;
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity;
 
 @Mapper
 public interface JournalMapper {

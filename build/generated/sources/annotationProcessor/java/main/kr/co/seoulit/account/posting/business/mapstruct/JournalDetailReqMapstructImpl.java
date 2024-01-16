@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import kr.co.seoulit.erp.account.posting.business.dto.JournalDetailreqDto;
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity;
 import org.springframework.stereotype.Component;
 
 @Generated(

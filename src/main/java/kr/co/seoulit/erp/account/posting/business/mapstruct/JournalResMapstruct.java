@@ -1,7 +1,7 @@
 package kr.co.seoulit.erp.account.posting.business.mapstruct;
 
 import kr.co.seoulit.erp.account.posting.business.dto.JournalresDto;
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalEntity;
 import kr.co.seoulit.erp.account.sys.common.mapstruct.EntityResMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

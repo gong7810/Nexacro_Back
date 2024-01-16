@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import kr.co.seoulit.erp.account.posting.business.dto.*;
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalEntity;
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity;
-import kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.SlipEntity;
 
 public interface BusinessService {
 

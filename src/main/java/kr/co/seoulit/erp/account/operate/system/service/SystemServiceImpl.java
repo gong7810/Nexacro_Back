@@ -6,7 +6,6 @@ import java.util.List;
 
 import kr.co.seoulit.erp.account.operate.system.mapstruct.BoardReqMapStruct;
 import kr.co.seoulit.erp.account.operate.system.mapstruct.BoardResMapStruct;
-import kr.co.seoulit.erp.account.operate.system.entity.BoardEntity;
 import kr.co.seoulit.erp.account.operate.system.dao.*;
 import kr.co.seoulit.erp.account.operate.system.to.*;
 import org.springframework.beans.factory.annotation.Autowired;

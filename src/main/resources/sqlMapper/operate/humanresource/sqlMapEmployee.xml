@@ -117,7 +117,7 @@
 			UPDATE EMPLOYEE SET IMAGE=#{newFileName} WHERE EMP_CODE='admin'
 		</update>
 		
-		<select id="selectImage" parameterType="String" resultType="kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity">
+		<select id="selectImage" parameterType="String" resultType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">
 			SELECT IMAGE FROM EMPLOYEE WHERE EMP_CODE = #{EMP_CODE}
 		</select>
 </mapper>

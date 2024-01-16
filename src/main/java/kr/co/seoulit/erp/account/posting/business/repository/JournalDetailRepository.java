@@ -1,6 +1,6 @@
 package kr.co.seoulit.erp.account.posting.business.repository;
 
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

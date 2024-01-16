@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import kr.co.seoulit.erp.account.posting.business.dto.SlipresDto;
-import kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.SlipEntity;
 import org.springframework.stereotype.Component;
 
 @Generated(

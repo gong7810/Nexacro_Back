@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.Hidden;
 import kr.co.seoulit.erp.account.posting.business.dto.JournalreqDto;
 import kr.co.seoulit.erp.account.posting.business.dto.SlipreqDto;
 import kr.co.seoulit.erp.account.posting.business.dto.SlipresDto;
-import kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.SlipEntity;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.seoulit.erp.account.posting.business.service.BusinessService;
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalEntity;
-import kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity;
 import net.sf.json.JSONObject;
 import com.nexacro.java.xapi.data.PlatformData;
 

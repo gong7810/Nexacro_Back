@@ -7,7 +7,7 @@
 
 	<select id="selectRangedJournalList"
 			parameterType="java.util.HashMap"
-			resultType="kr.co.seoulit.erp.account.posting.business.Entity.JournalEntity">
+			resultType="kr.co.seoulit.erp.account.posting.business.entity.JournalEntity">
 		<![CDATA[
 		SELECT * FROM (
 						  SELECT TO_CHAR(J.JOURNAL_NO)          as journalNo,
@@ -68,7 +68,7 @@
 		]]>
 	</select>
 	<select id="selectJournalList" parameterType="String"
-			resultType="kr.co.seoulit.erp.account.posting.business.Entity.JournalEntity">
+			resultType="kr.co.seoulit.erp.account.posting.business.entity.JournalEntity">
 			<![CDATA[
 		SELECT J.JOURNAL_NO          as journalNo,
 			   J.SLIP_NO             as slipNo,
@@ -88,7 +88,7 @@
 		]]>
 	</select>
 	<insert id="insertJournal"
-			parameterType="kr.co.seoulit.erp.account.posting.business.Entity.JournalEntity">
+			parameterType="kr.co.seoulit.erp.account.posting.business.entity.JournalEntity">
 			<![CDATA[
 		INSERT INTO JOURNAL
 		(
@@ -129,7 +129,7 @@
 		]]>
 	</delete>
 	<update id="updateJournal"
-			parameterType="kr.co.seoulit.erp.account.posting.business.Entity.JournalEntity">
+			parameterType="kr.co.seoulit.erp.account.posting.business.entity.JournalEntity">
 			<![CDATA[
 		UPDATE  JOURNAL SET
 							BALANCE_DIVISION=#{balanceDivision},
@@ -165,7 +165,7 @@
 	</select>
 
 	<select id="detailAccountList" parameterType="String"
-			resultType="kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity">
+			resultType="kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity">
 		<![CDATA[
 		SELECT
 			A.ACCOUNT_CONTROL_CODE ,
@@ -181,7 +181,7 @@
 
 	<select id="selectJournalDetailDescriptionName"
 			parameterType="String"
-			resultType="kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity">
+			resultType="kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity">
 		<![CDATA[
 		SELECT C.DETAIL_CODE_NAME
 		FROM JOURNAL_DETAIL J, CODE_DETAIL C
@@ -205,7 +205,7 @@
 	</delete>
 
 	<update id="updateJournalDetail"
-			parameterType="kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity">
+			parameterType="kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity">
 		<![CDATA[
 		UPDATE JOURNAL_DETAIL SET DESCRIPTION = #{journalDescription}
 		WHERE JOURNAL_DETAIL_NO = #{journalDetailNo}
@@ -213,7 +213,7 @@
 		]]>
 	</update>
 	<insert id="insertJournalDetailList"
-			parameterType="kr.co.seoulit.erp.account.posting.business.Entity.JournalDetailEntity">
+			parameterType="kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity">
 		<![CDATA[
 
 		INSERT INTO JOURNAL_DETAIL(

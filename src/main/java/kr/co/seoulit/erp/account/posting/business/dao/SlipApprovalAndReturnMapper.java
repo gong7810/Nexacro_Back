@@ -2,7 +2,7 @@ package kr.co.seoulit.erp.account.posting.business.dao;
 
 import java.util.ArrayList;
 
-import kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity;
+import kr.co.seoulit.erp.account.posting.business.entity.SlipEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

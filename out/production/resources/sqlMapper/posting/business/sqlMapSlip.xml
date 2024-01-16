@@ -5,7 +5,7 @@
 
 	
 		
-		<select id="selectSlipDataList" parameterType="String" resultType="kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity">
+		<select id="selectSlipDataList" parameterType="String" resultType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">
 		<![CDATA[
 			
  			SELECT
@@ -30,12 +30,12 @@
 			 ]]>
 		 </delete>
 		 
-		 <update id="updateSlip" parameterType="kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity">
+		 <update id="updateSlip" parameterType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">
 			<![CDATA[
 			UPDATE SLIP SET SLIP_STATUS=#{slipStatus} WHERE SLIP_NO=#{slipNo}
 			 ]]>
 		 </update>
-		  <insert id="insertSlip" parameterType="kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity">
+		  <insert id="insertSlip" parameterType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">
 			<![CDATA[
 		
 			INSERT INTO SLIP(
@@ -64,7 +64,7 @@
  	
 			 ]]>
 		 </insert>
-		  <update id="updateapproveSlip" parameterType="kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity" >
+		  <update id="updateapproveSlip" parameterType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity" >
 			<![CDATA[
 				UPDATE SLIP 
 				SET APPROVAL_DATE=#{approvalDate},
@@ -73,7 +73,7 @@
 				WHERE SLIP_NO=#{slipNo}
 			 ]]>
 		 </update>
-		  <select id="selectRangedSlipList" parameterType="java.util.HashMap" resultType="kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity">
+		  <select id="selectRangedSlipList" parameterType="java.util.HashMap" resultType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">
 					
 						SELECT
 				s.SLIP_NO              as slipNo,
@@ -102,7 +102,7 @@
 				 ORDER BY s.REPORTING_DATE
 		 </select>
 		 
-		  <select id="selectDisApprovalSlipList"  resultType="kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity">
+		  <select id="selectDisApprovalSlipList"  resultType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">
 			<![CDATA[
 				SELECT
 				SLIP_NO 			 as slipNo,
@@ -125,7 +125,7 @@
 				  WHERE SLIP_NO LIKE   '%'||#{today}||'%'
 			 ]]>
 		 </select>
-		   <select id="selectSlip" parameterType="HashMap" resultType="kr.co.seoulit.erp.account.posting.business.Entity.SlipEntity">
+		   <select id="selectSlip" parameterType="HashMap" resultType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">
 			<![CDATA[
 				SELECT SLIP_NO as slipNo
 					ACCOUNT_PERIOD_NO as accountPeriodNo

@@ -1,4 +1,4 @@
-package kr.co.seoulit.erp.account.posting.business.Entity;
+package kr.co.seoulit.erp.account.posting.business.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
