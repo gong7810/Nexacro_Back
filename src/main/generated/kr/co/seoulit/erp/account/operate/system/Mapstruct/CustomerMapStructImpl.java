@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
-public class CustomerMapperImpl implements CustomerMapper {
+public class CustomerMapStructImpl implements CustomerMapStruct {
 
     @Override
     public CustomerUpdateRequest toCustomerDTO(Customer customer) {

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface CustomerMapper {
+public interface CustomerMapStruct {
 
     CustomerUpdateRequest toCustomerDTO(Customer customer);
 }
