@@ -29,6 +29,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   jpa:
+    open-in-view: false
     generate-ddl: false
     properties:
       hibernate:
