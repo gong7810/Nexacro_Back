@@ -1,7 +1,9 @@
 package kr.co.seoulit.erp.account.operate.currentAsset.controller;
 
 import com.nexacro.java.xapi.data.PlatformData;
+import kr.co.seoulit.erp.account.operate.currentAsset.service.CurrentAssetDetailService;
 import kr.co.seoulit.erp.account.operate.currentAsset.service.CurrentAssetService;
+import kr.co.seoulit.erp.account.operate.currentAsset.to.CurrentAssetDetailReqDTO;
 import kr.co.seoulit.erp.account.operate.currentAsset.to.CurrentAssetDetailResDTO;
 import kr.co.seoulit.erp.account.operate.currentAsset.to.CurrentAssetReqDTO;
 import kr.co.seoulit.erp.account.operate.currentAsset.to.CurrentAssetResDTO;
@@ -19,6 +21,8 @@ public class CurrentAssetController {
 
     @Autowired
     private CurrentAssetService currentAssetService;
+    @Autowired
+    private CurrentAssetDetailService currentAssetDetailService;
     @Autowired
     private DatasetToBeanMapper datasetToBeanMapper;
 
@@ -51,6 +55,16 @@ public class CurrentAssetController {
         CurrentAssetReqDTO currentAssetReqDTO = datasetToBeanMapper.datasetToBean(reqData, CurrentAssetReqDTO.class);
         System.out.println("고정자산 추가 Rest API "+ currentAssetReqDTO);
         currentAssetService.insertAsset(currentAssetReqDTO);
+    }
+
+    // 고정자산상세 추가
+    @RequestMapping("/insertAssetDetail")
+    public void insertAssetDetail(@RequestAttribute("reqData") PlatformData reqData,
+                                  @RequestAttribute("resData")PlatformData resData) throws Exception {
+
+        CurrentAssetDetailReqDTO currentAssetDetailReqDTO = datasetToBeanMapper.datasetToBean(reqData, CurrentAssetDetailReqDTO.class);
+        System.out.println("고정자산상세 추가 Rest API "+ currentAssetDetailReqDTO);
+        currentAssetDetailService.insertAssetDetail(currentAssetDetailReqDTO);
     }
 
     // 고정자산 수정

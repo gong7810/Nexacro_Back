@@ -1,10 +1,14 @@
 package kr.co.seoulit.erp.account.operate.currentAsset.to;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import kr.co.seoulit.erp.account.sys.common.annotation.Dataset;
+import lombok.*;
 
 @EqualsAndHashCode(callSuper = false)
+@Dataset(name="ds_assetDetail")
 @Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class CurrentAssetDetailResDTO {
 
     private String assetCode;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-01-17T21:45:35+0900",
+    date = "2024-01-19T19:58:52+0900",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.4.1.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -23,21 +23,12 @@ public class CurrentAssetReqMapStructImpl implements CurrentAssetReqMapStruct {
 
         CurrentAssetEntity currentAssetEntity = new CurrentAssetEntity();
 
-        currentAssetEntity.setAccountCode( dto.getAccountCode() );
         currentAssetEntity.setAccountName( dto.getAccountName() );
         currentAssetEntity.setAssetCode( dto.getAssetCode() );
+        currentAssetEntity.setAccountCode( dto.getAccountCode() );
         currentAssetEntity.setAssetName( dto.getAssetName() );
         currentAssetEntity.setProgress( dto.getProgress() );
         currentAssetEntity.setFinalizeStatus( dto.getFinalizeStatus() );
-        currentAssetEntity.setAcquisitionCost( dto.getAcquisitionCost() );
-        currentAssetEntity.setDepreciation( dto.getDepreciation() );
-        currentAssetEntity.setBookValue( dto.getBookValue() );
-        currentAssetEntity.setNormalAmortization( dto.getNormalAmortization() );
-        currentAssetEntity.setAccumulatedAmortization( dto.getAccumulatedAmortization() );
-        currentAssetEntity.setBookValueEnd( dto.getBookValueEnd() );
-        currentAssetEntity.setAcquisitionQuantity( dto.getAcquisitionQuantity() );
-        currentAssetEntity.setChangeQuantity( dto.getChangeQuantity() );
-        currentAssetEntity.setRemainQuantity( dto.getRemainQuantity() );
 
         return currentAssetEntity;
     }

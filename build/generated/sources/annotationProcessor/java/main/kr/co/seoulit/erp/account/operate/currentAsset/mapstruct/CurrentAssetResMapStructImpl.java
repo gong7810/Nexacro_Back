@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-01-17T21:45:35+0900",
+    date = "2024-01-19T19:58:52+0900",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.4.1.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -23,9 +23,9 @@ public class CurrentAssetResMapStructImpl implements CurrentAssetResMapStruct {
 
         CurrentAssetResDTO currentAssetResDTO = new CurrentAssetResDTO();
 
-        currentAssetResDTO.setAccountCode( entity.getAccountCode() );
         currentAssetResDTO.setAccountName( entity.getAccountName() );
         currentAssetResDTO.setAssetCode( entity.getAssetCode() );
+        currentAssetResDTO.setAccountCode( entity.getAccountCode() );
         currentAssetResDTO.setAssetName( entity.getAssetName() );
         currentAssetResDTO.setProgress( entity.getProgress() );
         currentAssetResDTO.setFinalizeStatus( entity.getFinalizeStatus() );

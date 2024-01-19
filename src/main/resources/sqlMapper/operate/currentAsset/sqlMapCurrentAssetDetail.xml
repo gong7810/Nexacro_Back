@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.seoulit.erp.account.operate.currentAsset.dao.CurrentAssetDetailDAO">
+
+    <resultMap id="assetDetailResult" type="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetDetailEntity">
+        <result property="assetCode" column="ASSET_CODE"/>
+        <result property="acquisitionCost" column="ACQUISITION_COST"/>
+        <result property="amortizationWay" column="AMORTIZATION_WAY"/>
+        <result property="department" column="DEPARTMENT"/>
+        <result property="depreciation" column="DEPRECIATION"/>
+        <result property="bookValue" column="BOOK_VALUE"/>
+        <result property="usefulLife" column="USEFUL_LIFE"/>
+        <result property="amortizationFinalYear" column="AMORTIZATION_FINAL_YEAR"/>
+        <result property="acquisitionQuantity" column="ACQUISITION_QUANTITY"/>
+        <result property="changeQuantity" column="CHANGE_QUANTITY"/>
+        <result property="remainQuantity" column="REMAIN_QUANTITY"/>
+        <result property="amortizationRate" column="AMORTIZATION_RATE"/>
+        <result property="month" column="MONTH"/>
+        <result property="normalAmortization" column="NORMAL_AMORTIZATION"/>
+        <result property="accumulatedAmortization" column="ACCUMULATED_AMORTIZATION"/>
+        <result property="bookValueEnd" column="BOOK_VALUEDEND"/>
+    </resultMap>
+
+    <!-- 고정자산상세 조회 -->
+    <select id="findAssetDetail" parameterType="String" resultMap="assetDetailResult">
+        <![CDATA[
+            select *
+            FROM CURRENT_ASSET_DETAIL
+            WHERE asset_Code = #{assetCode}
+        ]]>
+    </select>
+
+    <!-- 고정자산상세 추가 -->
+    <insert id="insertAssetDetail" parameterType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetDetailEntity" >
+    <![CDATA[
+        INSERT INTO CURRENT_ASSET_DETAIL
+        ( ASSET_CODE
+        , ACQUISITION_COST
+        , AMORTIZATION_WAY
+        , DEPARTMENT
+        , DEPRECIATION
+        , BOOK_VALUE
+        , USEFUL_LIFE
+        , AMORTIZATION_FINAL_YEAR
+        , ACQUISITION_QUANTITY
+        , CHANGE_QUANTITY
+        , REMAIN_QUANTITY
+        , AMORTIZATION_RATE
+        , MONTH
+        , NORMAL_AMORTIZATION
+        , ACCUMULATED_AMORTIZATION
+        , REMAIN_QUANTITY
+        , BOOK_VALUEDEND )
+        VALUES
+        ( #{assetCode}
+        , #{acquisitionCost}
+        , #{amortizationWay}
+        , #{department}
+        , #{depreciation}
+        , #{bookValue}
+        , #{usefulLife}
+        , SUBSTR(#{amortizationFinalYear}, 1, 4)
+        , #{acquisitionQuantity}
+        , #{changeQuantity}
+        , #{remainQuantity}
+        , RTRIM(TO_CHAR(#{amortizationRate}, 'FM9990D99'), '.')
+        , #{month}
+        , #{normalAmortization}
+        , #{accumulatedAmortization}
+        , #{bookValueEnd} )
+        ]]>
+    </insert>
+
+    <!-- 고정자산상세 수정 -->
+    <update id="updateAssetDetail" parameterType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetDetailEntity" >
+    <![CDATA[
+        update Current_Asset_Detail set
+            acquistion_Cost=#{acquisitionCost}
+                                      ,depreciation=#{depreciation}
+                                      ,book_Value=#{bookValue}
+                                      ,amortization_Way=#{amortizationWay}
+                                      ,amortization_Final_Year=#{amortizationFinalYear}
+                                      ,usefulLife=#{usefulLife}
+                                      ,amortization_Rate=(rtrim(to_char(#{amortizationRate}, 'FM9990D99'), '.'))
+                                      ,month=#{month}
+                                      ,normal_Amortization=#{normalAmortization}
+                                      ,RAccumulated_Amortization=#{RAccumulatedAmortization}
+                                      ,accumulated_Amortization=#{accumulatedAmortization}
+                                      ,book_ValueEnd=#{bookValueEnd}
+                                      ,ACQUISITION_QUANTITY=#{acquisitionQuantity}
+                                      ,CHANGE_QUANTITY=#{changeQuantity}
+                                      ,REMAIN_QUANTITY=#{remainQuantity}
+                                      ,DEPARTMENT=#{department}
+        where asset_code=#{assetCode}
+        ]]>
+    </update>
+
+    <!-- 고정자산상세 삭제 -->
+    <delete id="deleteAssetDetail" parameterType="String">
+   <![CDATA[
+        DELETE
+        FROM CURRENT_ASSET_DETAIL
+        WHERE asset_code = #{asset_code}
+        ]]>
+   </delete>
+
+
+
+</mapper>

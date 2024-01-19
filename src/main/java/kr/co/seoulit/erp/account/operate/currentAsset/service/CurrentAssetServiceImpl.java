@@ -25,8 +25,6 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
     @Autowired
     private CurrentAssetResMapStruct currentAssetResMapStruct;
     @Autowired
-    private CurrentAssetDetailReqMapStruct currentAssetDetailReqMapStruct;
-    @Autowired
     private CurrentAssetDetailResMapStruct currentAssetDetailResMapStruct;
 
 
@@ -57,36 +55,9 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
 
         CurrentAssetEntity currentAssetEntity = currentAssetReqMapStruct.toEntity(currentAssetReqDTO);
 
-//        // map에 Entity 세팅
-//        params.put("accountCode",currentAssetEntity.getAccountCode());
-//        params.put("accountName",currentAssetEntity.getAccountName());
-//        params.put("assetCode",currentAssetEntity.getAssetCode());
-//        params.put("assetName",currentAssetEntity.getAssetName());
-//        params.put("progress",currentAssetEntity.getProgress());
-//        params.put("finalizeStatus",currentAssetEntity.getFinalizeStatus());
-//        params.put("currentAssetDetailBean",currentAssetEntity.getCurrentAssetDetailEntities());
-//
-//        for (CurrentAssetDetailEntity currentAssetDetailEntity : currentAssetEntity.getCurrentAssetDetailEntities()) {
-//            params.put("assetCode", currentAssetDetailEntity.getAssetCode());
-//            params.put("acquisitionCost", currentAssetDetailEntity.getAcquisitionCost());
-//            params.put("depreciation", currentAssetDetailEntity.getDepreciation());
-//            params.put("bookValue", currentAssetDetailEntity.getBookValue());
-//            params.put("amortizationWay", currentAssetDetailEntity.getAmortizationWay());
-//            params.put("amortizationFinalYear", currentAssetDetailEntity.getAmortizationFinalYear());
-//            params.put("acquisitionQuantity", currentAssetDetailEntity.getAcquisitionQuantity());
-//            params.put("changeQuantity", currentAssetDetailEntity.getChangeQuantity());
-//            params.put("remainQuantity", currentAssetDetailEntity.getRemainQuantity());
-//            params.put("department", currentAssetDetailEntity.getDepartment());
-//            params.put("usefulLife", currentAssetDetailEntity.getUsefulLife());
-//            params.put("amortizationRate", currentAssetDetailEntity.getAmortizationRate());
-//            params.put("month", currentAssetDetailEntity.getMonth());
-//            params.put("normalAmortization", currentAssetDetailEntity.getNormalAmortization());
-//            params.put("RAccumulatedAmortization", currentAssetDetailEntity.getRAccumulatedAmortization());
-//            params.put("accumulatedAmortization", currentAssetDetailEntity.getAccumulatedAmortization());
-//            params.put("bookValueEnd", currentAssetDetailEntity.getBookValueEnd());
-//        }
         currentAssetDAO.insertAsset(currentAssetEntity);
 //        currentAssetRepository.save(currentAssetEntity);
+        System.out.println("고정자산 등록완료");
     }
 
     // 고정자산 수정

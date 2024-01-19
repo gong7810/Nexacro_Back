@@ -14,16 +14,16 @@ import java.util.List;
 @Data
 public class CurrentAssetEntity {
 
-    private String accountCode;
     private String accountName;
     @Id
     private String assetCode;
+    private String accountCode;
     private String assetName;
     private String progress;
     private String finalizeStatus;
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="assetCode")
-    private List<CurrentAssetDetailEntity> currentAssetDetailEntities;
+//    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name="assetCode")
+//    private List<CurrentAssetDetailEntity> currentAssetDetailEntities;
 
     @Transient
     private String acquisitionCost;

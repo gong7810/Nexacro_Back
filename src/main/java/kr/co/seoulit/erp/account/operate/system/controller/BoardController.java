@@ -35,7 +35,7 @@ public class BoardController {
 								@RequestAttribute("resData")PlatformData resData) throws Exception {
 
 		String boardInfo = reqData.getVariable("bno").getString();
-		System.out.println("게시글 : "+ boardInfo + "상세 조회 Rest API");
+		System.out.println("게시글 : "+ boardInfo + " 상세 조회 Rest API");
 
 		BoardResDTO boardDetail = boardService.findBoardDetail(boardInfo);
 		datasetToBeanMapper.beanToDataset(resData, boardDetail, BoardResDTO.class);
