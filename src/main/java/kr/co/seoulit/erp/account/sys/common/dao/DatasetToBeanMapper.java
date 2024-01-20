@@ -31,6 +31,8 @@ public class DatasetToBeanMapper {
     public <T> List<T> datasetToBeans(PlatformData reqData, Class<T> classType) throws Exception {
         String datasetName = getDataSetName(classType);
         DataSet dataset = reqData.getDataSet(datasetName);
+
+
         List<T> beanList = new ArrayList<>();
         T bean = null;
         int rowCount = dataset.getRowCount();

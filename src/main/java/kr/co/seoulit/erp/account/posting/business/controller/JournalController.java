@@ -23,7 +23,7 @@ import net.sf.json.JSONObject;
 
 @Hidden //swagger test : 일단 ledger부분만 나오도록 설정해둠
 @RestController
-@RequestMapping("/posting")
+@RequestMapping("/acc/posting")
 public class JournalController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class JournalController {
     private DatasetToBeanMapper datasetToBeanMapper;
 
 
-    //@GetMapping("/singlejournallist")
+
     @RequestMapping("/findSingleJournalList")
     public ArrayList<JournalEntity> findSingleJournalList(@RequestAttribute("reqData") PlatformData reqData,
                                                           @RequestAttribute("resData")PlatformData resData) throws Exception {

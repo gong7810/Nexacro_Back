@@ -36,7 +36,9 @@ public class BusinessServiceImpl implements BusinessService {
     private final JournalReqMapstruct journalReqMapstruct;
     private final JournalResMapstruct journalResMapstruct;
 
+    //전표추가
     public void addSlip(SlipEntity slipObj, ArrayList<JournalEntity> journalBeans, ArrayList<JournalDetailEntity> journalDetail) {
+
         StringBuffer slipNo = new StringBuffer();
         String slipNoDate = slipObj.getReportingDate().replace("-", "");
 
@@ -59,13 +61,17 @@ public class BusinessServiceImpl implements BusinessService {
         // 20180401SLIP00001JOURNAL0 분개일련번호 생성. 저장된 분개가 있을 경우 +1을 한 숫자, 없을 경우 0을 반환한다.
 
         int jnum =  Integer.parseInt(journalNo.substring(24)); // 끝 번호를 가져옴
+
+
+        System.out.println("slipObj💕💕💕 = " + slipObj);
+        System.out.println("journal💕💕💕 = " + journalBeans);
+        System.out.println("journalDetail💕💕💕 = " + journalDetail);
+
         for (JournalEntity journalBean : journalBeans) {
             String journalNum = slipNum +"JOURNAL"+ jnum++;
             journalBean.setJournalNo(journalNum);
             journalBean.setSlipNo(slipNum);
             String customerCode=journalBean.getCustomerCode();
-            System.out.println("%%%%%%%%%%"+customerCode);
-            System.out.println("insert문 실행.");
             journalDAO.insertJournal(journalBean);
             for(JournalDetailEntity journalDetailBean : journalDetail) {
                 journalDetailBean.setJournalNo(journalNum);
@@ -73,6 +79,7 @@ public class BusinessServiceImpl implements BusinessService {
                 journalDAO.insertJournalDetailList(journalDetailBean);
             }
         }
+
     }
 
     @Override
@@ -229,10 +236,10 @@ public class BusinessServiceImpl implements BusinessService {
     @Override
     public void approveSlip(ArrayList<SlipreqDto> slipDtos) {
 
-        ArrayList<SlipEntity>  slipEntities = (ArrayList<SlipEntity>) slipReqMapstruct.toEntity(slipDtos);
+    ArrayList<SlipEntity>  slipEntities = (ArrayList<SlipEntity>) slipReqMapstruct.toEntity(slipDtos);
 
     for(SlipreqDto slipDto : slipDtos){
-        if(slipDto.getSlipStatus().equals("승인완료")){
+        if(slipDto.getSlipStatus().equals("승인요청")){
             //메뉴-전표승인 : 승인요청 -> "승인완료"로 update하는 로직
             for (SlipEntity entity:slipEntities){
             slipApprovalAndReturnDAO.updateapproveSlip(entity);}
