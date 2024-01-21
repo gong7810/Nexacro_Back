@@ -58,12 +58,11 @@
 	</select>
 
 	<!-- 고정자산 상세 조회 -->
-	<select id="findAssetDetail" parameterType="map" resultMap="assetResult">
+	<select id="findAssetDetail" parameterType="String" resultMap="assetResult">
       <![CDATA[
 		SELECT *
 		FROM CURRENT_ASSET
-		WHERE ACCOUNT_CODE=#{accountCode}
-		  AND ACCOUNT_NAME=#{accountName}
+		WHERE ASSET_CODE = #{assetCode}
 		ORDER BY PROGRESS
 	  ]]>
    </select>

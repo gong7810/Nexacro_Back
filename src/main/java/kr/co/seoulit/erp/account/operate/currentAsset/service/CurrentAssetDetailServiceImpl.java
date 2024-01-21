@@ -22,6 +22,7 @@ public class CurrentAssetDetailServiceImpl implements CurrentAssetDetailService{
     public void insertAssetDetail(CurrentAssetDetailReqDTO currentAssetDetailReqDTO) throws Exception {
         CurrentAssetDetailEntity currentAssetDetailEntity = currentAssetDetailReqMapStruct.toEntity(currentAssetDetailReqDTO);
         currentAssetDetailDAO.insertAssetDetail(currentAssetDetailEntity);
+        System.out.println("고정자산상세 등록완료");
     }
 
     // 고정자산상세 수정

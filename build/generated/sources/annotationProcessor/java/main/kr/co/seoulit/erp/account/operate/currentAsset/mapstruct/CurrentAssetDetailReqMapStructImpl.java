@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-01-19T19:58:52+0900",
+    date = "2024-01-20T17:39:50+0900",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.4.1.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -25,21 +25,20 @@ public class CurrentAssetDetailReqMapStructImpl implements CurrentAssetDetailReq
 
         currentAssetDetailEntity.setAssetCode( dto.getAssetCode() );
         currentAssetDetailEntity.setAcquisitionCost( dto.getAcquisitionCost() );
+        currentAssetDetailEntity.setAmortizationWay( dto.getAmortizationWay() );
+        currentAssetDetailEntity.setDepartment( dto.getDepartment() );
         currentAssetDetailEntity.setDepreciation( dto.getDepreciation() );
         currentAssetDetailEntity.setBookValue( dto.getBookValue() );
-        currentAssetDetailEntity.setAmortizationWay( dto.getAmortizationWay() );
-        currentAssetDetailEntity.setAmortizationFinalYear( dto.getAmortizationFinalYear() );
         currentAssetDetailEntity.setUsefulLife( dto.getUsefulLife() );
-        currentAssetDetailEntity.setAmortizationRate( dto.getAmortizationRate() );
-        currentAssetDetailEntity.setMonth( dto.getMonth() );
-        currentAssetDetailEntity.setNormalAmortization( dto.getNormalAmortization() );
-        currentAssetDetailEntity.setRAccumulatedAmortization( dto.getRAccumulatedAmortization() );
-        currentAssetDetailEntity.setAccumulatedAmortization( dto.getAccumulatedAmortization() );
-        currentAssetDetailEntity.setBookValueEnd( dto.getBookValueEnd() );
+        currentAssetDetailEntity.setAmortizationFinalYear( dto.getAmortizationFinalYear() );
         currentAssetDetailEntity.setAcquisitionQuantity( dto.getAcquisitionQuantity() );
         currentAssetDetailEntity.setChangeQuantity( dto.getChangeQuantity() );
         currentAssetDetailEntity.setRemainQuantity( dto.getRemainQuantity() );
-        currentAssetDetailEntity.setDepartment( dto.getDepartment() );
+        currentAssetDetailEntity.setAmortizationRate( dto.getAmortizationRate() );
+        currentAssetDetailEntity.setMonth( dto.getMonth() );
+        currentAssetDetailEntity.setNormalAmortization( dto.getNormalAmortization() );
+        currentAssetDetailEntity.setAccumulatedAmortization( dto.getAccumulatedAmortization() );
+        currentAssetDetailEntity.setBookValueEnd( dto.getBookValueEnd() );
 
         return currentAssetDetailEntity;
     }

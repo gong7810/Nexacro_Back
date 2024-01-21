@@ -4,7 +4,6 @@ import kr.co.seoulit.erp.account.sys.base.to.BaseBean;
 import kr.co.seoulit.erp.account.sys.common.annotation.Dataset;
 import lombok.*;
 
-import javax.persistence.Transient;
 
 @EqualsAndHashCode(callSuper = false)
 @Dataset(name="ds_asset")
@@ -20,7 +19,6 @@ public class CurrentAssetReqDTO extends BaseBean {
     private String assetName;
     private String progress;
     private String finalizeStatus;
-//    private List<CurrentAssetDetailReqDTO> currentAssetDetailReqDTOList;
 
 //    @Transient
 //    private String acquisitionCost;

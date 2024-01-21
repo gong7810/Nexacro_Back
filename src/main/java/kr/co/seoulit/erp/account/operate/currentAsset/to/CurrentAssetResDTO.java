@@ -5,7 +5,6 @@ import kr.co.seoulit.erp.account.sys.common.annotation.Dataset;
 import lombok.*;
 
 import javax.persistence.Transient;
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = false)
 @Dataset(name="ds_asset")
@@ -21,24 +20,35 @@ public class CurrentAssetResDTO extends BaseBean {
     private String assetName;
     private String progress;
     private String finalizeStatus;
-//    private List<CurrentAssetDetailResDTO> currentAssetDetailResDTOList;
 
     @Transient
-    private String acquisitionCost;
+    private String acquisitionCost;             // 취득원가
     @Transient
-    private String depreciation;
+    private String amortizationWay;             // 상각방법
     @Transient
-    private String bookValue;
+    private String department;                  // 관리부서
     @Transient
-    private String normalAmortization;
+    private String depreciation;                // 전기말상각누계액
     @Transient
-    private String accumulatedAmortization;
+    private String bookValue;                   // 전기말장부가액
     @Transient
-    private String bookValueEnd;
+    private String usefulLife;                  // 내용연수
     @Transient
-    private String acquisitionQuantity;
+    private String amortizationFinalYear;       // 상각완료년도
     @Transient
-    private String changeQuantity;
+    private String acquisitionQuantity;         // 취득수량
     @Transient
-    private String remainQuantity;
+    private String changeQuantity;              // 증감수량
+    @Transient
+    private String remainQuantity;              // 잔존수량
+    @Transient
+    private String amortizationRate;            // 상각률
+    @Transient
+    private String month;                       // 월수
+    @Transient
+    private String normalAmortization;          // 일반상각비
+    @Transient
+    private String accumulatedAmortization;     // 당기말상각누계액
+    @Transient
+    private String bookValueEnd;                // 당기말장부가액
 }

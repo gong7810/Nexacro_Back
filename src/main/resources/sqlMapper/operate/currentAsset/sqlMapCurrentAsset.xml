@@ -12,18 +12,28 @@
 		<result property="finalizeStatus" column="FINALIZE_STATUS"/>
 	</resultMap>
 
-	<resultMap id="assetTypeResult" type="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetDetailEntity">
+	<resultMap id="assetAllResult" type="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity">
+		<result property="accountName" column="ACCOUNT_NAME"/>
 		<result property="assetCode" column="ASSET_CODE"/>
-		<result property="acquisitionCost" column="acquistion_Cost"/>
-		<result property="depreciation" column="depreciation"/>
-		<result property="bookValue" column="book_Value"/>
-		<result property="amortizationWay" column="amortization_Way"/>
-		<result property="amortizationFinalYear" column="amortization_Final_Year"/>
-		<result property="usefulLife" column="usefulLife"/>
-		<result property="amortizationRate" column="amortization_Rate"/>
-		<result property="normalAmortization" column="normal_Amortization"/>
-		<result property="accumulatedAmortization" column="accumulated_Amortization"/>
-		<result property="bookValueEnd" column="book_ValueEnd"/>
+		<result property="accountCode" column="ACCOUNT_CODE"/>
+		<result property="assetName" column="ASSET_NAME"/>
+		<result property="progress" column="PROGRESS"/>
+		<result property="finalizeStatus" column="FINALIZE_STATUS"/>
+		<result property="acquisitionCost" column="ACQUISITION_COST"/>
+		<result property="amortizationWay" column="AMORTIZATION_WAY"/>
+		<result property="department" column="DEPARTMENT"/>
+		<result property="depreciation" column="DEPRECIATION"/>
+		<result property="bookValue" column="BOOK_VALUE"/>
+		<result property="usefulLife" column="USEFUL_LIFE"/>
+		<result property="amortizationFinalYear" column="AMORTIZATION_FINAL_YEAR"/>
+		<result property="acquisitionQuantity" column="ACQUISITION_QUANTITY"/>
+		<result property="changeQuantity" column="CHANGE_QUANTITY"/>
+		<result property="remainQuantity" column="REMAIN_QUANTITY"/>
+		<result property="amortizationRate" column="AMORTIZATION_RATE"/>
+		<result property="month" column="MONTH"/>
+		<result property="normalAmortization" column="NORMAL_AMORTIZATION"/>
+		<result property="accumulatedAmortization" column="ACCUMULATED_AMORTIZATION"/>
+		<result property="bookValueEnd" column="BOOK_VALUEDEND"/>
 	</resultMap>
 
 	<resultMap id="depreciationResult" type="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity">
@@ -43,28 +53,22 @@
 		<result property="remainQuantity" column="REMAIN_QUANTITY"/>
 	</resultMap>
 
-	<select id="selectCurrentAssetTypeList"  resultMap="assetTypeResult">
-     <![CDATA[
-		SELECT *
-		FROM CURRENT_ASSET
-     ]]>
-    </select>
-
 	<!-- 고정자산 전체 조회 -->
 	<select id="findAssetList" resultMap="assetResult">
+	<![CDATA[
 		SELECT *
 		FROM CURRENT_ASSET
 		ORDER BY PROGRESS
+	]]>
 	</select>
 
 	<!-- 고정자산 상세 조회 -->
-	<select id="findAssetDetail" parameterType="map" resultMap="assetResult">
+	<select id="findAssetDetail" parameterType="String" resultMap="assetAllResult">
       <![CDATA[
 		SELECT *
-		FROM CURRENT_ASSET
-		WHERE ACCOUNT_CODE=#{accountCode}
-		  AND ACCOUNT_NAME=#{accountName}
-		ORDER BY PROGRESS
+		FROM CURRENT_ASSET A, CURRENT_ASSET_DETAIL D
+		WHERE A.ASSET_CODE = #{assetCode}
+		  AND A.ASSET_CODE = D.ASSET_CODE
 	  ]]>
    </select>
 

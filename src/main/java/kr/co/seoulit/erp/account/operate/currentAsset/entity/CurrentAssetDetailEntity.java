@@ -30,8 +30,6 @@ public class CurrentAssetDetailEntity {
     private String normalAmortization;          // 일반상각비
     private String accumulatedAmortization;     // 당기말상각누계액
     private String bookValueEnd;                // 당기말장부가액
-    @Transient
-    private String RAccumulatedAmortization;    // 존재이유 몰루
 
 
 }

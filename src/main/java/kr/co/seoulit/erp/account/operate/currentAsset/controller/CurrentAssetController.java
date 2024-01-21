@@ -35,7 +35,7 @@ public class CurrentAssetController {
         datasetToBeanMapper.beansToDataset(resData, currentAssetList, CurrentAssetResDTO.class);
     }
 
-    // 고정자산 상세 조회
+    // 고정자산상세 조회
     @RequestMapping("/findAssetDetail")
     public void findAssetDetail(@RequestAttribute("reqData")PlatformData reqData,
                                 @RequestAttribute("resData")PlatformData resData) throws Exception {
