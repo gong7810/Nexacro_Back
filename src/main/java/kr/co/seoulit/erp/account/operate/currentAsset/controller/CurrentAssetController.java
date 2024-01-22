@@ -41,10 +41,10 @@ public class CurrentAssetController {
                                 @RequestAttribute("resData")PlatformData resData) throws Exception {
 
         String assetCode = reqData.getVariable("assetCode").getString();
-        System.out.println("고정자산 : "+ assetCode + "상세 조회 Rest API");
+        System.out.println("고정자산 : "+ assetCode + " 상세 조회 Rest API");
 
-        CurrentAssetDetailResDTO currentAssetDetailResDTO = currentAssetService.findAssetDetail(assetCode);
-        datasetToBeanMapper.beanToDataset(resData, currentAssetDetailResDTO, CurrentAssetDetailResDTO.class);
+        CurrentAssetResDTO currentAssetResDTO = currentAssetService.findAssetDetail(assetCode);
+        datasetToBeanMapper.beanToDataset(resData, currentAssetResDTO, CurrentAssetResDTO.class);
     }
 
     // 고정자산 추가

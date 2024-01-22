@@ -25,12 +25,6 @@ public class CurrentAssetDetailServiceImpl implements CurrentAssetDetailService{
         System.out.println("고정자산상세 등록완료");
     }
 
-    // 고정자산상세 수정
-    @Override
-    public void updateAssetDetail(CurrentAssetDetailReqDTO currentAssetDetailReqDTO) throws Exception {
-
-    }
-
     // 고정자산상세 삭제
     @Override
     public void deleteAssetDetail(String assetCode) throws Exception {

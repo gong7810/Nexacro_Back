@@ -5,7 +5,6 @@ import kr.co.seoulit.erp.account.operate.currentAsset.to.*;
 import kr.co.seoulit.erp.account.operate.currentAsset.entity.*;
 import kr.co.seoulit.erp.account.operate.currentAsset.mapstruct.*;
 import kr.co.seoulit.erp.account.operate.currentAsset.repository.*;
-import kr.co.seoulit.erp.account.operate.system.mapstruct.BoardReqMapStruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +17,8 @@ import java.util.List;
 public class CurrentAssetServiceImpl implements CurrentAssetService {
     @Autowired
     private CurrentAssetDAO currentAssetDAO;
+    @Autowired
+    private CurrentAssetDetailDAO currentAssetDetailDAO;
 //    @Autowired
 //    private CurrentAssetRepository currentAssetRepository;
     @Autowired
@@ -40,11 +41,11 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
 
     // 고정자산 상세 조회
     @Override
-    public CurrentAssetDetailResDTO findAssetDetail(String assetCode) throws Exception {
+    public CurrentAssetResDTO findAssetDetail(String assetCode) throws Exception {
 
-        CurrentAssetDetailEntity currentAssetDetailEntity = currentAssetDAO.findAssetDetail(assetCode);
+        CurrentAssetEntity currentAssetEntity = currentAssetDAO.findAssetDetail(assetCode);
 //        CurrentAssetEntity currentAssetEntity	= currentAssetRepository.findAssetDetail(assetCode);
-        return	currentAssetDetailResMapStruct.toDto(currentAssetDetailEntity);
+        return	currentAssetResMapStruct.toDto(currentAssetEntity);
     }
 
     // 고정자산 추가
@@ -66,6 +67,9 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
 
         CurrentAssetEntity currentAssetEntity = currentAssetReqMapStruct.toEntity(currentAssetReqDTO);
         currentAssetDAO.updateAsset(currentAssetEntity);
+        System.out.println("고정자산 수정완료");
+        currentAssetDetailDAO.updateAssetDetail(currentAssetEntity);
+        System.out.println("고정자산상세 수정완료");
     }
 
     // 고정자산 삭제

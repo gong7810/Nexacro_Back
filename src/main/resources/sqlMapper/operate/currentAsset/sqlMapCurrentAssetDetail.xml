@@ -21,15 +21,6 @@
         <result property="bookValueEnd" column="BOOK_VALUEDEND"/>
     </resultMap>
 
-    <!-- 고정자산상세 조회 -->
-    <select id="findAssetDetail" parameterType="String" resultMap="assetDetailResult">
-        <![CDATA[
-            select *
-            FROM CURRENT_ASSET_DETAIL
-            WHERE asset_Code = #{assetCode}
-        ]]>
-    </select>
-
     <!-- 고정자산상세 추가 -->
     <insert id="insertAssetDetail" parameterType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetDetailEntity" >
     <![CDATA[
@@ -49,7 +40,7 @@
         , MONTH
         , NORMAL_AMORTIZATION
         , ACCUMULATED_AMORTIZATION
-        , BOOK_VALUEEND )
+        , BOOK_VALUE_END )
         VALUES
         ( #{assetCode}
         , #{acquisitionCost}
@@ -71,26 +62,19 @@
     </insert>
 
     <!-- 고정자산상세 수정 -->
-    <update id="updateAssetDetail" parameterType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetDetailEntity" >
+    <update id="updateAssetDetail" parameterType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity" >
     <![CDATA[
-        update Current_Asset_Detail set
-            acquistion_Cost=#{acquisitionCost}
-                                      ,depreciation=#{depreciation}
-                                      ,book_Value=#{bookValue}
-                                      ,amortization_Way=#{amortizationWay}
-                                      ,amortization_Final_Year=#{amortizationFinalYear}
-                                      ,usefulLife=#{usefulLife}
-                                      ,amortization_Rate=(rtrim(to_char(#{amortizationRate}, 'FM9990D99'), '.'))
-                                      ,month=#{month}
-                                      ,normal_Amortization=#{normalAmortization}
-                                      ,RAccumulated_Amortization=#{RAccumulatedAmortization}
-                                      ,accumulated_Amortization=#{accumulatedAmortization}
-                                      ,book_ValueEnd=#{bookValueEnd}
-                                      ,ACQUISITION_QUANTITY=#{acquisitionQuantity}
-                                      ,CHANGE_QUANTITY=#{changeQuantity}
-                                      ,REMAIN_QUANTITY=#{remainQuantity}
-                                      ,DEPARTMENT=#{department}
-        where asset_code=#{assetCode}
+        UPDATE CURRENT_ASSET_DETAIL
+        SET DEPARTMENT = #{department}
+          , USEFUL_LIFE = #{usefulLife}
+          , AMORTIZATION_FINAL_YEAR = SUBSTR(#{amortizationFinalYear}, 1, 4)
+          , CHANGE_QUANTITY = #{changeQuantity}
+          , REMAIN_QUANTITY = #{remainQuantity}
+          , AMORTIZATION_RATE = RTRIM(TO_CHAR(#{amortizationRate}, 'FM9990D99'), '.')
+          , NORMAL_AMORTIZATION = #{normalAmortization}
+          , ACCUMULATED_AMORTIZATION = #{accumulatedAmortization}
+          , BOOK_VALUE_END = #{bookValueEnd}
+        WHERE ASSET_CODE = #{assetCode}
         ]]>
     </update>
 

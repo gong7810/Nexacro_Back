@@ -12,7 +12,7 @@ public interface CurrentAssetService {
     public List<CurrentAssetResDTO> findAssetList()throws Exception;
 
     // 고정자산 상세 조회
-    public CurrentAssetDetailResDTO findAssetDetail(String assetCode)throws Exception;
+    public CurrentAssetResDTO findAssetDetail(String assetCode)throws Exception;
 
     // 고정자산 추가
     public void insertAsset(CurrentAssetReqDTO currentAssetReqDTO)throws Exception;

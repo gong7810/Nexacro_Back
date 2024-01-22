@@ -1,6 +1,5 @@
 package kr.co.seoulit.erp.account.operate.currentAsset.dao;
 
-import kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetDetailEntity;
 import kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,7 +12,7 @@ public interface CurrentAssetDAO {
 	List<CurrentAssetEntity> findAssetList()throws Exception;
 
 	// 고정자산 상세조회
-	CurrentAssetDetailEntity findAssetDetail(String assetCode)throws Exception;
+	CurrentAssetEntity findAssetDetail(String assetCode)throws Exception;
 
 	// 고정자산 추가
 	void insertAsset(CurrentAssetEntity currentAssetEntity) throws Exception;
