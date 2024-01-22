@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import kr.co.seoulit.erp.account.operate.system.service.SystemService;
 import kr.co.seoulit.erp.account.operate.system.to.BusinessBean;
 import kr.co.seoulit.erp.account.operate.system.to.DetailBusinessBean;
-import kr.co.seoulit.erp.account.operate.system.to.WorkplaceEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.WorkplaceEntity;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;

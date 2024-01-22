@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import kr.co.seoulit.erp.account.operate.system.to.BusinessBean;
 import kr.co.seoulit.erp.account.operate.system.to.DetailBusinessBean;
-import kr.co.seoulit.erp.account.operate.system.to.WorkplaceEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.WorkplaceEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

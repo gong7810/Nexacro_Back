@@ -31,6 +31,8 @@ public class DatasetToBeanMapper {
     public <T> List<T> datasetToBeans(PlatformData reqData, Class<T> classType) throws Exception {
         String datasetName = getDataSetName(classType);
         DataSet dataset = reqData.getDataSet(datasetName);
+
+
         List<T> beanList = new ArrayList<>();
         T bean = null;
         int rowCount = dataset.getRowCount();
@@ -52,10 +54,14 @@ public class DatasetToBeanMapper {
         System.out.println("                                  datasetToBean :" + datasetName);
         DataSet dataset = reqData.getDataSet(datasetName);
         System.out.println("                                  dataset :" + dataset);
-        if(dataset.getRemovedRowCount() == 0) // 삭제하는 행의 수. 삭제 데이터가 없을 경우.
-            bean = getBean(dataset, classType, 0); // dataset -> Bean / dataset 로우가 하나니까 index를 그냥 0으로 보내는 듯
-        else
+        if(dataset.getRemovedRowCount() == 0) // 삭제하는 행의 수. 삭제 데이터가 없을 경우. {
+            {
+                System.out.println("통과");
+                bean = getBean(dataset, classType, 0); // dataset -> Bean / dataset 로우가 하나니까 index를 그냥 0으로 보내는 듯
+        } else {
+            System.out.println("실패");
             bean = getDeletedBean(dataset, classType, 0);
+        }
         return bean;
     }
 
