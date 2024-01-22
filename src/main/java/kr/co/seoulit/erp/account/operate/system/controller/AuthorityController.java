@@ -19,7 +19,7 @@ import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 import kr.co.seoulit.erp.account.operate.system.service.SystemService;
 
 import kr.co.seoulit.erp.account.operate.system.to.AuthorityEmpBean;
-import kr.co.seoulit.erp.account.operate.system.to.AuthorityMenuEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.AuthorityMenuEntity;
 
 @RestController
 @RequestMapping("/operate")

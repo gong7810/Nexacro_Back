@@ -1,6 +1,6 @@
 package kr.co.seoulit.erp.account.operate.system.repository;
 
-import kr.co.seoulit.erp.account.operate.system.to.AccountEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.AccountEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

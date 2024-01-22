@@ -7,7 +7,9 @@
 	<update id="updateapproveSlip2" parameterType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">
 			<![CDATA[
 		UPDATE SLIP
-		SET SLIP_STATUS=#{slipStatus}
+		SET SLIP_STATUS = #{slipStatus},
+			APPROVAL_DATE = #{approvalDate},
+			APPROVAL_EMP_CODE = #{approvalEmpCode}
 		WHERE SLIP_NO = #{slipNo}
 		]]>
 		 </update>
@@ -16,9 +18,9 @@
 	<update id="updateapproveSlip" parameterType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">
 			<![CDATA[
         UPDATE SLIP
-        SET APPROVAL_DATE=#{approvalDate},
-            SLIP_STATUS=#{slipStatus},
-            APPROVAL_EMP_CODE=#{approvalEmpCode}
+		SET SLIP_STATUS = #{slipStatus},
+        	APPROVAL_DATE = #{approvalDate},
+            APPROVAL_EMP_CODE = #{approvalEmpCode}
         WHERE SLIP_NO = #{slipNo}
         ]]>
 		 </update>

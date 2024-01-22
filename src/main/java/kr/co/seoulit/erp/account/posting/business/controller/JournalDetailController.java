@@ -20,7 +20,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 
 @Hidden //swagger test : 일단 ledger부분만 나오도록 설정해둠
 @RestController
-@RequestMapping("/posting")
+@RequestMapping("/acc/posting")
 public class JournalDetailController {
 
     @Autowired

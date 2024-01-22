@@ -27,7 +27,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 
 @Hidden //swagger test : 일단 ledger부분만 나오도록 설정해둠
 @RestController
-@RequestMapping("/posting")
+@RequestMapping("/acc/posting")
 public class SlipController {
 
     @Autowired
@@ -44,10 +44,12 @@ public class SlipController {
                         @RequestAttribute("resData") PlatformData resData) throws Exception{
         // 넘어온 dataset 데이터를 Bean객체로 파싱
         SlipEntity slipObj = datasetToBeanMapper.datasetToBean(reqData, SlipEntity.class); // 전표추가는 한번에 하나 가능
-        System.out.println("분개 받아오기");
+
         ArrayList<JournalEntity> journal = (ArrayList<JournalEntity>) datasetToBeanMapper.datasetToBeans(reqData, JournalEntity.class); // 분개
-        System.out.println("addSlip 실행");
+
         ArrayList<JournalDetailEntity> journalDetail = (ArrayList<JournalDetailEntity>) datasetToBeanMapper.datasetToBeans(reqData, JournalDetailEntity.class);
+
+
 
         String empCode = reqData.getVariable("empCode").getString();
         String deptCode = reqData.getVariable("deptCode").getString();
@@ -69,104 +71,34 @@ public class SlipController {
         ArrayList<JournalreqDto> journalObj=(ArrayList<JournalreqDto>) datasetToBeanMapper.datasetToBeans(reqData, JournalreqDto.class);
 
 
-  //      ArrayList<JournalreqDto> journaldtos=new ArrayList<>();
-
-//        String slipStatus=slipreqdto.getSlipStatus();
-//        Gson gson = new Gson();
-//        JSONObject slipJson = JSONObject.fromObject(slipreqdto); //전표
-//        JSONArray journalJson = JSONArray.fromObject(journalObj); //분개
-//        ArrayList<JournalreqDto> journaldtos = new ArrayList<>();
-
-//        for (JournalreqDto journalreqDto : journalObj) {
-//
-//            journalreqDto.setSlipNo(slipreqdto.getSlipNo());
-//            journaldtos.add(journalreqDto);
-//        }
-//        if(slipStatus.equals("승인요청")) {
-//            slipreqdto.setSlipStatus("승인요청");
-//        }else if(slipStatus.equals("작성중(반려)")){
-//            slipreqdto.setSlipStatus("승인요청");
-//        }
-//        System.out.println("전달테스트");
 
 
 
         businessService.modifySlip(slipreqdto, journalObj);
     }
 
-    //안쓰는 로직 같은데.. 삭제 고려해보기...
-//    @RequestMapping(value="/registerslip")
-//    public void registerSlip(@RequestParam(value="slipObj",required=false) String slipObj,
-//                             @RequestParam(value="journalObj",required=false) String journalObj,
-//                             @RequestParam(value="slipStatus",required=false) String slipStatus) {
-//
-//        Gson gson = new Gson();
-//        SlipreqDto slipEntity = gson.fromJson(slipObj, SlipreqDto.class);
-//        JSONArray journalObjs = JSONArray.fromObject(journalObj);
-//        /*
-//         * slipBean.setReportingEmpCode(request.getSession().getAttribute("empCode").
-//         * toString()); // beanCreator에서 셋팅하는데 또함..(dong) //실제 결제신청하는 사람 정보로 바꿔주는 소스임 이름
-//         * slipBean.setDeptCode(request.getSession().getAttribute("deptCode").toString()
-//         * ); //부서번호
-//         */
-//        if(slipStatus.equals("승인요청")) {
-//            slipEntity.setSlipStatus("승인요청"); //처음에 전표저장을 하면 null이라서 안 바꾸고 승인요청이 오면 바꾼다
-//        }
-//
-//        ArrayList<JournalreqDto> journalEntities = new ArrayList<>();
-//
-//
-//        for (Object journalObjt : journalObjs) {
-//            JournalreqDto journalreqDto = gson.fromJson(journalObjt.toString(), JournalreqDto.class);
-//            System.out.println(slipEntity.getSlipNo()+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-//
-//            journalreqDto.setSlipNo(slipEntity.getSlipNo()); //slipNo을 journalBean에 값이 없어서 세팅해줌
-//            journalEntities.add(journalreqDto);
-//
-//        }
-//        businessService.registerSlip(slipEntity, journalEntities);
-//    }
+
 
     @RequestMapping("/removeSlip")
-    public void removeSlip(@RequestAttribute("reqData") PlatformData reqData,
-                           @RequestAttribute("resData") PlatformData resData) throws Exception{
+    public void removeSlip( @RequestAttribute("reqData") PlatformData reqData,
+                            @RequestAttribute("resData") PlatformData resData) throws Exception{
         String slipNo=reqData.getVariable("slipNo").getString();
 
         businessService.removeSlip(slipNo);
-
     }
 
-    //@GetMapping("/approvalslip")
+    //전표승인
     @RequestMapping("/approveSlip")
     public void approveSlip(@RequestAttribute("reqData") PlatformData reqData,
                             @RequestAttribute("resData") PlatformData resData) throws Exception{
+
         ArrayList<SlipreqDto> slipDtos =(ArrayList<SlipreqDto>) datasetToBeanMapper.datasetToBeans(reqData, SlipreqDto.class);
 
         businessService.approveSlip(slipDtos);
-
-//                String slipNo=reqData.getVariable("slipNo").getString();
-//	            JSONArray approveSlipLists = JSONArray.fromObject(approveSlipList); // slip_no만 가지고옴 //JSONArray.fromObject json 객체로 만들어줌
-//	            String slipStatus = isApprove; // true 승인버튼 누르면 true 가 넘어옴
-//	            ArrayList<SlipEntity> slipEntities = new ArrayList<>(); //담는 값이 여러개
-//
-//	            for (Object approveSlip : approveSlipLists) { // 승인일자를 자바로 만든다
-//	                Calendar calendar = Calendar.getInstance(); //import함
-//	                String year = calendar.get(Calendar.YEAR) + "";
-//	                String month = "0" + (calendar.get(Calendar.MONTH) + 1); // 0~11까지
-//	                String date = "0" + calendar.get(Calendar.DATE);
-//	                String today = year + "-" + month.substring(month.length() - 2) + "-" + date.substring(date.length() - 2); //인덱스 0,1 에서 0부터 시작하기 위해서 -2를 해주는듯 만약에 1자리인 경우에는 -1이니까 앞자리0부터???
-//	                //2021-11-15
-//	                System.out.println("approveSlip : " + approveSlip);
-//	                SlipEntity slipEntity = new SlipEntity();
-//	                slipEntity.setSlipNo(approveSlip.toString()); //전표번호
-//	                slipEntity.setApprovalDate(today); //승인데이터 오늘날짜
-//	                slipEntity.setSlipStatus(slipStatus); //전표상태
-//	               // slipBean.setApprovalEmpCode(request.getSession().getAttribute("empCode").toString()); //String 형식 세션 값 읽기
-//	                slipEntities.add(slipEntity);
-//	            }
     }
 
 
+    //전표조회
     @RequestMapping("/findRangedSlipList")
     public void findRangedSlipList(@RequestAttribute("reqData") PlatformData reqData,
                                    @RequestAttribute("resData") PlatformData resData) throws Exception{

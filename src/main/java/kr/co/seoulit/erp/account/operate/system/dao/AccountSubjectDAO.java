@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import kr.co.seoulit.erp.account.operate.system.to.AccountDetailEntity;
-import kr.co.seoulit.erp.account.operate.system.to.AccountControlEntity;
-import kr.co.seoulit.erp.account.operate.system.to.AccountEntity;
-import kr.co.seoulit.erp.account.operate.system.to.PeriodEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.AccountDetailEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.AccountControlEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.AccountEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.PeriodEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

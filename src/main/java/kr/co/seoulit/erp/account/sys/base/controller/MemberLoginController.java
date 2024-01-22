@@ -11,7 +11,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 import kr.co.seoulit.erp.account.operate.humanresource.to.EmployeeEntity;
 import kr.co.seoulit.erp.account.operate.system.service.SystemService;
-import kr.co.seoulit.erp.account.operate.system.to.PeriodEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.PeriodEntity;
 
 import java.util.ArrayList;
 

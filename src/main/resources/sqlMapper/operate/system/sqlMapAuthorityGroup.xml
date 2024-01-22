@@ -15,7 +15,7 @@
     		]]>
 		</select>
 		<!-- selectEmpAuthorityMenu -->
-	<select id="selectEmpAuthorityMenu" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AuthorityMenuEntity">
+	<select id="selectEmpAuthorityMenu" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AuthorityMenuEntity">
 			<!--<![CDATA[
 		select *
 		from AUTHORITY_MENU
@@ -56,7 +56,7 @@
 		and m.MENU_NAME(+) = a.MENU_NAME
 		order by a.AUTHORITY_CODE, a.MENU_CODE
 	</select>
-		<select id="selectAuthorityMenu" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AuthorityMenuEntity">
+		<select id="selectAuthorityMenu" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AuthorityMenuEntity">
 			<![CDATA[
 				SELECT  DISTINCT
 				m.menu_code as menuCode ,
@@ -73,7 +73,7 @@
 		</select>
 
 		 <!-- updateAuthority -->
-		 <update id="updateAuthorityMenu" parameterType="kr.co.seoulit.erp.account.operate.system.to.AuthorityMenuEntity">
+		 <update id="updateAuthorityMenu" parameterType="kr.co.seoulit.erp.account.operate.system.entity.AuthorityMenuEntity">
 		 	<![CDATA[
 		 		UPDATE MENU_USE_POSITION SET
 		 		AUTHORITY=#{authority}
