@@ -100,7 +100,7 @@
 			   , #{accountName}
 			   , #{assetCode}
 			   , #{assetName}
-			   , #{progress}
+			   , REGEXP_REPLACE(#{progress}, '(.{4})(.{2})(.{2})', '\1-\2-\3')
 			   , #{finalizeStatus} )
     ]]>
     </insert>
