@@ -80,22 +80,21 @@ public class SlipController {
 
 
     @RequestMapping("/removeSlip")
-    public void removeSlip(@RequestAttribute("reqData") PlatformData reqData,
-                           @RequestAttribute("resData") PlatformData resData) throws Exception{
+    public void removeSlip( @RequestAttribute("reqData") PlatformData reqData,
+                            @RequestAttribute("resData") PlatformData resData) throws Exception{
         String slipNo=reqData.getVariable("slipNo").getString();
 
         businessService.removeSlip(slipNo);
-
     }
 
     //전표승인
     @RequestMapping("/approveSlip")
     public void approveSlip(@RequestAttribute("reqData") PlatformData reqData,
                             @RequestAttribute("resData") PlatformData resData) throws Exception{
+
         ArrayList<SlipreqDto> slipDtos =(ArrayList<SlipreqDto>) datasetToBeanMapper.datasetToBeans(reqData, SlipreqDto.class);
 
         businessService.approveSlip(slipDtos);
-
     }
 
 
