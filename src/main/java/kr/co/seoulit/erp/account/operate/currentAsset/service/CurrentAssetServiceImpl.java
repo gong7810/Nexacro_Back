@@ -77,6 +77,9 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
     public void deleteAsset(String assetCode) throws Exception {
 
         currentAssetDAO.deleteAsset(assetCode);
+        System.out.println("고정자산 삭제완료");
+        currentAssetDetailDAO.deleteAssetDetail(assetCode);
+        System.out.println("고정자산상세 삭제완료");
     }
 }
 

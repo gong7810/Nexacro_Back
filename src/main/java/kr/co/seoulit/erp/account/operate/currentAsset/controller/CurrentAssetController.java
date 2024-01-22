@@ -82,7 +82,7 @@ public class CurrentAssetController {
     public void deleteAsset(@RequestAttribute("reqData")PlatformData reqData,
                             @RequestAttribute("resData")PlatformData resData) throws Exception {
         String assetCode = reqData.getVariable("assetCode").getString();
-        System.out.println("고정자산 : " + assetCode + "삭제 Rest API");
+        System.out.println("고정자산 : " + assetCode + " 삭제 Rest API");
         currentAssetService.deleteAsset(assetCode);
     }
 

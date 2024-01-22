@@ -83,7 +83,7 @@
    <![CDATA[
         DELETE
         FROM CURRENT_ASSET_DETAIL
-        WHERE asset_code = #{asset_code}
+        WHERE ASSET_CODE = #{asset_code}
         ]]>
    </delete>
 

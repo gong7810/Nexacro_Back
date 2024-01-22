@@ -24,10 +24,4 @@ public class CurrentAssetDetailServiceImpl implements CurrentAssetDetailService{
         currentAssetDetailDAO.insertAssetDetail(currentAssetDetailEntity);
         System.out.println("고정자산상세 등록완료");
     }
-
-    // 고정자산상세 삭제
-    @Override
-    public void deleteAssetDetail(String assetCode) throws Exception {
-
-    }
 }

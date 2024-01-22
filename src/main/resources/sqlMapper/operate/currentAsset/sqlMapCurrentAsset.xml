@@ -119,7 +119,7 @@
    <![CDATA[
 		DELETE
 		FROM CURRENT_ASSET
-		WHERE asset_code = #{assetCode}
+		WHERE ASSET_CODE = #{assetCode}
 		]]>
    </delete>
 
