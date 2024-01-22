@@ -13,7 +13,7 @@
 			and WORKPLACE_CODE= #{workplaceCode}
 			and ACCOUNT_INNER_CODE= #{accountInnerCode}
 			and BUDGETING_CODE= #{budgetingCode}
- 		]]>
+ 		]]
     </select>
 
 

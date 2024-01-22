@@ -22,7 +22,7 @@ import kr.co.seoulit.erp.account.budget.formulation.service.FormulationService;
 import net.sf.json.JSONObject;
 
 @RestController
-@RequestMapping("/budget")
+@RequestMapping("/acc/budget")
 public class FormulationController{
 
 	@Autowired
@@ -43,7 +43,7 @@ public class FormulationController{
 	 }
 
     @RequestMapping("/budgetcode")
-    public ArrayList<BudgetCodeBean> findBudgetCode(@RequestAttribute("reqData") PlatformData reqData,
+    public ArrayList<BudgetCodeBean> findBudgetCode(@RequestAttribute("reqData") PlatformData  reqData,
                                                     @RequestAttribute("resData")PlatformData resData) throws Exception {
 
 

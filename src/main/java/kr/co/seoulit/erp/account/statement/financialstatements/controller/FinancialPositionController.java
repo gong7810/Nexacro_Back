@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nexacro.java.xapi.data.PlatformData;
 
 @RestController
-@RequestMapping("/settlement")
+@RequestMapping("/acc/statement")
 public class FinancialPositionController {
 
 	 @Autowired
