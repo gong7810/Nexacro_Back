@@ -17,7 +17,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 
 
 @RestController
-@RequestMapping("/settlement")
+@RequestMapping("/acc/statement")
 public class IncomeStatementController  {
 
 	@Autowired

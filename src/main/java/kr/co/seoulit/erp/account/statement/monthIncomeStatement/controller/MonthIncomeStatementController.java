@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/settlement")
+@RequestMapping("/acc/statement")
 public class MonthIncomeStatementController {
 
     @Autowired
