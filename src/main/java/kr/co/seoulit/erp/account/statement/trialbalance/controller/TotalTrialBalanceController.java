@@ -16,7 +16,7 @@ import kr.co.seoulit.erp.account.statement.trialbalance.service.TrialBalanceServ
 import kr.co.seoulit.erp.account.statement.trialbalance.to.TotalTrialBalanceBean;
 
 @RestController
-@RequestMapping("/settlement")
+@RequestMapping("/acc/statement")
 @AllArgsConstructor
 public class TotalTrialBalanceController {
 
