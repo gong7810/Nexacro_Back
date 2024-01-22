@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import kr.co.seoulit.erp.account.operate.system.to.AuthorityEmpBean;
-import kr.co.seoulit.erp.account.operate.system.to.AuthorityMenuEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.AuthorityMenuEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import kr.co.seoulit.erp.account.operate.system.to.AccountDetailEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.AccountDetailEntity;
 import kr.co.seoulit.erp.account.operate.system.service.SystemService;
-import kr.co.seoulit.erp.account.operate.system.to.AccountControlEntity;
-import kr.co.seoulit.erp.account.operate.system.to.AccountEntity;
-import kr.co.seoulit.erp.account.operate.system.to.PeriodEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.AccountControlEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.AccountEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.PeriodEntity;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

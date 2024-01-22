@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import kr.co.seoulit.erp.account.operate.system.entity.BoardEntity;
+import kr.co.seoulit.erp.account.operate.system.entity.*;
 import kr.co.seoulit.erp.account.operate.system.to.*;
 
 public interface SystemService {

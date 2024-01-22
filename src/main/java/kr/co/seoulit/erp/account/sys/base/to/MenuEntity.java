@@ -15,7 +15,7 @@ import lombok.ToString;
 
 @Entity
 @Dataset(name = "gds_menu")
-@Table(name = "MENU")
+@Table(name = "MENU2")
 @Getter @Setter@ToString
 public class MenuEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

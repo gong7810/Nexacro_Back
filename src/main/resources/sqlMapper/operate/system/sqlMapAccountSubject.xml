@@ -4,7 +4,7 @@
 <mapper namespace="kr.co.seoulit.erp.account.operate.system.dao.AccountSubjectDAO">
 
 
-	<resultMap id="accountResult" type="kr.co.seoulit.erp.account.operate.system.to.AccountEntity">
+	<resultMap id="accountResult" type="kr.co.seoulit.erp.account.operate.system.entity.AccountEntity">
 		<result property="accountInnerCode" column="ACCOUNT_INNER_CODE"/>
 		<result property="parentAccountInnerCode" column="PARENT_ACCOUNT_INNER_CODE"/>
 		<result property="accountCode" column="ACCOUNT_CODE"/>
@@ -16,7 +16,7 @@
 		<result property="lev" column="LEV"/>
 	</resultMap>
 
-	<resultMap id="accountControlResult" type="kr.co.seoulit.erp.account.operate.system.to.AccountControlEntity">
+	<resultMap id="accountControlResult" type="kr.co.seoulit.erp.account.operate.system.entity.AccountControlEntity">
 		<result property="accountControlCode" column="ACCOUNT_CONTROL_CODE"/>
 		<result property="accountControlName" column="ACCOUNT_CONTROL_NAME"/>
 		<result property="accountControlType" column="ACCOUNT_CONTROL_TYPE"/>
@@ -26,7 +26,7 @@
 
 
 
-	<insert id="insertAccountDetail" parameterType="kr.co.seoulit.erp.account.operate.system.to.AccountDetailEntity">
+	<insert id="insertAccountDetail" parameterType="kr.co.seoulit.erp.account.operate.system.entity.AccountDetailEntity">
 		insert into account(account_inner_code,parent_account_inner_code,account_code,account_character,account_name,group_code)
 		values(account_sequence.nextval,#{parentAccountInnerCode},account_sequence.nextval,#{accountCharacter},#{accountName},#{groupCode})
 
@@ -52,7 +52,7 @@
 
 
 
-	<select id="selectParentAccountList"  resultType="kr.co.seoulit.erp.account.operate.system.to.AccountEntity">
+	<select id="selectParentAccountList"  resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountEntity">
 		<![CDATA[
 		SELECT ACCOUNT_INNER_CODE        as accountInnerCode,
 			   PARENT_ACCOUNT_INNER_CODE as parentAccountInnerCode,
@@ -71,7 +71,7 @@
 	</select>
 
 	<!--	상세 계정코드 가져오기  account_inner_code 가 8자리인 데이터를 찾음-->
-	<select id="selectDetailAccountList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountDetailEntity">
+	<select id="selectDetailAccountList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountDetailEntity">
 		<![CDATA[
 		SELECT b.ACCOUNT_INNER_CODE			AS ACCOUNT_INNER_CODE,
 			   b.ACCOUNT_NAME				AS ACCOUNT_NAME,
@@ -90,7 +90,7 @@
 
 
 	<!-- account_inner_code가 4자리인 데이터를 검색 -->
-	<select id="selectAccountDetail" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountDetailEntity">
+	<select id="selectAccountDetail" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountDetailEntity">
 
 		select
 			ACCOUNT_INNER_CODE as accountInnerCode,
@@ -105,7 +105,7 @@
 
 
 	<!--nexacro 화면단에서 중복되는 데이터를 찾기위함-->
-	<select id="forFindDuplication" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountDetailEntity">
+	<select id="forFindDuplication" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountDetailEntity">
 
 		SELECT b.ACCOUNT_INNER_CODE			AS ACCOUNT_INNER_CODE,
 			   b.ACCOUNT_NAME				AS ACCOUNT_NAME,
@@ -131,7 +131,7 @@
 
 
 
-	<select id="selectAccount" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountEntity">
+	<select id="selectAccount" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountEntity">
 		<![CDATA[
 
 		SELECT
@@ -151,7 +151,7 @@
 	</select>
 
 
-	<select id="selectAccountList" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountEntity">
+	<select id="selectAccountList" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountEntity">
 		<![CDATA[
 		SELECT    LEVEL-1 AS ACCOUNT_LEVEL
 			 , CONNECT_BY_ISLEAF AS LEAF
@@ -173,7 +173,7 @@
 	</select>
 
 
-	<select id="updateAccount" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountEntity">
+	<select id="updateAccount" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountEntity">
 		<![CDATA[
 		UPDATE ACCOUNT SET
 			ACCOUNT_NAME= #accountName#
@@ -185,7 +185,7 @@
 	<!--아래의 쿼리문도 사용할수도 있을거 같다.-->
 
 
-	<select id="selectAccountListByName" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountEntity">
+	<select id="selectAccountListByName" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountEntity">
 		<![CDATA[
 		select ACCOUNT_INNER_CODE        as accountInnerCode,
 			   PARENT_ACCOUNT_INNER_CODE as parentAccountInnerCode,
@@ -204,7 +204,7 @@
 		]]>
 	</select>
 
-	<select id="selectAccountControlList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountControlEntity">
+	<select id="selectAccountControlList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountControlEntity">
 		<![CDATA[
 		SELECT    D.ACCOUNT_CONTROL_CODE    as accountControlCode
 				 , D.ACCOUNT_CONTROL_NAME    as accountControlName
@@ -217,7 +217,7 @@
 		]]>
 	</select>
 
-	<select id="selectParentBudgetList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountEntity">
+	<select id="selectParentBudgetList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountEntity">
 		<![CDATA[
 		SELECT  ACCOUNT_INNER_CODE        as accountInnerCode,
 				PARENT_ACCOUNT_INNER_CODE as parentAccountInnerCode,
@@ -237,7 +237,7 @@
 		ORDER BY ACCOUNT_INNER_CODE
 		]]>
 	</select>
-	<select id="selectDetailBudgetList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AccountEntity">
+	<select id="selectDetailBudgetList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountEntity">
 		<![CDATA[
 		SELECT
 			ACCOUNT_INNER_CODE        as accountInnerCode,
@@ -256,7 +256,7 @@
 		]]>
 	</select>
 
-	<select id="selectAccountPeriodList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.PeriodEntity">
+	<select id="selectAccountPeriodList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.PeriodEntity">
 		<![CDATA[
 		SELECT
 			SUBSTR(PERIOD_START_DATE,1,4)              as fiscalYear
@@ -267,7 +267,7 @@
 		FROM  PERIOD
 		]]>
 	</select>
-	<select id="selectPeriodList" resultType="kr.co.seoulit.erp.account.operate.system.to.PeriodEntity">
+	<select id="selectPeriodList" resultType="kr.co.seoulit.erp.account.operate.system.entity.PeriodEntity">
 		<![CDATA[
 		SELECT
 			SUBSTR(PERIOD_START_DATE,1,4)              as fiscalYear
