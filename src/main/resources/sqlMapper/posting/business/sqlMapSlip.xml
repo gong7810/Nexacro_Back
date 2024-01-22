@@ -99,7 +99,7 @@
 
 
 				</choose>
-				 ORDER BY s.REPORTING_DATE
+				 ORDER BY s.REPORTING_DATE, s.SLIP_NO
 		 </select>
 		 
 		  <select id="selectDisApprovalSlipList"  resultType="kr.co.seoulit.erp.account.posting.business.entity.SlipEntity">

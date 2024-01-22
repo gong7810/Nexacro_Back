@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Dataset(name = "gds_journalDetail2")
+@Dataset(name = "gds_journal_detail")
 @Table(name = "JOURNAL_DETAIL")
 @Getter @Setter
 public class JournalDetailEntity extends BaseBean {

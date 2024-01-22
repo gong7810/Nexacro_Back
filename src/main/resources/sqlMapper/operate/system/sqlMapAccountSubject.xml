@@ -207,9 +207,9 @@
 	<select id="selectAccountControlList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.AccountControlEntity">
 		<![CDATA[
 		SELECT    D.ACCOUNT_CONTROL_CODE    as accountControlCode
-			 , D.ACCOUNT_CONTROL_NAME    as accountControlName
-			 , D.ACCOUNT_CONTROL_TYPE    as accountControlType
-			 , D.DESCRIPTION AS accountControlDescription
+				 , D.ACCOUNT_CONTROL_NAME    as accountControlName
+				 , D.ACCOUNT_CONTROL_TYPE    as accountControlType
+				 , D.DESCRIPTION AS accountControlDescription
 		FROM  ACCOUNT_CONTROL_CODE C
 		   , ACCOUNT_CONTROL_DETAIL D
 		WHERE C.ACCOUNT_CODE = #{accountCode}
