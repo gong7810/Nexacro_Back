@@ -81,5 +81,21 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
         currentAssetDetailDAO.deleteAssetDetail(assetCode);
         System.out.println("고정자산상세 삭제완료");
     }
+
+    // 감가상각비현황 전체조회
+    @Override
+    public List<CurrentAssetResDTO> findDepreciationList() throws Exception {
+
+        List<CurrentAssetEntity> currentAssetEntities =  currentAssetDAO.findDepreciationList();
+        return currentAssetResMapStruct.toDto(currentAssetEntities);
+    }
+
+    // 감가상각비현황 선택조회
+    @Override
+    public List<CurrentAssetResDTO> selectDepreciationList(String accountCode) throws Exception {
+
+        List<CurrentAssetEntity> currentAssetEntities =  currentAssetDAO.selectDepreciationList(accountCode);
+        return currentAssetResMapStruct.toDto(currentAssetEntities);
+    }
 }
 
