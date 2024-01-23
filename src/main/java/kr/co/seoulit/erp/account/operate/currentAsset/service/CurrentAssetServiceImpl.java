@@ -97,5 +97,13 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
         List<CurrentAssetEntity> currentAssetEntities =  currentAssetDAO.selectDepreciationList(accountCode);
         return currentAssetResMapStruct.toDto(currentAssetEntities);
     }
+
+    // 고정자산관리대장 조회
+    @Override
+    public List<CurrentAssetResDTO> findCurrentAssetLedgerList() throws Exception {
+
+        List<CurrentAssetEntity> currentAssetLedgerEntities =  currentAssetDAO.findCurrentAssetLedgerList();
+        return currentAssetResMapStruct.toDto(currentAssetLedgerEntities);
+    }
 }
 

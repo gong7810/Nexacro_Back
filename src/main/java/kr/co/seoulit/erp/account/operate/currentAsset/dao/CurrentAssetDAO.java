@@ -4,6 +4,7 @@ import kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.spi.CurrencyNameProvider;
 
 @Mapper
 public interface CurrentAssetDAO {
@@ -28,4 +29,7 @@ public interface CurrentAssetDAO {
 
 	// 감가상각비현황 선택조회
 	List<CurrentAssetEntity> selectDepreciationList(String accountCode) throws Exception;
+
+	// 고정자산관리대장 조회
+	List<CurrentAssetEntity> findCurrentAssetLedgerList() throws Exception;
 }
