@@ -110,7 +110,10 @@
     <![CDATA[
 			UPDATE CURRENT_ASSET
 			SET ASSET_NAME = #{assetName}, FINALIZE_STATUS = #{finalizeStatus}
-			WHERE ASSET_CODE = #{assetCode}
+			WHERE ASSET_CODE = #{assetCode};
+
+			UPDATE CURRENT_ASSET_DETAIL
+			SET
 		]]>
     </update>
 

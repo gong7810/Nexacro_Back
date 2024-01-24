@@ -118,4 +118,5 @@ public class CurrentAssetController {
         System.out.println("고정자산관리대장 조회 Rest API" + currentAssetLedgerList);
         datasetToBeanMapper.beansToDataset(resData, currentAssetLedgerList, CurrentAssetResDTO.class);
     }
+
 }

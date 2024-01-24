@@ -52,8 +52,6 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
     @Override
     public void insertAsset(CurrentAssetReqDTO currentAssetReqDTO) throws Exception {
 
-        HashMap<String, Object> params = new HashMap<>();
-
         CurrentAssetEntity currentAssetEntity = currentAssetReqMapStruct.toEntity(currentAssetReqDTO);
 
         currentAssetDAO.insertAsset(currentAssetEntity);

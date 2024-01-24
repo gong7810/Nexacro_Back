@@ -4,7 +4,6 @@ import kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.spi.CurrencyNameProvider;
 
 @Mapper
 public interface CurrentAssetDAO {
