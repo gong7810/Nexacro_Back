@@ -160,7 +160,6 @@
 		WHERE
 			J.ACCOUNT_CONTROL_CODE=A.ACCOUNT_CONTROL_CODE
 		  AND J.JOURNAL_NO= #{journalNo , jdbcType=VARCHAR}
-
 		]]>
 	</select>
 

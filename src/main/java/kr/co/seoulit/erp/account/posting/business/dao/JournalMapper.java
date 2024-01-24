@@ -20,7 +20,7 @@ public interface JournalMapper {
 
     public boolean updateJournal(JournalEntity journalEntity);
     
-    ArrayList<JournalDetailresDto> selectJournalDetailList(String journalNo);
+    ArrayList<JournalDetailresDto> selectJournalDetailList(String fromDate, String toDate);
     
     ArrayList<JournalDetailEntity> detailAccountList(String accountCode);
     

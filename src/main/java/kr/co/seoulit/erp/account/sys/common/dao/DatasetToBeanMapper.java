@@ -66,30 +66,27 @@ public class DatasetToBeanMapper {
     }
 
     public <T> void beansToDataset(PlatformData resData, List<T> beanList, Class<T> classType) throws Exception {
-        Map<String, String> nameMap = new HashMap<String, String>();
+        Map<String, String> nameMap = new HashMap<>();
         DataSetList datasetList = resData.getDataSetList();
         String datasetName = getDataSetName(classType);
         DataSet dataset = new DataSet(datasetName);
         datasetList.add(dataset);
 
-        System.out.println("datasetList :"+datasetList);
-        System.out.println("datasetName :"+datasetName);
-        System.out.println("dataset :"+ dataset);
 
         Field[] fields = classType.getDeclaredFields();
         for(Field field : fields) {
             setColumnName(dataset, nameMap, field);
         }
-        System.out.println("@@@@@@@@@ :"+ dataset);
+        System.out.println("@@@@@@@@@ : "+ dataset);
         for(T bean : beanList) {
             setColumnValue(dataset, nameMap, bean);
         }
-        System.out.println("######### :"+ dataset);
+        System.out.println("######### : "+ dataset);
     }
 
 
     public <T> void beanToDataset(PlatformData resData, T bean, Class<T> classType) throws Exception {
-        Map<String, String> nameMap = new HashMap<String, String>();
+        Map<String, String> nameMap = new HashMap<>();
         DataSetList datasetList = resData.getDataSetList();
         String datasetName = getDataSetName(classType); // 해당 TO와 매핑되는 Dataset 정보
         DataSet dataset = new DataSet(datasetName);

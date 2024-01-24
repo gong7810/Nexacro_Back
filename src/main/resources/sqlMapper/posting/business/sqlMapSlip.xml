@@ -89,10 +89,6 @@
 				FROM slip s
 				WHERE s.REPORTING_DATE BETWEEN  #{fromDate} AND #{toDate}
 				<choose>
-					<when test='slipStatus.equals("승인완료")'>
-						and s.SLIP_STATUS != #{slipStatus}
-					</when>
-
 				  <when test='!slipStatus.equals("전체검색")'>
 						AND s.SLIP_STATUS = #{slipStatus}
 					</when>

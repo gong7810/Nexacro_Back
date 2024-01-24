@@ -40,15 +40,13 @@ public class JournalController {
         ArrayList<JournalEntity> journalList = businessService.findSingleJournalList(slipNo);
         datasetToBeanMapper.beansToDataset(resData, journalList, JournalEntity.class);
         return null;
-//        ArrayList<JournalEntity> journalList = businessService.findSingleJournalList(slipNo);
-//
-//        return journalList;
+
     }
 
-
+    //분개 범위 조회
     @RequestMapping(value = "/findRangedJournalList")
     public void findRangedJournalList(@RequestAttribute("reqData") PlatformData reqData,
-                                                          @RequestAttribute("resData")PlatformData resData) throws Exception {
+                                      @RequestAttribute("resData")PlatformData resData) throws Exception {
         String fromDate = reqData.getVariable("startDate").getString();
         String toDate = reqData.getVariable("endDate").getString();
 

@@ -35,10 +35,24 @@ public class SlipController {
     @Autowired
     private DatasetToBeanMapper datasetToBeanMapper;
 
+    //전표조회
+    @RequestMapping("/findRangedSlipList")
+    public void findRangedSlipList(@RequestAttribute("reqData") PlatformData reqData,
+                                   @RequestAttribute("resData") PlatformData resData) throws Exception{
 
-    ModelAndView mav = null;
-    ModelMap map = new ModelMap();
-    /* nexacro */
+        String from = reqData.getVariable("startDate").getString();
+        String to = reqData.getVariable("endDate").getString();
+        String slipStatus = reqData.getVariable("slipStatus").getString();
+
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("fromDate", from);
+        param.put("toDate", to);
+        param.put("slipStatus", slipStatus);
+        ArrayList<SlipresDto> slipList =  businessService.findRangedSlipList(param);
+        datasetToBeanMapper.beansToDataset(resData, slipList, SlipresDto.class);
+    }
+
+    //전표 추가
     @RequestMapping("/addSlip")
     public void addSlip(@RequestAttribute("reqData") PlatformData reqData,
                         @RequestAttribute("resData") PlatformData resData) throws Exception{
@@ -95,25 +109,6 @@ public class SlipController {
         ArrayList<SlipreqDto> slipDtos =(ArrayList<SlipreqDto>) datasetToBeanMapper.datasetToBeans(reqData, SlipreqDto.class);
 
         businessService.approveSlip(slipDtos);
-    }
-
-
-    //전표조회
-    @RequestMapping("/findRangedSlipList")
-    public void findRangedSlipList(@RequestAttribute("reqData") PlatformData reqData,
-                                   @RequestAttribute("resData") PlatformData resData) throws Exception{
-
-        String from = reqData.getVariable("startDate").getString();
-        String to = reqData.getVariable("endDate").getString();
-        String slipStatus = reqData.getVariable("slipStatus").getString();
-
-        HashMap<String, Object> param = new HashMap<>();
-        param.put("fromDate", from);
-        param.put("toDate", to);
-        param.put("slipStatus", slipStatus);
-        ArrayList<SlipresDto> slipList =  businessService.findRangedSlipList(param);
-        datasetToBeanMapper.beansToDataset(resData, slipList, SlipresDto.class);
-
     }
 
     @GetMapping("/disapprovalsliplist")

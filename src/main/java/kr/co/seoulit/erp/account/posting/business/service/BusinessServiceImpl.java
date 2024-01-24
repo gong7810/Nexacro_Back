@@ -55,27 +55,19 @@ public class BusinessServiceImpl implements BusinessService {
         slipObj.setSlipNo(slipNum); //20200118SLIP00001
         slipRepository.persistSlip(slipObj); // slipBean 저장!
 
-        int count = 1;
-
         String journalNo = journalDAO.selectJournalName(slipNum);
         // 20180401SLIP00001JOURNAL0 분개일련번호 생성. 저장된 분개가 있을 경우 +1을 한 숫자, 없을 경우 0을 반환한다.
 
         int jnum =  Integer.parseInt(journalNo.substring(24)); // 끝 번호를 가져옴
 
 
-        System.out.println("slipObj💕💕💕 = " + slipObj);
-        System.out.println("journal💕💕💕 = " + journalBeans);
-        System.out.println("journalDetail💕💕💕 = " + journalDetail);
-
         for (JournalEntity journalBean : journalBeans) {
             String journalNum = slipNum +"JOURNAL"+ jnum++;
             journalBean.setJournalNo(journalNum);
             journalBean.setSlipNo(slipNum);
-            String customerCode=journalBean.getCustomerCode();
             journalDAO.insertJournal(journalBean);
             for(JournalDetailEntity journalDetailBean : journalDetail) {
                 journalDetailBean.setJournalNo(journalNum);
-                count += 1;
                 journalDAO.insertJournalDetailList(journalDetailBean);
             }
         }
@@ -108,11 +100,8 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    public ArrayList<JournalDetailresDto> findJournalDetailList(String journalNo) {
-
-        ArrayList<JournalDetailresDto> journalDetailresDtos = journalDAO.selectJournalDetailList(journalNo);
-
-        return journalDetailresDtos;
+    public ArrayList<JournalDetailresDto> findJournalDetailList(String fromDate, String toDate) {
+        return journalDAO.selectJournalDetailList(fromDate, toDate);
     }
 
     public ArrayList<JournalDetailEntity> detailAccountList(String accountCode){
@@ -135,9 +124,8 @@ public class BusinessServiceImpl implements BusinessService {
         map.put("fromDate", fromDate);
         map.put("toDate", toDate);
         List<JournalEntity> journalentitylist = journalDAO.selectRangedJournalList(map);
-        ArrayList<JournalresDto> journalList = (ArrayList<JournalresDto>) journalResMapstruct.toDto(journalentitylist);
 
-        return journalList;
+        return (ArrayList<JournalresDto>) journalResMapstruct.toDto(journalentitylist);
     }
     @Override
     public void removeJournal(String journalNo) {
@@ -248,11 +236,11 @@ public class BusinessServiceImpl implements BusinessService {
         }
     }
 
+    //전표 조회
     @Override
     public ArrayList<SlipresDto> findRangedSlipList(HashMap<String, Object> params) {
         List<SlipEntity> slipEntityList = slipDAO.selectRangedSlipList(params);
-        ArrayList<SlipresDto> slipList = (ArrayList< SlipresDto>) slipResmapstruct.toDto(slipEntityList);
-        return slipList;
+        return (ArrayList< SlipresDto>) slipResmapstruct.toDto(slipEntityList);
     }
 
     @Override

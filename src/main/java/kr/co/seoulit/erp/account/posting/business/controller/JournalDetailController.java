@@ -25,22 +25,18 @@ public class JournalDetailController {
 
     @Autowired
     private BusinessService businessService;
-
     @Autowired
     private DatasetToBeanMapper datasetToBeanMapper;
 
-
-    ModelAndView mav = null;
-    ModelMap map = new ModelMap();
-
-    //@GetMapping("/journaldetaillist")
+    //분개상세정보 범위 조회
     @RequestMapping(value = "/findJournalDetailList")
     public void findJournalDetailList(@RequestAttribute("reqData") PlatformData reqData,
-                                                                @RequestAttribute("resData")PlatformData resData) throws Exception {
-        String journalNo = reqData.getVariable("journalNo").getString();
-        System.out.println(journalNo+"😡😡😡😡"); // 저널 번호 넘어 온다.
-        ArrayList<JournalDetailresDto> journalDetailList = businessService.findJournalDetailList(journalNo);
-        System.out.println(journalDetailList+"💀💀💀");
+                                      @RequestAttribute("resData") PlatformData resData) throws Exception {
+        String fromDate = reqData.getVariable("startDate").getString();
+        String toDate = reqData.getVariable("endDate").getString();
+
+        ArrayList<JournalDetailresDto> journalDetailList = businessService.findJournalDetailList(fromDate,toDate);
+        System.out.println("journalDetailList💕💕💕 = " + journalDetailList);
         datasetToBeanMapper.beansToDataset(resData, journalDetailList, JournalDetailresDto.class);
     }
 

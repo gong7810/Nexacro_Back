@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Dataset(name = "gds_journalDetail")
+@Dataset(name = "gds_journal_detail")
 @Table(name = "JOURNAL_DETAIL")
 @Getter
 @Setter
