@@ -16,4 +16,10 @@ public interface PlanDAO {
 
     // 자금계획 추가
     public void insertPlan(PlanBean planBean);
+
+    // 자금계획 수정
+    public void updatePlan(PlanBean planBean);
+
+    // 자금계획 삭제
+    public void deletePlan(String planNo);
 }

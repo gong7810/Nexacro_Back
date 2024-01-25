@@ -7,7 +7,6 @@ import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -28,7 +27,6 @@ public class PlanController {
         System.out.println(startDate + " ~ " + endDate + " 자금계획 조회 Rest API ");
 
         List<PlanBean> selectPlanList = planService.findPlan(startDate, endDate);
-        System.out.println("잘나옴?");
         datasetToBeanMapper.beansToDataset(resData, selectPlanList, PlanBean.class);
 
     }
@@ -41,5 +39,27 @@ public class PlanController {
         PlanBean planBean = datasetToBeanMapper.datasetToBean(reqData, PlanBean.class);
         System.out.println("자금계획 추가 Rest API "+ planBean);
         planService.insertPlan(planBean);
+    }
+
+    // 자금계획 수정
+    @RequestMapping("/updatePlan")
+    public void updatePlan(@RequestAttribute("reqData") PlatformData reqData,
+                           @RequestAttribute("resData") PlatformData resData) throws Exception {
+
+        PlanBean planBean = datasetToBeanMapper.datasetToBean(reqData, PlanBean.class);
+        System.out.println("자금계획 수정 Rest API "+ planBean);
+        planService.updatePlan(planBean);
+
+    }
+
+    // 자금계획 삭제
+    @RequestMapping("/deletePlan")
+    public void deletePlan(@RequestAttribute("reqData") PlatformData reqData,
+                           @RequestAttribute("resData") PlatformData resData) throws Exception {
+
+        String planNo = reqData.getVariable("planNo").getString();
+        System.out.println("자금계획 : "+ planNo + " 삭제 Rest API ");
+        planService.deletePlan(planNo);
+
     }
 }

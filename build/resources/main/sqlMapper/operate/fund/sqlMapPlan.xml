@@ -41,4 +41,27 @@
         ]]>
    </select>
 
+    <!-- 자금계획 수정 -->
+    <update id="updatePlan" parameterType="kr.co.seoulit.erp.account.operate.fund.to.PlanBean">
+   <![CDATA[
+        UPDATE DAILY_FUND_PLAN
+        SET FUND_CODE = #{fundCode}
+          , FUND_NAME = #{fundName}
+          , CUSTOMER_CODE = #{customerCode}
+          , CUSTOMER_NAME = #{customerName}
+          , EXPENSE_REPORT = #{expenseReport}
+          , PRICE = #{price}
+        WHERE PLAN_NO = #{planNo}
+        ]]>
+   </update>
+
+    <!-- 자금계획 삭제 -->
+    <delete id="deletePlan" parameterType="String">
+   <![CDATA[
+        DELETE
+        FROM DAILY_FUND_PLAN
+        WHERE PLAN_NO = #{planNo}
+        ]]>
+   </delete>
+
 </mapper>

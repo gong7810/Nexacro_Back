@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -21,10 +20,8 @@ public class PlanServiceImpl implements PlanService{
     // 자금계획 조회
     @Override
     public List<PlanBean> findPlan(String startDate, String endDate) throws Exception {
-        HashMap map = new HashMap();
 
         List<PlanBean> selectPlanList = planDAO.findPlan(startDate, endDate);
-
         return selectPlanList;
     }
 
@@ -58,7 +55,18 @@ public class PlanServiceImpl implements PlanService{
 
         planBean.setPlanDate(strNewDtFormat);
 
-
         planDAO.insertPlan(planBean);
+    }
+
+    // 자금계획 수정
+    @Override
+    public void updatePlan(PlanBean planBean) throws Exception {
+        planDAO.updatePlan(planBean);
+    }
+
+    // 자금계획 삭제
+    @Override
+    public void deletePlan(String planNo) throws Exception {
+        planDAO.deletePlan(planNo);
     }
 }
