@@ -18,7 +18,7 @@ public class PlanController {
     @Autowired
     private DatasetToBeanMapper datasetToBeanMapper;
 
-    // 자금계획 조회
+    // 자금계획 조회 + 자금계획카렌다 조회
     @RequestMapping("/findPlan")
     public void findPlan(@RequestAttribute("reqData") PlatformData reqData,
                          @RequestAttribute("resData") PlatformData resData) throws Exception {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.seoulit.erp.account.operate.vehicle.dao.VehicleDAO">
+
+
+
+
+    <!-- 업무용차량 전체조회 -->
+    <select id="findVehicleList" resultType="kr.co.seoulit.erp.account.operate.vehicle.entity.VehicleEntity">
+        <![CDATA[
+            SELECT *
+            FROM VEHICLE
+            ORDER BY VEHICLE_CODE
+        ]]>
+    </select>
+
+
+</mapper>
