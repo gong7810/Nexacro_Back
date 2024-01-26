@@ -7,12 +7,12 @@ import lombok.Data;
 @Dataset( name = "ds_totaltrialbalance1")
 public class TotalTrialBalanceBean {
 
-    private int lev;
-    private String accountName;
-    private String accountInnerCode;
     private long debitsSumBalance;
     private long debitsSum;
+    private String accountName;
     private long creditsSum;
     private long creditsSumBalance;
+    private int lev;
+    private int code;
 
 }

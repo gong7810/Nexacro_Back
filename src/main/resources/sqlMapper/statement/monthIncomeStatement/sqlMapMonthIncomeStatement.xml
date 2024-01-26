@@ -4,7 +4,7 @@
 <mapper
         namespace="kr.co.seoulit.erp.account.statement.monthIncomeStatement.dao.MonthIncomeStatementMapper">
 
-    <resultMap id="incomeStatementResult" type="kr.co.seoulit.erp.account.statement.monthIncomeStatement.to.MonthIncomeStatementBean">
+    <resultMap id="MonthIncomeStatementResult" type="kr.co.seoulit.erp.account.statement.monthIncomeStatement.to.MonthIncomeStatementBean">
         <result property="year" column="YEAR"/>
         <result property="month" column="MONTH"/>
         <result property="salesSummary" column="SALES_SUMMARY"/>
@@ -19,18 +19,24 @@
         <result property="netIncome" column="NET_INCOME"/>
     </resultMap>
 
-    <parameterMap id="incomeStatementParams" type="java.util.HashMap">
-        <parameter property="selectedDate" jdbcType="VARCHAR" javaType="String" mode="IN"/>
-        <parameter property="ERROR_CODE" jdbcType="DECIMAL" javaType="int" mode="OUT"/>
-        <parameter property="ERROR_MSG" jdbcType="VARCHAR" javaType="String" mode="OUT"/>
-        <parameter property="RESULT" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="incomeStatementResult"/>
-    </parameterMap>
+<!--    <parameterMap id="incomeStatementParams" type="java.util.HashMap">-->
+<!--        <parameter property="selectedDate" jdbcType="VARCHAR" javaType="String" mode="IN"/>-->
+<!--        <parameter property="ERROR_CODE" jdbcType="DECIMAL" javaType="int" mode="OUT"/>-->
+<!--        <parameter property="ERROR_MSG" jdbcType="VARCHAR" javaType="String" mode="OUT"/>-->
+<!--        <parameter property="RESULT" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="incomeStatementResult"/>-->
+<!--    </parameterMap>-->
 
 <!--    월별손익계산서 조회-->
-    <select id="selectMonthIncomeStatement" parameterMap="incomeStatementParams" statementType="CALLABLE" resultType="java.util.HashMap">
+<!--    <select id="selectMonthIncomeStatement" parameterMap="incomeStatementParams" statementType="CALLABLE" resultType="java.util.HashMap">-->
+<!--        <![CDATA[-->
+<!--            {call P_MONTH_INCOME_STATEMENT(?,?,?,?)}-->
+<!--        ]]>-->
+<!--	</select>-->
+
+    <select id="selectMonthIncomeStatement" resultMap="MonthIncomeStatementResult">
         <![CDATA[
-            {call P_MONTH_INCOME_STATEMENT(?,?,?,?)}
+        SELECT * FROM MINCOME_STATEMENT
         ]]>
-	</select>
+    </select>
 
 </mapper>

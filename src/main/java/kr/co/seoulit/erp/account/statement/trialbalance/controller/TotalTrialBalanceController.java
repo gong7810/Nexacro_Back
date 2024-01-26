@@ -54,7 +54,7 @@ public class TotalTrialBalanceController {
 	public HashMap<String,Object> findTotalTrialBalance( @RequestAttribute("reqData") PlatformData reqData,
 			@RequestAttribute("resData") PlatformData resData) throws Exception {
 
-		String accountPeriodNo=reqData.getVariable("accountPeriodNo").getString();
+		String accountPeriodNo=reqData.getVariable("period").getString();
 		String callResult=reqData.getVariable("callresult").getString();
 
 		HashMap<String,Object> params = new HashMap<>();
