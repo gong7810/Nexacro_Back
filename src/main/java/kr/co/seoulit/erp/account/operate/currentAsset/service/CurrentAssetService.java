@@ -14,6 +14,9 @@ public interface CurrentAssetService {
     // 고정자산 상세 조회
     public CurrentAssetResDTO findAssetDetail(String assetCode) throws Exception;
 
+    // 고정자산 차량 조회
+    public List<CurrentAssetResDTO> findCarAsset() throws Exception;
+
     // 고정자산 추가
     public void insertAsset(CurrentAssetReqDTO currentAssetReqDTO) throws Exception;
 

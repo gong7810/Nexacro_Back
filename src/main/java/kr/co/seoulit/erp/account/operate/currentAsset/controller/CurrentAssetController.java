@@ -47,6 +47,15 @@ public class CurrentAssetController {
         datasetToBeanMapper.beanToDataset(resData, currentAssetResDTO, CurrentAssetResDTO.class);
     }
 
+    // 고정자산 차량조회
+    @RequestMapping("/findCarAsset")
+    public void findCarAsset(@RequestAttribute("reqData") PlatformData reqData,
+                             @RequestAttribute("resData") PlatformData resData) throws Exception {
+
+        List<CurrentAssetResDTO> currentAssetResDTOList = currentAssetService.findCarAsset();
+        datasetToBeanMapper.beansToDataset(resData, currentAssetResDTOList, CurrentAssetResDTO.class);
+    }
+
     // 고정자산 추가
     @RequestMapping("/insertAsset")
     public void insertAsset(@RequestAttribute("reqData") PlatformData reqData,

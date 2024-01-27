@@ -14,6 +14,9 @@ public interface CurrentAssetDAO {
 	// 고정자산 상세조회
 	CurrentAssetEntity findAssetDetail(String assetCode) throws Exception;
 
+	// 고정자산 차량조회
+	List<CurrentAssetEntity> findCarAsset() throws Exception;
+
 	// 고정자산 추가
 	void insertAsset(CurrentAssetEntity currentAssetEntity) throws Exception;
 

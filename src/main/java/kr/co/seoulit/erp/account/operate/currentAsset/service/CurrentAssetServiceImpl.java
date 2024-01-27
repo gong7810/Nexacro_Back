@@ -48,6 +48,14 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
         return	currentAssetResMapStruct.toDto(currentAssetEntity);
     }
 
+    // 고정자산 차량 조회
+    @Override
+    public List<CurrentAssetResDTO> findCarAsset() throws Exception {
+
+        List<CurrentAssetEntity> currentAssetEntities = currentAssetDAO.findCarAsset();
+        return currentAssetResMapStruct.toDto(currentAssetEntities);
+    }
+
     // 고정자산 추가
     @Override
     public void insertAsset(CurrentAssetReqDTO currentAssetReqDTO) throws Exception {

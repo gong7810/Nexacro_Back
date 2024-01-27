@@ -15,7 +15,7 @@ public interface UserAuthorityGroupMapper {
 	public ArrayList<DepartmentBean> selectworkplaceCode();
 	
 	
-	public ArrayList<DepartmentBean> selectdeptCode(String code);
+	public ArrayList<DepartmentBean> selectdeptCode();
 
 	
 }

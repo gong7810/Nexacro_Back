@@ -139,9 +139,8 @@ public class HRController {
     @RequestMapping("/selectdeptCode")
     public ArrayList<DepartmentBean> selectdeptCode(@RequestAttribute("reqData") PlatformData reqData,
     		                                        @RequestAttribute("resData") PlatformData resData) throws Exception{
-    		String code=reqData.getVariable("code").getString();
 
-    	ArrayList<DepartmentBean> deptList = humanResourceService.selectdeptCode(code);
+    	ArrayList<DepartmentBean> deptList = humanResourceService.selectdeptCode();
     	datasetToBeanMapper.beansToDataset(resData, deptList, DepartmentBean.class);
 
     	return null;

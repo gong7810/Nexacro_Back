@@ -92,6 +92,15 @@
 	  ]]>
    </select>
 
+	<!-- 고정자산 차량 조회 -->
+	<select id="findCarAsset" resultMap="assetResult">
+	<![CDATA[
+		SELECT *
+		FROM CURRENT_ASSET
+		WHERE ACCOUNT_NAME = '차량운반구'
+		]]>
+	</select>
+
 	<!-- 고정자산 추가 -->
 	<insert id="insertAsset" parameterType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity" >
     <![CDATA[
