@@ -158,8 +158,8 @@
 			AC.ACCOUNT_CONTROL_NAME AS accountControlName,
 			AC.ACCOUNT_CONTROL_CODE AS accountControlCode,
 			AC.DESCRIPTION AS accountControlDescription
-		FROM 	ACCOUNT A,
-				SLIP S,
+		FROM ACCOUNT A,
+			 SLIP S,
 			 JOURNAL J,
 			 JOURNAL_DETAIL JD,
 			 ACCOUNT_CONTROL_DETAIL AC
@@ -214,7 +214,9 @@
 	<update id="updateJournalDetail"
 			parameterType="kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity">
 		<![CDATA[
-		UPDATE JOURNAL_DETAIL SET DESCRIPTION = #{journalDescription}
+		UPDATE JOURNAL_DETAIL
+		SET ACCOUNT_CONTROL_CODE = #{accountControlDetail},
+		    DESCRIPTION = #{journalDescription}
 		WHERE JOURNAL_DETAIL_NO = #{journalDetailNo}
 
 		]]>

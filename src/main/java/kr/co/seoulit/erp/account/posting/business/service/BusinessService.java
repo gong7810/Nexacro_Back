@@ -30,7 +30,7 @@ public interface BusinessService {
 
     public void removeSlip(String slipNo);
 
-    public String modifySlip(SlipreqDto slipEntity, ArrayList<JournalreqDto> journalEntities);
+    public String modifySlip(SlipreqDto slipEntity, ArrayList<JournalreqDto> journalEntities, ArrayList<JournalDetailreqDto> journalDetailEntities);
 
     public void approveSlip(ArrayList<SlipreqDto> slipDtos);
 

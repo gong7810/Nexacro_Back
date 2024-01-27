@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import io.swagger.v3.oas.annotations.Hidden;
+import kr.co.seoulit.erp.account.posting.business.dto.JournalDetailreqDto;
 import kr.co.seoulit.erp.account.posting.business.dto.JournalreqDto;
 import kr.co.seoulit.erp.account.posting.business.dto.SlipreqDto;
 import kr.co.seoulit.erp.account.posting.business.dto.SlipresDto;
@@ -76,19 +77,15 @@ public class SlipController {
     }
 
 
-    /* nexacro */
+    //전표수정
     @RequestMapping("/updateSlip")
     public void modifySlip(@RequestAttribute("reqData") PlatformData reqData,
                            @RequestAttribute("resData") PlatformData resData) throws Exception {
-        System.out.println(reqData);
         SlipreqDto slipreqdto= datasetToBeanMapper.datasetToBean(reqData, SlipreqDto.class);
         ArrayList<JournalreqDto> journalObj=(ArrayList<JournalreqDto>) datasetToBeanMapper.datasetToBeans(reqData, JournalreqDto.class);
+        ArrayList<JournalDetailreqDto> journalDetailObj=(ArrayList<JournalDetailreqDto>) datasetToBeanMapper.datasetToBeans(reqData, JournalDetailreqDto.class);
 
-
-
-
-
-        businessService.modifySlip(slipreqdto, journalObj);
+        businessService.modifySlip(slipreqdto, journalObj, journalDetailObj);
     }
 
 

@@ -2,6 +2,7 @@ package kr.co.seoulit.erp.account.posting.business.dto;
 
 import kr.co.seoulit.erp.account.sys.base.to.BaseBean;
 import kr.co.seoulit.erp.account.sys.common.annotation.Dataset;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +10,7 @@ import javax.persistence.*;
 
 @Dataset(name = "gds_journal_detail")
 @Table(name = "JOURNAL_DETAIL")
-@Getter
-@Setter
+@Data
 public class JournalDetailreqDto extends BaseBean {
 
     private String journalDetailNo;

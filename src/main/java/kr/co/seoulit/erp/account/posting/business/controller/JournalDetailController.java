@@ -36,7 +36,7 @@ public class JournalDetailController {
         String toDate = reqData.getVariable("endDate").getString();
 
         ArrayList<JournalDetailresDto> journalDetailList = businessService.findJournalDetailList(fromDate,toDate);
-        System.out.println("journalDetailList💕💕💕 = " + journalDetailList);
+
         datasetToBeanMapper.beansToDataset(resData, journalDetailList, JournalDetailresDto.class);
     }
 
