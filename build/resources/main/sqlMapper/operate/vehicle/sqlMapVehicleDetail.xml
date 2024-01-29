@@ -115,7 +115,7 @@
         ]]>
   </update>
 
-    <!-- 업무용차량상세 삭제 -->
+    <!-- 업무용차량 삭제에 따른 관련 데이터 삭제 -->
     <delete id="deleteVehicleDetail" parameterType="String">
         DELETE FROM VEHICLE_DETAIL
         WHERE VEHICLE_CODE = #{vehicleCode}

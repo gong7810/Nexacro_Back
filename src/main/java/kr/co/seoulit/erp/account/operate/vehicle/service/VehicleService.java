@@ -1,11 +1,9 @@
 package kr.co.seoulit.erp.account.operate.vehicle.service;
 
-import kr.co.seoulit.erp.account.operate.vehicle.to.VehicleDetailReqDTO;
-import kr.co.seoulit.erp.account.operate.vehicle.to.VehicleDetailResDTO;
-import kr.co.seoulit.erp.account.operate.vehicle.to.VehicleReqDTO;
-import kr.co.seoulit.erp.account.operate.vehicle.to.VehicleResDTO;
+import kr.co.seoulit.erp.account.operate.vehicle.to.*;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 
 public interface VehicleService {
@@ -27,5 +25,14 @@ public interface VehicleService {
 
     // 업무용차량 삭제
     public void deleteVehicle(String vehicleCode);
+
+    // 업무용차량 운행기록부 상세조회
+    public List<VehicleLogbookResDTO> findVehicleLogbookList(String vehicleCode);
+
+    // 업무용차량 운행기록 추가
+    public void insertVehicleLogbook(VehicleLogbookReqDTO vehicleLogbookReqDTO);
+
+    // 업무용차량 운행기록 삭제
+    public void deleteVehicleLogbook(HashMap<String, String> vehicleLogbookReqMap);
 
 }

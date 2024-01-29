@@ -23,7 +23,6 @@ public class VehicleResDTO extends BaseBean {
     private String empName;
     private String availability;
 
-
     @Transient
     private String distance;
     @Transient

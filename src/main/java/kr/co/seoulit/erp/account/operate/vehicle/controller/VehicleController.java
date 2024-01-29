@@ -7,6 +7,7 @@ import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -86,5 +87,48 @@ public class VehicleController {
 
         vehicleService.deleteVehicle(vehicleCode);
     }
+
+    // 업무용차량 운행기록부 상세조회
+    @RequestMapping("/findVehicleLogbookList")
+    public void findVehicleLogbookList(@RequestAttribute("reqData") PlatformData reqData,
+                                       @RequestAttribute("resData") PlatformData resData) throws Exception {
+
+        String vehicleCode = reqData.getVariable("vehicleCode").getString();
+        System.out.println("업무용차량 : " + vehicleCode + " 운행기록부 상세조회 Rest API");
+        List<VehicleLogbookResDTO> vehicleLogbookList = vehicleService.findVehicleLogbookList(vehicleCode);
+        datasetToBeanMapper.beansToDataset(resData, vehicleLogbookList, VehicleLogbookResDTO.class);
+    }
+
+    // 업무용차량 운행기록 추가
+    @RequestMapping("/insertVehicleLogbook")
+    public void insertVehicleLogbook(@RequestAttribute("reqData") PlatformData reqData,
+                                       @RequestAttribute("resData") PlatformData resData) throws Exception {
+
+        VehicleLogbookReqDTO vehicleLogbookReqDTO = datasetToBeanMapper.datasetToBean(reqData, VehicleLogbookReqDTO.class);
+        System.out.println("업무용차량 운행기록 추가 Rest API" + vehicleLogbookReqDTO);
+
+        vehicleService.insertVehicleLogbook(vehicleLogbookReqDTO);
+    }
+
+    // 업무용차량 운행기록 삭제
+    @RequestMapping("/deleteVehicleLogbook")
+    public void deleteVehicleLogbook(@RequestAttribute("reqData") PlatformData reqData,
+                                       @RequestAttribute("resData") PlatformData resData) throws Exception {
+
+        String vehicleCode = reqData.getVariable("vehicleCode").getString();
+        String useDate = reqData.getVariable("selectDate").getString();
+        String startTime = reqData.getVariable("selectTime").getString();
+        System.out.println("업무용차량 : " + vehicleCode + "운행기록 : " + useDate + " " + startTime + "삭제 Rest API");
+
+        HashMap<String, String> vehicleLogbookReqMap = new HashMap<>();
+
+        vehicleLogbookReqMap.put("vehicleCode", vehicleCode);
+        vehicleLogbookReqMap.put("useDate", useDate);
+        vehicleLogbookReqMap.put("startTime", startTime);
+
+        vehicleService.deleteVehicleLogbook(vehicleLogbookReqMap);
+    }
+
+
 
 }

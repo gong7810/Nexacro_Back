@@ -5,9 +5,29 @@
     <!-- 업무용차량 전체조회 -->
     <select id="findVehicleList" resultType="kr.co.seoulit.erp.account.operate.vehicle.entity.VehicleEntity">
         <![CDATA[
-            SELECT *
-            FROM VEHICLE
-            ORDER BY VEHICLE_CODE
+            SELECT
+                V.VEHICLE_CODE AS VEHICLE_CODE,
+                VEHICLE_NUMBER,
+                VEHICLE_TYPE,
+                V.DEPT_CODE AS DEPT_CODE,
+                V.DEPT_NAME AS DEPT_NAME,
+                V.EMP_CODE AS EMP_CODE,
+                V.EMP_NAME AS EMP_NAME,
+                AVAILABILITY,
+                SUM(VL.DISTANCE) AS DISTANCE,
+                SUM(VL.BUSINESS_DISTANCE) AS BUSINESS_DISTANCE,
+                ROUND((SUM(VL.BUSINESS_DISTANCE)/SUM(VL.DISTANCE))*100, 1) AS BUSINESS_USAGE_RATIO
+            FROM VEHICLE V, VEHICLE_LOGBOOK VL
+            WHERE V.VEHICLE_CODE = VL.VEHICLE_CODE(+)
+            GROUP BY V.VEHICLE_CODE,
+                     VEHICLE_NUMBER,
+                     VEHICLE_TYPE,
+                     V.DEPT_CODE,
+                     V.DEPT_NAME,
+                     V.EMP_CODE,
+                     V.EMP_NAME,
+                     AVAILABILITY
+            ORDER BY V.VEHICLE_CODE
         ]]>
     </select>
 

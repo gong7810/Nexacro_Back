@@ -1,20 +1,15 @@
 package kr.co.seoulit.erp.account.operate.vehicle.service;
 
-import kr.co.seoulit.erp.account.operate.vehicle.dao.VehicleDAO;
-import kr.co.seoulit.erp.account.operate.vehicle.dao.VehicleDetailDAO;
-import kr.co.seoulit.erp.account.operate.vehicle.entity.VehicleDetailEntity;
-import kr.co.seoulit.erp.account.operate.vehicle.entity.VehicleEntity;
-import kr.co.seoulit.erp.account.operate.vehicle.mapstruct.VehicleDetailReqMapStruct;
-import kr.co.seoulit.erp.account.operate.vehicle.mapstruct.VehicleDetailResMapStruct;
-import kr.co.seoulit.erp.account.operate.vehicle.mapstruct.VehicleReqMapStruct;
-import kr.co.seoulit.erp.account.operate.vehicle.mapstruct.VehicleResMapStruct;
+import kr.co.seoulit.erp.account.operate.vehicle.dao.*;
+import kr.co.seoulit.erp.account.operate.vehicle.entity.*;
+import kr.co.seoulit.erp.account.operate.vehicle.mapstruct.*;
 import kr.co.seoulit.erp.account.operate.vehicle.to.*;
-import kr.co.seoulit.erp.account.sys.base.service.BaseService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -26,6 +21,8 @@ public class VehicleServiceImpl implements VehicleService{
     @Autowired
     private VehicleDetailDAO vehicleDetailDAO;
     @Autowired
+    private VehicleLogbookDAO vehicleLogbookDAO;
+    @Autowired
     private VehicleReqMapStruct vehicleReqMapStruct;
     @Autowired
     private VehicleResMapStruct vehicleResMapStruct;
@@ -34,7 +31,9 @@ public class VehicleServiceImpl implements VehicleService{
     @Autowired
     private VehicleDetailResMapStruct vehicleDetailResMapStruct;
     @Autowired
-    private BaseService baseService;
+    private VehicleLogbookReqMapStruct vehicleLogbookReqMapStruct;
+    @Autowired
+    private VehicleLogbookResMapStruct vehicleLogbookResMapStruct;
 
 
     // 업무용차량 전체조회
@@ -67,7 +66,7 @@ public class VehicleServiceImpl implements VehicleService{
 
     // 업무용차량 추가
     @Override
-    public void insertVehicle(VehicleReqDTO vehicleReqDTO, VehicleDetailReqDTO vehicleDetailReqDTO) throws ParseException {
+    public void insertVehicle(VehicleReqDTO vehicleReqDTO, VehicleDetailReqDTO vehicleDetailReqDTO) {
 
         VehicleEntity vehicleEntity = vehicleReqMapStruct.toEntity(vehicleReqDTO);
         VehicleDetailEntity vehicleDetailEntity = vehicleDetailReqMapStruct.toEntity(vehicleDetailReqDTO);
@@ -91,8 +90,35 @@ public class VehicleServiceImpl implements VehicleService{
     @Override
     public void deleteVehicle(String vehicleCode) {
 
+        vehicleLogbookDAO.deleteVehicleLogbookList(vehicleCode);
         vehicleDetailDAO.deleteVehicleDetail(vehicleCode);
         vehicleDAO.deleteVehicle(vehicleCode);
     }
+
+    // 업무용차량 운행기록부 상세조회
+    @Override
+    public List<VehicleLogbookResDTO> findVehicleLogbookList(String vehicleCode) {
+
+        List<VehicleLogbookEntity> vehicleLogbookEntities = vehicleLogbookDAO.findVehicleLogbookList(vehicleCode);
+
+        return vehicleLogbookResMapStruct.toDto(vehicleLogbookEntities);
+    }
+
+    // 업무용차량 운행기록 추가
+    @Override
+    public void insertVehicleLogbook(VehicleLogbookReqDTO vehicleLogbookReqDTO) {
+
+        VehicleLogbookEntity vehicleLogbookEntity = vehicleLogbookReqMapStruct.toEntity(vehicleLogbookReqDTO);
+
+        vehicleLogbookDAO.insertVehicleLogbook(vehicleLogbookEntity);
+    }
+
+    // 업무용차량 운행기록 삭제
+    @Override
+    public void deleteVehicleLogbook(HashMap<String, String> vehicleLogbookReqMap) {
+
+        vehicleLogbookDAO.deleteVehicleLogbook(vehicleLogbookReqMap);
+    }
+
 
 }
