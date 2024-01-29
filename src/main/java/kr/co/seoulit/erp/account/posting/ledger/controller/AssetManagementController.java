@@ -20,7 +20,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 
 @Tag(name = "AssetManagementController", description = "<b>[posting/ledger]</b> 자산관리대장 API")
 @RestController
-@RequestMapping("/posting")
+@RequestMapping("/acc/posting")
 public class AssetManagementController{
 
 	@Autowired

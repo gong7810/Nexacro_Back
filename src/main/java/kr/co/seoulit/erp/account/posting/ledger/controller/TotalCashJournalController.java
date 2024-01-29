@@ -16,7 +16,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 
 @Tag(name = "TotalCashJournalController", description = "<b>[posting/ledger]</b> 총계정원장 API")
 @RestController
-@RequestMapping("/posting")
+@RequestMapping("/acc/posting")
 public class TotalCashJournalController {
 
     private LedgerService ledgerService;

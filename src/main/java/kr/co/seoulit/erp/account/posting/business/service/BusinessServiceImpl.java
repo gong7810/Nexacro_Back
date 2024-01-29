@@ -6,16 +6,14 @@ import java.util.List;
 import java.util.Objects;
 
 import kr.co.seoulit.erp.account.posting.business.dto.*;
-import kr.co.seoulit.erp.account.posting.business.mapstruct.JournalReqMapstruct;
-import kr.co.seoulit.erp.account.posting.business.mapstruct.JournalResMapstruct;
-import kr.co.seoulit.erp.account.posting.business.mapstruct.SlipReqMapstruct;
-import kr.co.seoulit.erp.account.posting.business.mapstruct.SlipResMapstruct;
+import kr.co.seoulit.erp.account.posting.business.mapstruct.*;
 import kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity;
 import kr.co.seoulit.erp.account.posting.business.entity.JournalEntity;
 import kr.co.seoulit.erp.account.posting.business.entity.SlipEntity;
 import kr.co.seoulit.erp.account.posting.business.dao.JournalMapper;
 import kr.co.seoulit.erp.account.posting.business.dao.SlipApprovalAndReturnMapper;
 import kr.co.seoulit.erp.account.posting.business.dao.SlipMapper;
+import kr.co.seoulit.erp.account.sys.common.mapstruct.EntityReqMapper;
 import org.springframework.stereotype.Service;
 
 import kr.co.seoulit.erp.account.posting.business.repository.JournalDetailRepository;
@@ -35,6 +33,7 @@ public class BusinessServiceImpl implements BusinessService {
     private final SlipReqMapstruct slipReqMapstruct;
     private final JournalReqMapstruct journalReqMapstruct;
     private final JournalResMapstruct journalResMapstruct;
+    private final JournalDetailReqMapstruct journalDetailReqMapstruct;
 
     //전표 조회
     @Override
@@ -90,16 +89,19 @@ public class BusinessServiceImpl implements BusinessService {
     public String modifySlip(SlipreqDto slipreqdtos, ArrayList<JournalreqDto> journalreqdtos, ArrayList<JournalDetailreqDto> journaldetailreqdtos) {
         SlipEntity slipEntity = slipReqMapstruct.toEntity(slipreqdtos);
         slipRepository.mergeSlip(slipEntity);
+        System.out.println("journalreqdtos💕💕💕 = " + journalreqdtos);
+        System.out.println("journaldetailreqdtos💕💕💕 = " + journaldetailreqdtos);
 
         for (JournalreqDto journalreqDto : journalreqdtos) {
             JournalEntity journalEntity = journalReqMapstruct.toEntity(journalreqDto);
             journalDAO.updateJournal(journalEntity);
-            if(journalEntity.getJournalDetailList()!=null) {
-                for(JournalDetailEntity journalDetailEntity : journalEntity.getJournalDetailList()) {
-                    journalDAO.updateJournalDetail(journalDetailEntity);
-                }
-            }
         }
+
+        for(JournalDetailreqDto journaldetailreqDto : journaldetailreqdtos) {
+            JournalDetailEntity journaldetailEntity = journalDetailReqMapstruct.toEntity(journaldetailreqDto);
+            journalDAO.updateJournalDetail(journaldetailEntity);
+        }
+
         return slipEntity.getSlipNo();
     }
 

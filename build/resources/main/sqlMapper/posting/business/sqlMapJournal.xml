@@ -215,7 +215,7 @@
 			parameterType="kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity">
 		<![CDATA[
 		UPDATE JOURNAL_DETAIL
-		SET ACCOUNT_CONTROL_CODE = #{accountControlDetail},
+		SET ACCOUNT_CONTROL_CODE = #{accountControlCode},
 		    DESCRIPTION = #{journalDescription}
 		WHERE JOURNAL_DETAIL_NO = #{journalDetailNo}
 

@@ -19,7 +19,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 
 @Tag(name = "CashJournalController", description = "<b>[posting/ledger]</b> 현급출납장 API")
 @RestController
-@RequestMapping("/posting")
+@RequestMapping("/acc/posting")
 public class CashJournalController {
 
 	@Autowired

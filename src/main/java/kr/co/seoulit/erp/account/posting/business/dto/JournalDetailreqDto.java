@@ -21,4 +21,7 @@ public class JournalDetailreqDto extends BaseBean {
     private String accountControlDescription;
     private String accountControlName;
     private String accountControlType; //일괄처리를 위한 상태값
+
+    private String accountName;
+
 }
