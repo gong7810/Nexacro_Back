@@ -48,11 +48,17 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
         return	currentAssetResMapStruct.toDto(currentAssetEntity);
     }
 
+    // 고정자산 차량 조회
+    @Override
+    public List<CurrentAssetResDTO> findCarAsset() throws Exception {
+
+        List<CurrentAssetEntity> currentAssetEntities = currentAssetDAO.findCarAsset();
+        return currentAssetResMapStruct.toDto(currentAssetEntities);
+    }
+
     // 고정자산 추가
     @Override
     public void insertAsset(CurrentAssetReqDTO currentAssetReqDTO) throws Exception {
-
-        HashMap<String, Object> params = new HashMap<>();
 
         CurrentAssetEntity currentAssetEntity = currentAssetReqMapStruct.toEntity(currentAssetReqDTO);
 
@@ -80,6 +86,30 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
         System.out.println("고정자산 삭제완료");
         currentAssetDetailDAO.deleteAssetDetail(assetCode);
         System.out.println("고정자산상세 삭제완료");
+    }
+
+    // 감가상각비현황 전체조회
+    @Override
+    public List<CurrentAssetResDTO> findDepreciationList() throws Exception {
+
+        List<CurrentAssetEntity> currentAssetEntities =  currentAssetDAO.findDepreciationList();
+        return currentAssetResMapStruct.toDto(currentAssetEntities);
+    }
+
+    // 감가상각비현황 선택조회
+    @Override
+    public List<CurrentAssetResDTO> selectDepreciationList(String accountCode) throws Exception {
+
+        List<CurrentAssetEntity> currentAssetEntities =  currentAssetDAO.selectDepreciationList(accountCode);
+        return currentAssetResMapStruct.toDto(currentAssetEntities);
+    }
+
+    // 고정자산관리대장 조회
+    @Override
+    public List<CurrentAssetResDTO> findCurrentAssetLedgerList() throws Exception {
+
+        List<CurrentAssetEntity> currentAssetLedgerEntities =  currentAssetDAO.findCurrentAssetLedgerList();
+        return currentAssetResMapStruct.toDto(currentAssetLedgerEntities);
     }
 }
 
