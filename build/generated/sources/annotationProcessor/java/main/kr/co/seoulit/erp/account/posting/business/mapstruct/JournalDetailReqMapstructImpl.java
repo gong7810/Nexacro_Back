@@ -31,6 +31,7 @@ public class JournalDetailReqMapstructImpl implements JournalDetailReqMapstruct 
         journalDetailEntity.setAccountControlDescription( dto.getAccountControlDescription() );
         journalDetailEntity.setAccountControlName( dto.getAccountControlName() );
         journalDetailEntity.setAccountControlType( dto.getAccountControlType() );
+        journalDetailEntity.setAccountName( dto.getAccountName() );
 
         return journalDetailEntity;
     }

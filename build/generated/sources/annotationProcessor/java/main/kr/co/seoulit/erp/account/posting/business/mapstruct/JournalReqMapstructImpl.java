@@ -69,6 +69,7 @@ public class JournalReqMapstructImpl implements JournalReqMapstruct {
         journalDetailEntity.setAccountControlDescription( journalDetailreqDto.getAccountControlDescription() );
         journalDetailEntity.setAccountControlName( journalDetailreqDto.getAccountControlName() );
         journalDetailEntity.setAccountControlType( journalDetailreqDto.getAccountControlType() );
+        journalDetailEntity.setAccountName( journalDetailreqDto.getAccountName() );
 
         return journalDetailEntity;
     }
