@@ -31,8 +31,6 @@ public class JournalController {
     @Autowired
     private DatasetToBeanMapper datasetToBeanMapper;
 
-
-
     @RequestMapping("/findSingleJournalList")
     public ArrayList<JournalEntity> findSingleJournalList(@RequestAttribute("reqData") PlatformData reqData,
                                                           @RequestAttribute("resData")PlatformData resData) throws Exception {
@@ -40,7 +38,6 @@ public class JournalController {
         ArrayList<JournalEntity> journalList = businessService.findSingleJournalList(slipNo);
         datasetToBeanMapper.beansToDataset(resData, journalList, JournalEntity.class);
         return null;
-
     }
 
     //분개 범위 조회
@@ -56,10 +53,7 @@ public class JournalController {
 
     @GetMapping("/journalremoval")
     public void removeJournal(@RequestParam String journalNo) {
-
-
         businessService.removeJournal(journalNo);
-
     }
     @GetMapping("modifyJournal")
     public void modifyJournal(@RequestParam String slipNo,
@@ -75,7 +69,5 @@ public class JournalController {
             journalBeanList.add(journalEntity);
         }
         businessService.modifyJournal(slipNo, journalBeanList);
-
     }
-
 }

@@ -34,9 +34,7 @@ public class JournalDetailController {
                                       @RequestAttribute("resData") PlatformData resData) throws Exception {
         String fromDate = reqData.getVariable("startDate").getString();
         String toDate = reqData.getVariable("endDate").getString();
-
         ArrayList<JournalDetailresDto> journalDetailList = businessService.findJournalDetailList(fromDate,toDate);
-
         datasetToBeanMapper.beansToDataset(resData, journalDetailList, JournalDetailresDto.class);
     }
 
@@ -47,11 +45,8 @@ public class JournalDetailController {
 
         ArrayList<JournalDetailEntity> List = businessService.detailAccountList(accountCode);
         datasetToBeanMapper.beansToDataset(resData, List, JournalDetailEntity.class);
-
-
         return null;
     }
-
 
     @GetMapping("/journaldetailmodification")
     public void modifyJournalDetail(@RequestParam String accountControlType, @RequestParam String journalNo,
@@ -66,8 +61,5 @@ public class JournalDetailController {
         journalDetailEntity.setJournalDescription(journalDescription);
 
         businessService.modifyJournalDetail(journalDetailEntity);
-
     }
-//        여기 modify 인데 리턴값이 있고 그 런턴을 반환하지도 않음 이상함(choi)
-
 }
