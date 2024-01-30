@@ -1,5 +1,6 @@
 package kr.co.seoulit.erp.account.sys.base.service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -56,6 +57,5 @@ public interface BaseService {
 	public void findIreportTotalData(HttpServletRequest request, HttpServletResponse response);
 	
     public ArrayList<CustomerEntity> findCustomerList();
-
 
 }

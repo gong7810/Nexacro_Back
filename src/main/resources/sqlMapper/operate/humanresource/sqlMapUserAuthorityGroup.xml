@@ -30,13 +30,13 @@
 		]]>
 	</select>
 
-	<select id="selectdeptCode" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.humanresource.to.DepartmentBean">
+	<select id="selectdeptCode" resultType="kr.co.seoulit.erp.account.operate.humanresource.to.DepartmentBean">
 		<![CDATA[
 					SELECT
 						DEPT_CODE AS deptCode,
 						DEPT_NAME AS deptName
 						FROM DEPARTMENT
-						WHERE WORKPLACE_CODE = #{code}
+					ORDER BY DEPT_CODE ASC
 		]]>
 	</select>
 

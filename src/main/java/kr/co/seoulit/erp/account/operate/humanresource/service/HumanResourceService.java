@@ -34,7 +34,7 @@ public interface HumanResourceService {
 
 	public ArrayList<DepartmentBean> selectworkplaceCode();
 
-	public ArrayList<DepartmentBean> selectdeptCode(String code);
+	public ArrayList<DepartmentBean> selectdeptCode();
 
 	public void modifyImage(String newFileName);
 

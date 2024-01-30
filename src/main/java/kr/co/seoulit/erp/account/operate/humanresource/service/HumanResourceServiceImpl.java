@@ -67,14 +67,7 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 
     }
 
-
-
-
-
-
-
                                         // 아래는 운영관리에서 아직 사용하지 않는 코드들이다.
-
 
 
 
@@ -116,11 +109,10 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	}
 	
 	@Override
-	public ArrayList<DepartmentBean> selectdeptCode(String code) {
-		// TODO Auto-generated method stub
-		
+	public ArrayList<DepartmentBean> selectdeptCode() {
+
 		ArrayList<DepartmentBean> deptList=null;
-		deptList=usrePermissionGroupDAO.selectdeptCode(code);
+		deptList=usrePermissionGroupDAO.selectdeptCode();
 		
 		return deptList;
 	}
