@@ -159,7 +159,6 @@
 						   A.ASSET_CODE,
 						   A.ASSET_NAME,
 						   A.PROGRESS) IN (0, 7)
-
 		ORDER BY A.ACCOUNT_CODE, A.PROGRESS
 		]]>
     </select>

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-01-30T15:31:54+0900",
+    date = "2024-01-30T19:25:16+0900",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.4.1.jar, environment: Java 11.0.22 (Amazon.com Inc.)"
 )
 @Component
@@ -29,6 +29,21 @@ public class CurrentAssetResMapStructImpl implements CurrentAssetResMapStruct {
         currentAssetResDTO.setAssetName( entity.getAssetName() );
         currentAssetResDTO.setProgress( entity.getProgress() );
         currentAssetResDTO.setFinalizeStatus( entity.getFinalizeStatus() );
+        currentAssetResDTO.setAcquisitionCost( entity.getAcquisitionCost() );
+        currentAssetResDTO.setAmortizationWay( entity.getAmortizationWay() );
+        currentAssetResDTO.setDepartment( entity.getDepartment() );
+        currentAssetResDTO.setDepreciation( entity.getDepreciation() );
+        currentAssetResDTO.setBookValue( entity.getBookValue() );
+        currentAssetResDTO.setUsefulLife( entity.getUsefulLife() );
+        currentAssetResDTO.setAmortizationFinalYear( entity.getAmortizationFinalYear() );
+        currentAssetResDTO.setAcquisitionQuantity( entity.getAcquisitionQuantity() );
+        currentAssetResDTO.setChangeQuantity( entity.getChangeQuantity() );
+        currentAssetResDTO.setRemainQuantity( entity.getRemainQuantity() );
+        currentAssetResDTO.setAmortizationRate( entity.getAmortizationRate() );
+        currentAssetResDTO.setMonth( entity.getMonth() );
+        currentAssetResDTO.setNormalAmortization( entity.getNormalAmortization() );
+        currentAssetResDTO.setAccumulatedAmortization( entity.getAccumulatedAmortization() );
+        currentAssetResDTO.setBookValueEnd( entity.getBookValueEnd() );
 
         return currentAssetResDTO;
     }
