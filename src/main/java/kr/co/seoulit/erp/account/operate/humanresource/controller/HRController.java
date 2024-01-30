@@ -24,13 +24,10 @@ import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 @RequestMapping("/acc/operate")
 public class HRController {
 
-    private HumanResourceService humanResourceService;
-    private DatasetToBeanMapper datasetToBeanMapper;
     @Autowired
-    public HRController(HumanResourceService humanResourceService, DatasetToBeanMapper datasetToBeanMapper) {
-    	this.humanResourceService=humanResourceService;
-    	this.datasetToBeanMapper = datasetToBeanMapper;
-    }
+    private HumanResourceService humanResourceService;
+    @Autowired
+    private DatasetToBeanMapper datasetToBeanMapper;
 
     ModelAndView mav;
     ModelMap map = new ModelMap();

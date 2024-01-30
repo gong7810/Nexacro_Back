@@ -17,11 +17,8 @@ public interface CurrentAssetDAO {
 	// 고정자산 차량조회
 	List<CurrentAssetEntity> findCarAsset() throws Exception;
 
-	// 고정자산 추가
-	void insertAsset(CurrentAssetEntity currentAssetEntity) throws Exception;
-
-	// 고정자산 수정
-	void updateAsset(CurrentAssetEntity currentAssetEntity) throws Exception;
+	// 고정자산 추가 / 수정
+	void mergeAsset(CurrentAssetEntity currentAssetEntity) throws Exception;
 
 	// 고정자산 삭제
 	void deleteAsset(String assetCode) throws Exception;

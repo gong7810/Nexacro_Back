@@ -4,7 +4,6 @@
 
 <mapper namespace="kr.co.seoulit.erp.account.operate.system.dao.CustomerDAO">
 
-
     <resultMap id="customerResult" type="kr.co.seoulit.erp.account.operate.system.to.CustomerUpdateRequest">
         <result property="customerCode" column="COMPANY_CODE"/>
         <result property="workplaceCode" column="WORKPLACE_CODE"/>
@@ -23,45 +22,34 @@
 
     <insert id="insertCustomer" parameterType="kr.co.seoulit.erp.account.operate.system.to.CustomerUpdateRequest">
         <![CDATA[
-            INSERT
-              INTO CUSTOMER (CUSTOMER_CODE,
-                             CUSTOMER_NAME,
-                             CUSTOMER_CEO,
-                             CUSTOMER_BUSINESS_CONDITIONS,
-                             CUSTOMER_BUSINESS_ITEMS,
-                             CUSTOMER_BASIC_ADDRESS,
-                             CUSTOMER_TEL_NUMBER
-                             )
-            VALUES (#{customerCode},
-                    #{customerName},
-                    #{customerCeo},
-                    #{customerBusinessConditions},
-                    #{customerBusinessItems},
-                    #{customerBasicAddress},
-                    #{customerTelNumber}
-                    )
+            INSERT INTO CUSTOMER (CUSTOMER_CODE
+                , CUSTOMER_NAME, CUSTOMER_CEO, CUSTOMER_BUSINESS_CONDITIONS
+                , CUSTOMER_BUSINESS_ITEMS, CUSTOMER_BASIC_ADDRESS, CUSTOMER_TEL_NUMBER)
+            VALUES (#{customerCode}
+                , #{customerName}
+                , #{customerCeo}
+                , #{customerBusinessConditions}
+                , #{customerBusinessItems}
+                , #{customerBasicAddress}
+                , #{customerTelNumber})
         ]]>
     </insert>
 
     <update id="updateCustomer" parameterType="kr.co.seoulit.erp.account.operate.system.to.CustomerUpdateRequest">
         <![CDATA[
-            UPDATE CUSTOMER
-            SET
-            CUSTOMER_NAME = #{customerName},
-            CUSTOMER_CEO = #{customerCeo},
-            CUSTOMER_BUSINESS_CONDITIONS = #{customerBusinessConditions},
-            CUSTOMER_BUSINESS_ITEMS = #{customerBusinessItems},
-            CUSTOMER_BASIC_ADDRESS = #{customerBasicAddress},
-            CUSTOMER_TEL_NUMBER = #{customerTelNumber}
-            WHERE
-            CUSTOMER_CODE = #{customerCode}
+            UPDATE CUSTOMER SET CUSTOMER_NAME = #{customerName}
+                , CUSTOMER_CEO = #{customerCeo}
+                , CUSTOMER_BUSINESS_CONDITIONS = #{customerBusinessConditions}
+                , CUSTOMER_BUSINESS_ITEMS = #{customerBusinessItems}
+                ,CUSTOMER_BASIC_ADDRESS = #{customerBasicAddress}
+                ,CUSTOMER_TEL_NUMBER = #{customerTelNumber}
+            WHERE CUSTOMER_CODE = #{customerCode}
         ]]>
     </update>
 
     <delete id="deleteCustomer" parameterType="String">
         <![CDATA[
-            DELETE
-              FROM CUSTOMER
+            DELETE FROM CUSTOMER
              WHERE CUSTOMER_CODE = #{customerCode}
         ]]>
     </delete>

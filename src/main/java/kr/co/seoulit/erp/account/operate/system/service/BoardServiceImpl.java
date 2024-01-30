@@ -17,8 +17,6 @@ public class BoardServiceImpl implements BoardService {
     @Autowired
     private BoardDAO boardDAO;
     @Autowired
-    private BoardRepository boardRepository;
-    @Autowired
     private BoardReqMapStruct boardReqMapstruct;
     @Autowired
     private BoardResMapStruct boardResMapstruct;
@@ -29,7 +27,7 @@ public class BoardServiceImpl implements BoardService {
     public List<BoardResDTO> findBoardList() throws Exception {
 
         List<BoardEntity> BoardEntityList = boardDAO.findBoardList();
-//        List<BoardEntity> boardEntityList = boardRepository.findBoardList();
+
         return	boardResMapstruct.toDto(BoardEntityList);
     }
 
@@ -38,7 +36,7 @@ public class BoardServiceImpl implements BoardService {
     public BoardResDTO findBoardDetail(String boardId) throws Exception {
 
         BoardEntity BoardEntity = boardDAO.findBoardDetail(boardId);
-//        BoardEntity boardEntity	= boardRepository.findBoardDetail(boardId);
+
         return	boardResMapstruct.toDto(BoardEntity);
     }
 
@@ -47,8 +45,8 @@ public class BoardServiceImpl implements BoardService {
     public void insertBoard(BoardReqDTO boardReqDTO) throws Exception {
 
         BoardEntity BoardEntity = boardReqMapstruct.toEntity(boardReqDTO);
-        boardDAO.insertBoard(BoardEntity);
-//        boardRepository.save(BoardEntity);
+
+        boardDAO.mergeBoard(BoardEntity);
     }
 
     // 게시판 수정
@@ -56,7 +54,8 @@ public class BoardServiceImpl implements BoardService {
     public void updateBoard(BoardReqDTO boardReqDTO) throws Exception {
 
         BoardEntity BoardEntity = boardReqMapstruct.toEntity(boardReqDTO);
-        boardDAO.updateBoard(BoardEntity);
+
+        boardDAO.mergeBoard(BoardEntity);
     }
 
     // 게시판 삭제

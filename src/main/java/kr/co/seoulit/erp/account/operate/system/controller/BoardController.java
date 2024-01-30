@@ -24,7 +24,9 @@ public class BoardController {
 	@RequestMapping("/findBoardList")
 	public void findBoardList(@RequestAttribute("reqData")PlatformData reqData,
 							  @RequestAttribute("resData")PlatformData resData) throws Exception {
+
 		System.out.println("게시판 조회 Rest API");
+
 		List<BoardResDTO> boardList = boardService.findBoardList();
 		datasetToBeanMapper.beansToDataset(resData, boardList, BoardResDTO.class);
 	}
@@ -48,6 +50,7 @@ public class BoardController {
 
 		BoardReqDTO boardReqDTO = datasetToBeanMapper.datasetToBean(reqData, BoardReqDTO.class);
 		System.out.println("게시판 추가 Rest API "+ boardReqDTO);
+
 		boardService.insertBoard(boardReqDTO);
 	}
 
@@ -58,6 +61,7 @@ public class BoardController {
 
 		BoardReqDTO boardReqDTO = datasetToBeanMapper.datasetToBean(reqData, BoardReqDTO.class);
 		System.out.println("게시판 수정 Rest API "+ boardReqDTO);
+
 		boardService.updateBoard(boardReqDTO);
 	}
 
@@ -65,8 +69,10 @@ public class BoardController {
 	@RequestMapping("/deleteBoard")
 	public void deleteBoard(@RequestAttribute("reqData")PlatformData reqData,
 							@RequestAttribute("resData")PlatformData resData) throws Exception {
+
 		String boardId = reqData.getVariable("bno").getString();
 		System.out.println("게시글 : " + boardId + "삭제 Rest API");
+
 		boardService.deleteBoard(boardId);
 	}
 

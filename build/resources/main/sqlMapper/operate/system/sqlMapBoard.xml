@@ -6,14 +6,13 @@
 	<!-- 게시판 조회 -->
 	<select id="findBoardList" resultType="kr.co.seoulit.erp.account.operate.system.entity.BoardEntity">
 		<![CDATA[
-		SELECT Id as id
-			 , title as title
-			 , contents as contents
-			 , written_by as writtenBy
-			 , write_date as writeDate
-			 , update_date_time as updateDateTime
-		FROM
-			BOARD
+		SELECT ID as id
+			 , TITLE as title
+			 , CONTENTS as contents
+			 , WRITTEN_BY as writtenBy
+			 , WRITE_DATE as writeDate
+			 , UPDATE_DATE_TIME as updateDateTime
+		FROM BOARD
 		ORDER BY write_date DESC    --최근의 데이터를 최상단에 보여주기 위한 정렬
 		]]>
 	</select>
@@ -21,58 +20,42 @@
 	<!-- 게시글 상세 조회 -->
 	<select id="findBoardDetail" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.entity.BoardEntity">
 		<![CDATA[
-		SELECT Id as id
-			 , title as title
-			 , contents as contents
-			 , written_by as writtenBy
-			 , update_by as upDateBy
-			 , write_date as writeDate
-			 , update_date_time as updateDateTime
+		SELECT ID as id
+			 , TITLE as title
+			 , CONTENTS as contents
+			 , WRITTEN_BY as writtenBy
+			 , UPDATE_BY as upDateBy
+			 , WRITE_DATE as writeDate
+			 , UPDATE_DATE_TIME as updateDateTime
 		FROM BOARD
 		WHERE ID = #{id}
 		]]>
 	</select>
 
-	<!-- 게시판 추가 -->
-	<insert id="insertBoard" parameterType="kr.co.seoulit.erp.account.operate.system.entity.BoardEntity">
+	<!-- 게시판 추가 / 수정 -->
+	<update id="mergeBoard" parameterType="kr.co.seoulit.erp.account.operate.system.entity.BoardEntity">
     <![CDATA[
-		INSERT INTO BOARD
-		(
-			id,
-			TITLE,
-			CONTENTS,
-			written_by,
-			write_date
-		)
-		VALUES
-			(
-				BOARD_SQ.NEXTVAL,
-				#{title},
-				#{contents},
-				#{writtenBy},
-				sysdate
-			)
-		]]>
-    </insert>
-
-	<!-- 게시판 수정 -->
-	<update id="updateBoard" parameterType="kr.co.seoulit.erp.account.operate.system.entity.BoardEntity">
-    <![CDATA[
-		UPDATE Board
-		SET
-			title = #{title},
-			contents = #{contents},
-			update_date_time=sysdate
-
-		WHERE
-			ID = #{id}
+		MERGE INTO BOARD B
+			USING (SELECT * FROM DUAL)
+			ON (B.ID = #{id})
+			WHEN MATCHED THEN
+				UPDATE SET B.TITLE = #{title}
+					, B.CONTENTS = #{contents}
+					, B.UPDATE_DATE_TIME = sysdate
+			WHEN NOT MATCHED THEN
+				INSERT (B.ID, B.TITLE, B.CONTENTS, B.WRITTEN_BY, B.WRITE_DATE)
+				VALUES (BOARD_SQ.NEXTVAL
+					, #{title}
+					, #{contents}
+					, #{writtenBy}
+					, sysdate)
 		]]>
     </update>
 
 	<!-- 게시판 삭제 -->
 	<delete id="deleteBoard" parameterType="String">
 		DELETE FROM BOARD
-		WHERE id = #{id}
+		WHERE ID = #{id}
 	</delete>
 
 </mapper>

@@ -11,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VehicleDetailReqDTO extends BaseBean {
+
     private String vehicleCode;
     private String accountCode;
     private String accountName;

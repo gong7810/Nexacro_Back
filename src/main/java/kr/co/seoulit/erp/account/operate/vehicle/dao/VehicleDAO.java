@@ -14,11 +14,8 @@ public interface VehicleDAO {
     // 업무용차량 한개조회
     VehicleEntity findVehicle(String vehicleCode);
 
-    // 업무용차량 추가
-    void insertVehicle(VehicleEntity vehicleEntity);
-
-    // 업무용차량 수정
-    void updateVehicle(VehicleEntity vehicleEntity);
+    // 업무용차량 추가 / 수정
+    void mergeVehicle(VehicleEntity vehicleEntity);
 
     // 업무용차량 삭제
     void deleteVehicle(String vehicleCode);

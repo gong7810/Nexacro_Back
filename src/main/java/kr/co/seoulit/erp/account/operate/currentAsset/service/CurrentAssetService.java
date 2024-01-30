@@ -1,9 +1,10 @@
 package kr.co.seoulit.erp.account.operate.currentAsset.service;
 
-import kr.co.seoulit.erp.account.operate.currentAsset.to.CurrentAssetDetailResDTO;
+import kr.co.seoulit.erp.account.operate.currentAsset.to.CurrentAssetDetailReqDTO;
 import kr.co.seoulit.erp.account.operate.currentAsset.to.CurrentAssetReqDTO;
 import kr.co.seoulit.erp.account.operate.currentAsset.to.CurrentAssetResDTO;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface CurrentAssetService {
@@ -12,16 +13,16 @@ public interface CurrentAssetService {
     public List<CurrentAssetResDTO> findAssetList() throws Exception;
 
     // 고정자산 상세 조회
-    public CurrentAssetResDTO findAssetDetail(String assetCode) throws Exception;
+    public HashMap<String, Object> findAssetDetail(String assetCode) throws Exception;
 
     // 고정자산 차량 조회
     public List<CurrentAssetResDTO> findCarAsset() throws Exception;
 
     // 고정자산 추가
-    public void insertAsset(CurrentAssetReqDTO currentAssetReqDTO) throws Exception;
+    public void insertAsset(CurrentAssetReqDTO currentAssetReqDTO, CurrentAssetDetailReqDTO currentAssetDetailReqDTO) throws Exception;
 
     // 고정자산 수정
-    public void updateAsset(CurrentAssetReqDTO currentAssetReqDTO) throws Exception;
+    public void updateAsset(CurrentAssetReqDTO currentAssetReqDTO, CurrentAssetDetailReqDTO currentAssetDetailReqDTO) throws Exception;
 
     // 고정자산 삭제
     public void deleteAsset(String assetCode) throws Exception;

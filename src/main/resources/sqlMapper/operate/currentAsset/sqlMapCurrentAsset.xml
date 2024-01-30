@@ -12,30 +12,6 @@
 		<result property="finalizeStatus" column="FINALIZE_STATUS"/>
 	</resultMap>
 
-	<resultMap id="assetAllResult" type="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity">
-		<result property="accountName" column="ACCOUNT_NAME"/>
-		<result property="assetCode" column="ASSET_CODE"/>
-		<result property="accountCode" column="ACCOUNT_CODE"/>
-		<result property="assetName" column="ASSET_NAME"/>
-		<result property="progress" column="PROGRESS"/>
-		<result property="finalizeStatus" column="FINALIZE_STATUS"/>
-		<result property="acquisitionCost" column="ACQUISITION_COST"/>
-		<result property="amortizationWay" column="AMORTIZATION_WAY"/>
-		<result property="department" column="DEPARTMENT"/>
-		<result property="depreciation" column="DEPRECIATION"/>
-		<result property="bookValue" column="BOOK_VALUE"/>
-		<result property="usefulLife" column="USEFUL_LIFE"/>
-		<result property="amortizationFinalYear" column="AMORTIZATION_FINAL_YEAR"/>
-		<result property="acquisitionQuantity" column="ACQUISITION_QUANTITY"/>
-		<result property="changeQuantity" column="CHANGE_QUANTITY"/>
-		<result property="remainQuantity" column="REMAIN_QUANTITY"/>
-		<result property="amortizationRate" column="AMORTIZATION_RATE"/>
-		<result property="month" column="MONTH"/>
-		<result property="normalAmortization" column="NORMAL_AMORTIZATION"/>
-		<result property="accumulatedAmortization" column="ACCUMULATED_AMORTIZATION"/>
-		<result property="bookValueEnd" column="BOOK_VALUE_END"/>
-	</resultMap>
-
 	<resultMap id="depreciationResult" type="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity">
 		<result property="accountCode" column="ACCOUNT_CODE"/>
 		<result property="accountName" column="ACCOUNT_NAME"/>
@@ -63,32 +39,11 @@
 	</select>
 
 	<!-- 고정자산 상세 조회 -->
-	<select id="findAssetDetail" parameterType="String" resultMap="assetAllResult">
+	<select id="findAssetDetail" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity">
       <![CDATA[
-		SELECT A.ACCOUNT_NAME AS ACCOUNT_NAME
-			 , A.ASSET_CODE AS ASSET_CODE
-			 , A.ACCOUNT_CODE AS ACCOUNT_CODE
-		     , A.ASSET_NAME AS ASSET_NAME
-		     , A.PROGRESS AS PROGRESS
-		     , A.FINALIZE_STATUS AS FINALIZE_STATUS
-		     , D.ACQUISITION_COST AS ACQUISITION_COST
-		     , D.AMORTIZATION_WAY AS AMORTIZATION_WAY
-			 , D.DEPARTMENT AS DEPARTMENT
-		     , D.DEPRECIATION AS DEPRECIATION
-		     , D.BOOK_VALUE AS BOOK_VALUE
-			 , D.USEFUL_LIFE AS USEFUL_LIFE
-		     , D.AMORTIZATION_FINAL_YEAR AS AMORTIZATION_FINAL_YEAR
-			 , D.ACQUISITION_QUANTITY AS ACQUISITION_QUANTITY
-			 , D.CHANGE_QUANTITY AS CHANGE_QUANTITY
-			 , D.REMAIN_QUANTITY AS REMAIN_QUANTITY
-			 , D.AMORTIZATION_RATE AS AMORTIZATION_RATE
-			 , D.MONTH AS MONTH
-		     , D.NORMAL_AMORTIZATION AS NORMAL_AMORTIZATION
-		     , D.ACCUMULATED_AMORTIZATION AS ACCUMULATED_AMORTIZATION
-		     , D.BOOK_VALUE_END AS BOOK_VALUE_END
-		FROM CURRENT_ASSET A, CURRENT_ASSET_DETAIL D
-		WHERE A.ASSET_CODE = #{assetCode}
-		  AND A.ASSET_CODE = D.ASSET_CODE
+		SELECT *
+		FROM CURRENT_ASSET
+		WHERE ASSET_CODE = #{assetCode}
 	  ]]>
    </select>
 
@@ -101,28 +56,25 @@
 		]]>
 	</select>
 
-	<!-- 고정자산 추가 -->
-	<insert id="insertAsset" parameterType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity" >
+	<!-- 고정자산 추가 / 수정 -->
+	<update id="mergeAsset" parameterType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity" >
     <![CDATA[
-		INSERT INTO CURRENT_ASSET(ACCOUNT_CODE, ACCOUNT_NAME, ASSET_CODE, ASSET_NAME, PROGRESS, FINALIZE_STATUS)
-		VALUES ( #{accountCode}
-			   , #{accountName}
-			   , #{assetCode}
-			   , #{assetName}
-			   , REGEXP_REPLACE(#{progress}, '(.{4})(.{2})(.{2})', '\1-\2-\3')
-			   , #{finalizeStatus} )
-    ]]>
-    </insert>
-
-	<!-- 고정자산 수정 -->
-	<update id="updateAsset" parameterType="kr.co.seoulit.erp.account.operate.currentAsset.entity.CurrentAssetEntity" >
-    <![CDATA[
-			UPDATE CURRENT_ASSET
-			SET ASSET_NAME = #{assetName}, FINALIZE_STATUS = #{finalizeStatus}
-			WHERE ASSET_CODE = #{assetCode};
-
-			UPDATE CURRENT_ASSET_DETAIL
-			SET
+		MERGE INTO CURRENT_ASSET A
+			USING (SELECT * FROM DUAL)
+			ON (A.ASSET_CODE = #{assetCode})
+			WHEN MATCHED THEN
+				UPDATE SET A.ASSET_NAME = #{assetName}
+				  , A.PROGRESS = #{progress}
+				  , A.FINALIZE_STATUS = #{finalizeStatus}
+			WHEN NOT MATCHED THEN
+				INSERT (A.ACCOUNT_CODE, A.ACCOUNT_NAME, A.ASSET_CODE
+				    , A.ASSET_NAME, A.PROGRESS, A.FINALIZE_STATUS)
+				VALUES ( #{accountCode}
+				, #{accountName}
+				, #{assetCode}
+				, #{assetName}
+				, REGEXP_REPLACE(#{progress}, '(.{4})(.{2})(.{2})', '\1-\2-\3')
+				, #{finalizeStatus} )
 		]]>
     </update>
 

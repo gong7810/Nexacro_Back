@@ -71,8 +71,8 @@ public class VehicleServiceImpl implements VehicleService{
         VehicleEntity vehicleEntity = vehicleReqMapStruct.toEntity(vehicleReqDTO);
         VehicleDetailEntity vehicleDetailEntity = vehicleDetailReqMapStruct.toEntity(vehicleDetailReqDTO);
 
-        vehicleDAO.insertVehicle(vehicleEntity);
-        vehicleDetailDAO.insertVehicleDetail(vehicleDetailEntity);
+        vehicleDAO.mergeVehicle(vehicleEntity);
+        vehicleDetailDAO.mergeVehicleDetail(vehicleDetailEntity);
     }
 
     // 업무용차량 수정
@@ -82,8 +82,8 @@ public class VehicleServiceImpl implements VehicleService{
         VehicleEntity vehicleEntity = vehicleReqMapStruct.toEntity(vehicleReqDTO);
         VehicleDetailEntity vehicleDetailEntity = vehicleDetailReqMapStruct.toEntity(vehicleDetailReqDTO);
 
-        vehicleDAO.updateVehicle(vehicleEntity);
-        vehicleDetailDAO.updateVehicleDetail(vehicleDetailEntity);
+        vehicleDAO.mergeVehicle(vehicleEntity);
+        vehicleDetailDAO.mergeVehicleDetail(vehicleDetailEntity);
     }
 
     // 업무용차량 삭제

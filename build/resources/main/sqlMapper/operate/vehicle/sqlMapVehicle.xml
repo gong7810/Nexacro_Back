@@ -40,42 +40,29 @@
         ]]>
     </select>
 
-    <!-- 업무용차량 추가 -->
-    <insert id="insertVehicle" parameterType="kr.co.seoulit.erp.account.operate.vehicle.entity.VehicleEntity">
+    <!-- 업무용차량 추가 / 수정 -->
+    <update id="mergeVehicle" parameterType="kr.co.seoulit.erp.account.operate.vehicle.entity.VehicleEntity">
         <![CDATA[
-        INSERT INTO VEHICLE (
-            VEHICLE_CODE,
-            VEHICLE_NUMBER,
-            VEHICLE_TYPE,
-            DEPT_CODE,
-            DEPT_NAME,
-            EMP_CODE,
-            EMP_NAME,
-            AVAILABILITY
-        )
-        VALUES (
-            #{vehicleCode},
-            #{vehicleNumber},
-            #{vehicleType},
-            #{deptCode},
-            #{deptName},
-            #{empCode},
-            #{empName},
-            #{availability}
-        )
-        ]]>
-    </insert>
-
-    <!-- 업무용차량 수정 -->
-    <update id="updateVehicle" parameterType="kr.co.seoulit.erp.account.operate.vehicle.entity.VehicleEntity">
-        <![CDATA[
-            UPDATE VEHICLE SET
-                DEPT_CODE = #{deptCode},
-                DEPT_NAME = #{deptName},
-                EMP_CODE = #{empCode},
-                EMP_NAME = #{empName},
-                AVAILABILITY = #{availability}
-            WHERE VEHICLE_CODE = #{vehicleCode}
+            MERGE INTO VEHICLE V
+                USING (SELECT * FROM DUAL)
+                ON (V.VEHICLE_CODE = #{vehicleCode})
+                WHEN MATCHED THEN
+                    UPDATE SET V.DEPT_CODE = #{deptCode},
+                        V.DEPT_NAME = #{deptName},
+                        V.EMP_CODE = #{empCode},
+                        V.EMP_NAME = #{empName},
+                        V.AVAILABILITY = #{availability}
+                WHEN NOT MATCHED THEN
+                    INSERT (V.VEHICLE_CODE, V.VEHICLE_NUMBER, V.VEHICLE_TYPE, V.DEPT_CODE
+                    , V.DEPT_NAME, V.EMP_CODE, V.EMP_NAME, V.AVAILABILITY)
+                    VALUES ( #{vehicleCode}
+                            , #{vehicleNumber}
+                            , #{vehicleType}
+                            , #{deptCode}
+                            , #{deptName}
+                            , #{empCode}
+                            , #{empName}
+                            , #{availability})
         ]]>
   </update>
 
