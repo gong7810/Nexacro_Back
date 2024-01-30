@@ -16,7 +16,7 @@ import kr.co.seoulit.erp.account.operate.system.entity.PeriodEntity;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("/base")
+@RequestMapping("/acc/base")
 public class MemberLoginController {
 
 	@Autowired

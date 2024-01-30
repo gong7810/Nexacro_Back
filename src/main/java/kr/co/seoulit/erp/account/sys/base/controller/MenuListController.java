@@ -14,7 +14,7 @@ import kr.co.seoulit.erp.account.sys.base.to.MenuEntity;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 
 @RestController
-@RequestMapping("/base")
+@RequestMapping("/acc/base")
 public class MenuListController {  // 하나의 컨트롤러에서 여러개의 요청처리 지원
 
     @Autowired

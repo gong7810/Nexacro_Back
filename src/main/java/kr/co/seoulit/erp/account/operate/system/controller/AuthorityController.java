@@ -22,7 +22,7 @@ import kr.co.seoulit.erp.account.operate.system.to.AuthorityEmpBean;
 import kr.co.seoulit.erp.account.operate.system.entity.AuthorityMenuEntity;
 
 @RestController
-@RequestMapping("/operate")
+@RequestMapping("/acc/operate")
 public class AuthorityController {
 
 	private SystemService systemService;

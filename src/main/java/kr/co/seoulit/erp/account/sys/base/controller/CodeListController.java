@@ -23,7 +23,7 @@ import kr.co.seoulit.erp.account.sys.base.to.DetailCodeEntity;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 
 @RestController
-@RequestMapping("/base")
+@RequestMapping("/acc/base")
 public class CodeListController {
 	private BaseService baseService;
 	private DatasetToBeanMapper datasetToBeanMapper;

@@ -22,7 +22,7 @@ import com.nexacro.java.xapi.data.PlatformData;
 import net.sf.json.JSONArray;
 
 @RestController
-@RequestMapping("/operate")
+@RequestMapping("/acc/operate")
 public class WorkPlaceController {
 
     @Autowired

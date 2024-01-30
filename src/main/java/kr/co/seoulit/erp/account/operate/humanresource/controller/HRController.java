@@ -21,7 +21,7 @@ import kr.co.seoulit.erp.account.operate.humanresource.to.EmployeeEntity;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 
 @RestController
-@RequestMapping("/operate")
+@RequestMapping("/acc/operate")
 public class HRController {
 
     private HumanResourceService humanResourceService;
