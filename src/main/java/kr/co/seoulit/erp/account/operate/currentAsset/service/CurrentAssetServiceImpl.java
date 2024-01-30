@@ -48,11 +48,17 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
         return	currentAssetResMapStruct.toDto(currentAssetEntity);
     }
 
+    // 고정자산 차량 조회
+    @Override
+    public List<CurrentAssetResDTO> findCarAsset() throws Exception {
+
+        List<CurrentAssetEntity> currentAssetEntities = currentAssetDAO.findCarAsset();
+        return currentAssetResMapStruct.toDto(currentAssetEntities);
+    }
+
     // 고정자산 추가
     @Override
     public void insertAsset(CurrentAssetReqDTO currentAssetReqDTO) throws Exception {
-
-        HashMap<String, Object> params = new HashMap<>();
 
         CurrentAssetEntity currentAssetEntity = currentAssetReqMapStruct.toEntity(currentAssetReqDTO);
 
@@ -96,6 +102,14 @@ public class CurrentAssetServiceImpl implements CurrentAssetService {
 
         List<CurrentAssetEntity> currentAssetEntities =  currentAssetDAO.selectDepreciationList(accountCode);
         return currentAssetResMapStruct.toDto(currentAssetEntities);
+    }
+
+    // 고정자산관리대장 조회
+    @Override
+    public List<CurrentAssetResDTO> findCurrentAssetLedgerList() throws Exception {
+
+        List<CurrentAssetEntity> currentAssetLedgerEntities =  currentAssetDAO.findCurrentAssetLedgerList();
+        return currentAssetResMapStruct.toDto(currentAssetLedgerEntities);
     }
 }
 

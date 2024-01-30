@@ -39,7 +39,7 @@
 		<select id="selectAllMenuList" resultMap="menuResult">
 			<![CDATA[
 				SELECT   * 
-				FROM     MENU2
+				FROM     MENU
 				ORDER BY MENU_CODE
 			]]>
 		</select>

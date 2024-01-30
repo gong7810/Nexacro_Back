@@ -14,6 +14,9 @@ public interface CurrentAssetDAO {
 	// 고정자산 상세조회
 	CurrentAssetEntity findAssetDetail(String assetCode) throws Exception;
 
+	// 고정자산 차량조회
+	List<CurrentAssetEntity> findCarAsset() throws Exception;
+
 	// 고정자산 추가
 	void insertAsset(CurrentAssetEntity currentAssetEntity) throws Exception;
 
@@ -28,4 +31,7 @@ public interface CurrentAssetDAO {
 
 	// 감가상각비현황 선택조회
 	List<CurrentAssetEntity> selectDepreciationList(String accountCode) throws Exception;
+
+	// 고정자산관리대장 조회
+	List<CurrentAssetEntity> findCurrentAssetLedgerList() throws Exception;
 }

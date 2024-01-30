@@ -47,6 +47,15 @@ public class CurrentAssetController {
         datasetToBeanMapper.beanToDataset(resData, currentAssetResDTO, CurrentAssetResDTO.class);
     }
 
+    // 고정자산 차량조회
+    @RequestMapping("/findCarAsset")
+    public void findCarAsset(@RequestAttribute("reqData") PlatformData reqData,
+                             @RequestAttribute("resData") PlatformData resData) throws Exception {
+
+        List<CurrentAssetResDTO> currentAssetResDTOList = currentAssetService.findCarAsset();
+        datasetToBeanMapper.beansToDataset(resData, currentAssetResDTOList, CurrentAssetResDTO.class);
+    }
+
     // 고정자산 추가
     @RequestMapping("/insertAsset")
     public void insertAsset(@RequestAttribute("reqData") PlatformData reqData,
@@ -92,8 +101,8 @@ public class CurrentAssetController {
     public void findDepreciationList(@RequestAttribute("reqData") PlatformData reqData,
                                      @RequestAttribute("resData") PlatformData resData) throws Exception {
 
-        System.out.println("감가상각비현황 조회 Rest API");
         List<CurrentAssetResDTO> currentAssetList = currentAssetService.findDepreciationList();
+        System.out.println("감가상각비현황 조회 Rest API" + currentAssetList);
         datasetToBeanMapper.beansToDataset(resData, currentAssetList, CurrentAssetResDTO.class);
     }
 
@@ -104,9 +113,19 @@ public class CurrentAssetController {
 
         String accountCode = reqData.getVariable("accountCode").getString();
         System.out.println("계정과목 : " + accountCode + " 감가상각비현황 Rest API");
+
         List<CurrentAssetResDTO> currentAssetList = currentAssetService.selectDepreciationList(accountCode);
         datasetToBeanMapper.beansToDataset(resData, currentAssetList, CurrentAssetResDTO.class);
     }
 
+    // 고정자산관리대장 조회
+    @RequestMapping("findCurrentAssetLedgerList")
+    public void findCurrentAssetLedgerList(@RequestAttribute("reqData") PlatformData reqData,
+                                           @RequestAttribute("resData") PlatformData resData) throws Exception{
+
+        List<CurrentAssetResDTO> currentAssetLedgerList = currentAssetService.findCurrentAssetLedgerList();
+        System.out.println("고정자산관리대장 조회 Rest API" + currentAssetLedgerList);
+        datasetToBeanMapper.beansToDataset(resData, currentAssetLedgerList, CurrentAssetResDTO.class);
+    }
 
 }

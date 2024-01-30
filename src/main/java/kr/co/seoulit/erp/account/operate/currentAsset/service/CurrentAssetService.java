@@ -14,6 +14,9 @@ public interface CurrentAssetService {
     // 고정자산 상세 조회
     public CurrentAssetResDTO findAssetDetail(String assetCode) throws Exception;
 
+    // 고정자산 차량 조회
+    public List<CurrentAssetResDTO> findCarAsset() throws Exception;
+
     // 고정자산 추가
     public void insertAsset(CurrentAssetReqDTO currentAssetReqDTO) throws Exception;
 
@@ -28,5 +31,8 @@ public interface CurrentAssetService {
 
     // 감가상각비현황 선택조회
     public List<CurrentAssetResDTO> selectDepreciationList(String accountCode) throws Exception;
+
+    // 고정자산관리대장 조회
+    public List<CurrentAssetResDTO> findCurrentAssetLedgerList() throws Exception;
 
 }
