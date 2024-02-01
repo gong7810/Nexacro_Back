@@ -10,12 +10,12 @@ import java.io.Serializable;
 @Data
 public class BudgetPK implements Serializable {
 
-	@Column(name="ACCOUNT_INNER_CODE")
-	public String accountInnerCode;
 	@Column(name="DEPT_CODE")
 	public String deptCode;
 	@Column(name="WORKPLACE_CODE")
 	public String workplaceCode;
+	@Column(name="ACCOUNT_INNER_CODE")
+	public String accountInnerCode;
 	@Column(name="ACCOUNT_PERIOD_NO")
 	public String accountPeriodNo;
 	@Column(name="BUDGETING_CODE", columnDefinition = "char")
@@ -25,10 +25,10 @@ public class BudgetPK implements Serializable {
 	}
 
 	@Builder
-	public BudgetPK(String accountInnerCode, String deptCode, String workplaceCode, String accountPeriodNo, String budgetingCode) {
-		this.accountInnerCode = accountInnerCode;
+	public BudgetPK(String deptCode, String workplaceCode, String accountInnerCode,  String accountPeriodNo, String budgetingCode) {
 		this.deptCode = deptCode;
 		this.workplaceCode = workplaceCode;
+		this.accountInnerCode = accountInnerCode;
 		this.accountPeriodNo = accountPeriodNo;
 		this.budgetingCode = budgetingCode;
 	}

@@ -1,19 +1,22 @@
 package kr.co.seoulit.erp.account.budget.formulation.to;
 
+import kr.co.seoulit.erp.account.budget.formulation.entity.BudgetEntity;
 import kr.co.seoulit.erp.account.sys.base.to.BaseBean;
 import kr.co.seoulit.erp.account.sys.common.annotation.Dataset;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.modelmapper.Conditions;
+import org.modelmapper.ModelMapper;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Dataset(name = "ds_budget1")
-public class BudgetBean extends BaseBean{
+public class BudgetBean extends BaseBean {
 
-	private String accountInnerCode;
 	private String deptCode;
-	private String budgetCode;
 	private String workplaceCode;
+	private String accountInnerCode;
 	private String accountPeriodNo;
 	private String budgetingCode;
 	private int m1Budget;
@@ -28,7 +31,5 @@ public class BudgetBean extends BaseBean{
 	private int m10Budget;
 	private int m11Budget;
 	private int m12Budget;
-
-
 
 }
