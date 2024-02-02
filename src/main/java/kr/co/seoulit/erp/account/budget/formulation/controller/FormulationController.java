@@ -1,5 +1,6 @@
 package kr.co.seoulit.erp.account.budget.formulation.controller;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -42,38 +43,26 @@ public class FormulationController{
 	        return formulationService.findBudget(budgetBean);
 	 }
 
-    @RequestMapping("/budgetcode")
-    public ArrayList<BudgetCodeBean> findBudgetCode(@RequestAttribute("reqData") PlatformData  reqData,
-                                                    @RequestAttribute("resData")PlatformData resData) throws Exception {
-
-
-		System.out.println(" WWW");
-    	 ArrayList<BudgetCodeBean> bean = formulationService.findBudgetCode();
-  		  datasetToBeanMapper.beansToDataset(resData, bean, BudgetCodeBean.class);
-
-    	return null;
-    }
-
     @RequestMapping("/batch")
     public void batchBudget(@RequestAttribute("reqData") PlatformData reqData,
-            @RequestAttribute("resData")PlatformData resData) throws Exception {
+							@RequestAttribute("resData")PlatformData resData) throws Exception {
+
 		System.out.println(" batatchcsc");
 
+		String deptCode = reqData.getVariable("deptCode").getString();
+		String workplaceCode=reqData.getVariable("workplaceCode").getString();
+		String accountPeriodNo=reqData.getVariable("accountPeriodNo").getString();
+		String budgetingCode=reqData.getVariable("budgetingCode").getString();
+		String accountInnerCode=reqData.getVariable("accountInnerCode").getString();
 
- 		 String deptCode = reqData.getVariable("deptCode").getString();
- 		 String workplaceCode=reqData.getVariable("workplaceCode").getString();
- 		 String accountPeriodNo=reqData.getVariable("accountPeriodNo").getString();
- 		 String budgetingCode=reqData.getVariable("budgetingCode").getString();
- 		 String accountInnerCode=reqData.getVariable("accountInnerCode").getString();
+		BudgetBean obj = datasetToBeanMapper.datasetToBean(reqData, BudgetBean.class);
+		obj.setDeptCode(deptCode);
+		obj.setWorkplaceCode(workplaceCode);
+		obj.setAccountPeriodNo(accountPeriodNo);
+		obj.setBudgetingCode(budgetingCode);
+		obj.setAccountInnerCode(accountInnerCode);
 
-    	BudgetBean obj = datasetToBeanMapper.datasetToBean(reqData,BudgetBean.class);
-    	obj.setDeptCode(deptCode);
-    	obj.setWorkplaceCode(workplaceCode);
-    	obj.setAccountPeriodNo(accountPeriodNo);
-    	obj.setBudgetingCode(budgetingCode);
-    	obj.setAccountInnerCode(accountInnerCode);
-
-    	formulationService.batchBudgetCode(obj);
+		formulationService.batchBudgetCode(obj);
 
     }
 
@@ -91,7 +80,7 @@ public class FormulationController{
     }
 
     @RequestMapping("/budgetlist")
-	 public ArrayList<BudgetBean>  findBudgetList(@RequestAttribute("reqData") PlatformData reqData,
+	 public void findBudgetList(@RequestAttribute("reqData") PlatformData reqData,
 	            @RequestAttribute("resData")PlatformData resData) throws Exception {
 	      		 String budgetCode = reqData.getVariable("budgetCode").getString();
 	      		 String budgetingCode=reqData.getVariable("budgetingCode").getString();
@@ -103,28 +92,29 @@ public class FormulationController{
 
 	   		  datasetToBeanMapper.beansToDataset(resData, bean, BudgetBean.class);
 
-		 return null;
-
 	 }
+
+	 // 예산 조회
 	@RequestMapping("/budgetListForComp")
-	public BudgetRequest budgetListForComp(@RequestAttribute("reqData") PlatformData reqData,
-                                           @RequestAttribute("resData")PlatformData resData) throws Exception {
+	public void budgetListForComp(@RequestAttribute("reqData") PlatformData reqData,
+								  @RequestAttribute("resData")PlatformData resData) throws Exception {
 
-		String deptCode=reqData.getVariable("deptCode").getString();
-		String workplaceCode=reqData.getVariable("workplaceCode").getString();
-		String accountPeriodNo=reqData.getVariable("accountPeriodNo").getString();
-		String accountInnerCode=reqData.getVariable("accountInnerCode").getString();
-		String budgetingCode=reqData.getVariable("budgetingCode").getString();
+		String deptCode = reqData.getVariable("deptCode").getString();
+		String workplaceCode = reqData.getVariable("workplaceCode").getString();
+		String accountPeriodNo = reqData.getVariable("accountPeriodNo").getString();
+		String accountInnerCode = reqData.getVariable("accountInnerCode").getString();
+		String budgetingCode = reqData.getVariable("budgetingCode").getString();
 
+		HashMap<String, String> budgetMap = new HashMap<>();
+		budgetMap.put("deptCode", deptCode);
+		budgetMap.put("workplaceCode", workplaceCode);
+		budgetMap.put("accountPeriodNo", accountPeriodNo);
+		budgetMap.put("accountInnerCode", accountInnerCode);
+		budgetMap.put("budgetingCode", budgetingCode);
 
-		BudgetRequest budgetRequest = new BudgetRequest(deptCode, workplaceCode, accountPeriodNo, accountInnerCode, budgetingCode);
-
-		BudgetRequest result = formulationService.budgetListForComp(budgetRequest);
+		BudgetRequest result = formulationService.budgetListForComp(budgetMap);
 
 		datasetToBeanMapper.beanToDataset(resData, result, BudgetRequest.class);
-
-		return null;
-
 	}
 
 	 @RequestMapping("/compBudget")

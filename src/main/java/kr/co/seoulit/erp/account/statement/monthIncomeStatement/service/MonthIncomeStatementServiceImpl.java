@@ -11,27 +11,24 @@ import java.util.HashMap;
 
 @Service
 @RequiredArgsConstructor
-public class MonthIncomeStatementServiceImpl implements MonthIncomeStatementService{
+public class MonthIncomeStatementServiceImpl implements MonthIncomeStatementService {
 
     @Autowired
     private MonthIncomeStatementMapper monthIncomeStatementDAO;
 
-    //월별손익계산서 조회
+    //기간별원가명세서 조회
+
     @Override
-    public ArrayList<MonthIncomeStatementBean> findMonthIncomeStatement(HashMap<String,Object> params) {
-        //HashMap<String, String> map = new HashMap<String, String>();
-        //map.put("date", date);
-        System.out.println("월별손익계산서_ServiceImpl");
+    public ArrayList<MonthIncomeStatementBean> findMonthIncomeStatement(HashMap<String, Object> params) {
+
+        System.out.println("기간별손익계산서_ServiceImpl");
         System.out.println("selectedDate : " + params);
-        //ArrayList<MonthIncomeStatementBean> monthIncomeStatementList = monthIncomeStatementDAO.selectMonthIncomeStatement(map);
 
-        HashMap<String, Object> map = monthIncomeStatementDAO.selectMonthIncomeStatement(params);
+        ArrayList<MonthIncomeStatementBean> monthIncomeStatementList = monthIncomeStatementDAO.selectMonthIncomeStatement(params);
+//        ArrayList<MonthCostStatementBean> result = (ArrayList<MonthCostStatementBean>) params.get("RESULT");
 
-        ArrayList<MonthIncomeStatementBean> result = (ArrayList<MonthIncomeStatementBean>)params.get("RESULT");
+        System.out.println("result : " + monthIncomeStatementList);
 
-        System.out.println("result = " + result);
-        System.out.println("params = " + params);
-
-        return result;
+        return monthIncomeStatementList;
     }
 }

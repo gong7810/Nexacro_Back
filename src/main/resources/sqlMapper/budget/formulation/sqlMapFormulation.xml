@@ -4,7 +4,6 @@
 
 <mapper namespace="kr.co.seoulit.erp.account.budget.formulation.dao.FormulationMapper">
 
-
 	<select id="selectBudget" parameterType="kr.co.seoulit.erp.account.budget.formulation.to.BudgetBean" resultMap="budgetBeanResult">
 		<![CDATA[
  			SELECT *
@@ -12,12 +11,13 @@
 			where DEPT_CODE= #{deptCode}
 			and WORKPLACE_CODE= #{workplaceCode}
 			and ACCOUNT_INNER_CODE= #{accountInnerCode}
+			and	ACCOUNT_PERIOD_NO= #{accountPeriodNo}
 			and BUDGETING_CODE= #{budgetingCode}
  		]]
     </select>
 
 
-	<select id="selectBudgetList" parameterType="Map" resultMap="budgetBeanResult">
+	<select id="selectBudgetList" parameterType="map" resultMap="budgetBeanResult">
 		<![CDATA[
 			SELECT *
  			FROM BUDGET
@@ -26,60 +26,56 @@
  		]]>
     </select>
 
-
-	<select id="selectBudgetCode"  resultType="kr.co.seoulit.erp.account.budget.formulation.to.BudgetCodeBean">
-		<![CDATA[
-			SELECT *
- 			FROM BUDGET_CODE
- 		]]>
-    </select>
-
     <insert id="batchBudgetCode" parameterType="kr.co.seoulit.erp.account.budget.formulation.to.BudgetBean">
-    		<![CDATA[
-    	INSERT INTO BUDGET
-    	(
-		ACCOUNT_INNER_CODE,
-    	DEPT_CODE,
-    	BUDGETING_CODE,
-    	WORKPLACE_CODE,
-    	ACCOUNT_PERIOD_NO,
-    	M1_BUDGET,
-    	M2_BUDGET,
-    	M3_BUDGET,
-    	M4_BUDGET,
-    	M5_BUDGET,
-    	M6_BUDGET,
-    	M7_BUDGET,
-    	M8_BUDGET,
-    	M9_BUDGET,
-    	M10_BUDGET,
-    	M11_BUDGET,
-    	M12_BUDGET
-    	)
-    VALUES
-    (
-    #{accountInnerCode},
-    #{deptCode},
-    #{budgetingCode},
-    #{workplaceCode},
-    #{accountPeriodNo},
-    #{m1Budget},
-    #{m2Budget},
-    #{m3Budget},
-    #{m4Budget},
-    #{m5Budget},
-    #{m6Budget},
-    #{m7Budget},
-    #{m8Budget},
-    #{m9Budget},
-    #{m10Budget},
-    #{m11Budget},
-    #{m12Budget}
-
-    )
-
+		<![CDATA[
+			INSERT INTO BUDGET ( DEPT_CODE,
+				WORKPLACE_CODE,
+				ACCOUNT_INNER_CODE,
+				ACCOUNT_PERIOD_NO,
+				BUDGETING_CODE,
+				M1_BUDGET,
+				M2_BUDGET,
+				M3_BUDGET,
+				M4_BUDGET,
+				M5_BUDGET,
+				M6_BUDGET,
+				M7_BUDGET,
+				M8_BUDGET,
+				M9_BUDGET,
+				M10_BUDGET,
+				M11_BUDGET,
+				M12_BUDGET)
+			VALUES ( #{deptCode},
+				#{workplaceCode},
+				#{accountInnerCode},
+				#{accountPeriodNo},
+				#{budgetingCode},
+				#{m1Budget},
+				#{m2Budget},
+				#{m3Budget},
+				#{m4Budget},
+				#{m5Budget},
+				#{m6Budget},
+				#{m7Budget},
+				#{m8Budget},
+				#{m9Budget},
+				#{m10Budget},
+				#{m11Budget},
+				#{m12Budget})
  		]]>
     </insert>
+
+	<select id="findBudget" parameterType="map" resultType="kr.co.seoulit.erp.account.budget.formulation.to.BudgetRequest">
+		<![CDATA[
+			SELECT *
+			FROM BUDGET
+			WHERE DEPT_CODE = #{deptCode}
+			  AND WORKPLACE_CODE = #{workplaceCode}
+			  AND ACCOUNT_INNER_CODE = #{accountInnerCode}
+			  AND ACCOUNT_PERIOD_NO = #{accountPeriodNo}
+			  AND BUDGETING_CODE = #{budgetingCode}
+		]]>
+	</select>
 
     <insert id="formationBudget" parameterType="map">
     		<![CDATA[
@@ -135,7 +131,7 @@
 	<resultMap id="budgetBeanResult" type="kr.co.seoulit.erp.account.budget.formulation.to.BudgetBean">
 		<result property="deptCode" column="DEPT_CODE"  />
 		<result property="workplaceCode" column="WORKPLACE_CODE"  />
-		<result property="budgetingCode" column="BUDGETING_CODE"  />
+		<result property="accountInnerCode" column="ACCOUNT_INNER_CODE"  />
 		<result property="accountPeriodNo" column="ACCOUNT_PERIOD_NO"  />
 		<result property="budgetingCode" column="BUDGETING_CODE"  />
 		<result property="m1Budget" column="M1_BUDGET"  />

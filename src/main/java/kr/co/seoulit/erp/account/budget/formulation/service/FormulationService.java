@@ -11,7 +11,7 @@ public interface FormulationService {
 
 	public ArrayList<BudgetBean> findBudgetList(HashMap<String,String> map);
 
-	public BudgetRequest budgetListForComp(BudgetRequest budgetRequest);
+	public BudgetRequest budgetListForComp(HashMap<String, String> budgetMap);
 	public BudgetRequestForRecon budgetRequestForRecon(BudgetRequestForRecon budgetRequestForRecon);
 
 	public void compBudget(BudgetRequest updateRequest);
@@ -22,9 +22,6 @@ public interface FormulationService {
 	public ArrayList<BudgetStatusBean> findBudgetStatus(BudgetBean bean);
 
 	public ArrayList<BudgetComparisonBean> findBudgetComparison(BudgetBean bean);
-
-	public ArrayList<BudgetCodeBean> findBudgetCode();
-
 	public void batchBudgetCode(BudgetBean obj);
 
 	public ArrayList<BudgetBean> formationBudget(HashMap<String, String> map);

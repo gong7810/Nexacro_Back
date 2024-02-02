@@ -3,6 +3,7 @@ package kr.co.seoulit.erp.account.budget.formulation.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.co.seoulit.erp.account.budget.formulation.to.BudgetRequest;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.seoulit.erp.account.budget.formulation.to.BudgetBean;
@@ -17,11 +18,12 @@ public interface FormulationMapper {
 
 	public ArrayList<BudgetBean>  selectBudgetAppl(BudgetBean bean);
 
-	public ArrayList<BudgetCodeBean>  selectBudgetCode();
-
 	public void selectBudgetStatus(HashMap<String, Object> map);
 
 	public void batchBudgetCode(BudgetBean obj);
+
+	// 예산 조회
+	public BudgetRequest findBudget(HashMap<String, String> budgetMap);
 
 	public void formationBudget(HashMap<String, String> map);
 

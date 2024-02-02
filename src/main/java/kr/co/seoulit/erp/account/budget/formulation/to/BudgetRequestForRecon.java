@@ -16,9 +16,9 @@ import org.modelmapper.ModelMapper;
 @NoArgsConstructor
 public class BudgetRequestForRecon extends BaseBean{
 
-	private String accountInnerCode;
 	private String deptCode;
 	private String workplaceCode;
+	private String accountInnerCode;
 	private String accountPeriodNo;
 	private String budgetingCode;
 	private String m1Budget;

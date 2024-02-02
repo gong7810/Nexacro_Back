@@ -1,5 +1,6 @@
 package kr.co.seoulit.erp.account.budget.formulation.service;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,36 +36,33 @@ public class FormulationServiceImpl implements FormulationService {
 
 	@Override
 	public BudgetBean findBudget(BudgetBean bean) {
-		// TODO Auto-generated method stub
 
 			bean = formulationDAO.selectBudget(bean);
-
+		System.out.println("나옴");
 		return bean;
 	}
 
 	@Override
 	public ArrayList<BudgetBean>  findBudgetList(HashMap<String,String> map) {
-		// TODO Auto-generated method stub
 
-
+		System.out.println("나옴1");
 			return formulationDAO.selectBudgetList(map);
 
 	}
 
 	@Override
-	public BudgetRequest budgetListForComp(BudgetRequest budgetRequest) {
+	public BudgetRequest budgetListForComp(HashMap<String, String> budgetMap) {
 
-		BudgetEntity budgetEntity = budgetRequest.toEntity();
-		BudgetEntity findBudgetEntity = budgetRepository.findByBudgetRequest(budgetEntity);
+		BudgetRequest budgetRequest =  formulationDAO.findBudget(budgetMap);
 
-		return BudgetRequest.fromEntity(findBudgetEntity);
+		return budgetRequest;
 	}
 
 	@Override
 	public BudgetRequestForRecon budgetRequestForRecon(BudgetRequestForRecon budgetRequestForRecon) {
 		BudgetEntity budgetEntity = budgetRequestForRecon.toEntity();
 		BudgetEntity findBudgetEntity = budgetRepository.findByBudgetRequest(budgetEntity);
-
+		System.out.println("나옴3");
 		return BudgetRequestForRecon.fromEntity(findBudgetEntity);
 	}
 
@@ -74,6 +72,8 @@ public class FormulationServiceImpl implements FormulationService {
 		BudgetEntity updateEntity = updateRequest.toEntity();
 
 		BudgetEntity findEmEntity = em.find(updateEntity.getClass(), updateEntity.budgetPK);
+
+		System.out.println("나옴4");
 
 		if (findEmEntity != null) {
 			ModelMapper modelMapper = new ModelMapper();
@@ -90,6 +90,8 @@ public class FormulationServiceImpl implements FormulationService {
 		BudgetEntity updateEntity = updateRequest.toEntity();
 
 		BudgetEntity findEmEntity = em.find(updateEntity.getClass(), updateEntity.budgetPK);
+		System.out.println("나옴5");
+
 		if (findEmEntity != null) {
 			ModelMapper modelMapper = new ModelMapper();
 			modelMapper.map(updateEntity, findEmEntity);
@@ -100,21 +102,17 @@ public class FormulationServiceImpl implements FormulationService {
 		}
 	}
 
-	@Override
-	public ArrayList<BudgetCodeBean> findBudgetCode(){
-		// TODO Auto-generated method stub
-
-
-		return formulationDAO.selectBudgetCode();
-
-	}
 	public void batchBudgetCode(BudgetBean obj) {
 
+		System.out.println("나옴7");
+//		obj.getAccountInnerCode()
 		formulationDAO.batchBudgetCode(obj);
 	}
+
 	public ArrayList<BudgetBean>  formationBudget(HashMap<String, String> map) {
 
 		formulationDAO.formationBudget(map);
+		System.out.println("나옴8");
 		return formulationDAO.selectBudgetList(map);
 	}
 
@@ -128,6 +126,7 @@ public class FormulationServiceImpl implements FormulationService {
 		map.put("workplaceCode", bean.getWorkplaceCode());
 		formulationDAO.selectBudgetStatus(map);
 		ArrayList<BudgetStatusBean> result = (ArrayList<BudgetStatusBean>) map.get("RESULT");
+		System.out.println("나옴9");
 		return result;
 	}
 
@@ -142,13 +141,14 @@ public class FormulationServiceImpl implements FormulationService {
 
 		formulationDAO.selectComparisonBudget(map);
 		ArrayList<BudgetComparisonBean> result = (ArrayList<BudgetComparisonBean>) map.get("RESULT");
+		System.out.println("나옴10");
 		return result;
 	}
 
 	@Override
 	public ArrayList<BudgetBean> findBudgetAppl(BudgetBean bean) {
 		// TODO Auto-generated method stub
-
+		System.out.println("나옴11");
 			return formulationDAO.selectBudgetAppl(bean);
 
 	}
