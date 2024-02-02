@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Dataset(name = "gds_journalDetail")
+@Dataset(name = "gds_journal_detail")
 @Getter
 @Setter
 public class JournalDetailresDto extends BaseBean {
@@ -19,4 +19,7 @@ public class JournalDetailresDto extends BaseBean {
     private String accountControlDescription;
     private String accountControlName;
     private String accountControlType; //일괄처리를 위한 상태값
+
+    private String accountInnerCode;
+    private String accountName;
 }

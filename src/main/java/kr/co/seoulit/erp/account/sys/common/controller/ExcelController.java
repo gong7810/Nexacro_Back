@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.sf.json.JSONObject;
 @RestController
-@RequestMapping("/base")
+@RequestMapping("/acc/base")
 public class ExcelController {
 
 	@PostMapping("/excel")

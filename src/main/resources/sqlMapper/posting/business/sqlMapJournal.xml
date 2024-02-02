@@ -91,8 +91,7 @@
 			parameterType="kr.co.seoulit.erp.account.posting.business.entity.JournalEntity">
 			<![CDATA[
 		INSERT INTO JOURNAL
-		(
-			JOURNAL_NO,
+		(	JOURNAL_NO,
 			SLIP_NO,
 			BALANCE_DIVISION,
 			ACCOUNT_INNER_CODE,
@@ -149,18 +148,26 @@
 	<select id="selectJournalDetailList" parameterType="String"
 			resultType="kr.co.seoulit.erp.account.posting.business.dto.JournalDetailresDto">
 		<![CDATA[
-		select
-			J.JOURNAL_NO as journalNo,
-			J.JOURNAL_DETAIL_NO as journalDetailNo,
-			A.ACCOUNT_CONTROL_NAME as accountControlName,
-			J.ACCOUNT_CONTROL_CODE as accountControlCode,
-			J.DESCRIPTION as journalDescription
-		FROM JOURNAL_DETAIL J,
-			 ACCOUNT_CONTROL_DETAIL A
-		WHERE
-			J.ACCOUNT_CONTROL_CODE=A.ACCOUNT_CONTROL_CODE
-		  AND J.JOURNAL_NO= #{journalNo , jdbcType=VARCHAR}
-
+		SELECT
+		    A.ACCOUNT_INNER_CODE AS accountInnerCode,
+		    A.ACCOUNT_NAME AS accountName,
+			JD.JOURNAL_NO AS journalNo,
+			JD.JOURNAL_DETAIL_NO AS journalDetailNo,
+			JD.DESCRIPTION AS journalDescription,
+			AC.ACCOUNT_CONTROL_TYPE AS accountControlType,
+			AC.ACCOUNT_CONTROL_NAME AS accountControlName,
+			AC.ACCOUNT_CONTROL_CODE AS accountControlCode,
+			AC.DESCRIPTION AS accountControlDescription
+		FROM ACCOUNT A,
+			 SLIP S,
+			 JOURNAL J,
+			 JOURNAL_DETAIL JD,
+			 ACCOUNT_CONTROL_DETAIL AC
+		WHERE S.SLIP_NO = J.SLIP_NO
+		  AND A.ACCOUNT_INNER_CODE = J.ACCOUNT_INNER_CODE
+		  AND J.JOURNAL_NO = JD.JOURNAL_NO
+		  AND S.REPORTING_DATE BETWEEN #{fromDate} AND #{toDate}
+		  AND JD.ACCOUNT_CONTROL_CODE = AC.ACCOUNT_CONTROL_CODE
 		]]>
 	</select>
 
@@ -207,7 +214,9 @@
 	<update id="updateJournalDetail"
 			parameterType="kr.co.seoulit.erp.account.posting.business.entity.JournalDetailEntity">
 		<![CDATA[
-		UPDATE JOURNAL_DETAIL SET DESCRIPTION = #{journalDescription}
+		UPDATE JOURNAL_DETAIL
+		SET ACCOUNT_CONTROL_CODE = #{accountControlCode},
+		    DESCRIPTION = #{journalDescription}
 		WHERE JOURNAL_DETAIL_NO = #{journalDetailNo}
 
 		]]>

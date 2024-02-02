@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nexacro.java.xapi.data.PlatformData;
 
 @RestController
-@RequestMapping("/operate")
+@RequestMapping("/acc/operate")
 public class AccountSubjectController {
 
     private SystemService systemService;

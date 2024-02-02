@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-02-02T10:25:35+0900",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.37.0.v20240103-0614, environment: Java 17.0.9 (Eclipse Adoptium)"
+    date = "2024-02-02T10:32:25+0900",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.37.0.v20240129-0421, environment: Java 17.0.10 (Eclipse Adoptium)"
 )
 @Component
 public class JournalReqMapstructImpl implements JournalReqMapstruct {
@@ -66,6 +66,7 @@ public class JournalReqMapstructImpl implements JournalReqMapstruct {
         journalDetailEntity.setAccountControlDescription( journalDetailreqDto.getAccountControlDescription() );
         journalDetailEntity.setAccountControlName( journalDetailreqDto.getAccountControlName() );
         journalDetailEntity.setAccountControlType( journalDetailreqDto.getAccountControlType() );
+        journalDetailEntity.setAccountName( journalDetailreqDto.getAccountName() );
         journalDetailEntity.setJournalDescription( journalDetailreqDto.getJournalDescription() );
         journalDetailEntity.setJournalDetailNo( journalDetailreqDto.getJournalDetailNo() );
         journalDetailEntity.setJournalNo( journalDetailreqDto.getJournalNo() );

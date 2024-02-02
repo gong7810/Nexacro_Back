@@ -31,5 +31,7 @@ public class JournalDetailEntity extends BaseBean {
     private String accountControlName;
     @Transient
     private String accountControlType; //일괄처리를 위한 상태값
+    @Transient
+    private String accountName;
 
 }

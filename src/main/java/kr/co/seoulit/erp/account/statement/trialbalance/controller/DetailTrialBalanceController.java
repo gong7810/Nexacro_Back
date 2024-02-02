@@ -17,7 +17,7 @@ import kr.co.seoulit.erp.account.statement.trialbalance.to.DetailTrialBalanceBea
 
 
 @RestController
-@RequestMapping("/settlement")
+@RequestMapping("/acc/statement")
 public class DetailTrialBalanceController {
 	@Autowired
     private TrialBalanceService trialBalanceService;

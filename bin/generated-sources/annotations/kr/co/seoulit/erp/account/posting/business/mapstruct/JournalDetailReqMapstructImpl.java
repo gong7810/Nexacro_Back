@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-02-02T10:25:35+0900",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.37.0.v20240103-0614, environment: Java 17.0.9 (Eclipse Adoptium)"
+    date = "2024-02-02T10:32:24+0900",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.37.0.v20240129-0421, environment: Java 17.0.10 (Eclipse Adoptium)"
 )
 @Component
 public class JournalDetailReqMapstructImpl implements JournalDetailReqMapstruct {
@@ -28,6 +28,7 @@ public class JournalDetailReqMapstructImpl implements JournalDetailReqMapstruct 
         journalDetailEntity.setAccountControlDescription( dto.getAccountControlDescription() );
         journalDetailEntity.setAccountControlName( dto.getAccountControlName() );
         journalDetailEntity.setAccountControlType( dto.getAccountControlType() );
+        journalDetailEntity.setAccountName( dto.getAccountName() );
         journalDetailEntity.setJournalDescription( dto.getJournalDescription() );
         journalDetailEntity.setJournalDetailNo( dto.getJournalDetailNo() );
         journalDetailEntity.setJournalNo( dto.getJournalNo() );

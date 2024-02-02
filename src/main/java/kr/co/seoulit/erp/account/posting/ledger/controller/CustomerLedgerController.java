@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @Tag(name = "CustomerLedgerController", description = "<b>[posting/ledger]</b> 거래처원장 API")
 @RestController
-@RequestMapping("/posting")
+@RequestMapping("/acc/posting")
 public class CustomerLedgerController {
 
     @Autowired

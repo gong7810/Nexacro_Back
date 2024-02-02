@@ -10,7 +10,7 @@ import kr.co.seoulit.erp.account.posting.business.entity.SlipEntity;
 
 public interface BusinessService {
 
-    public ArrayList<JournalDetailresDto> findJournalDetailList(String journalNo);
+    public ArrayList<JournalDetailresDto> findJournalDetailList(String fromDate, String toDate);
 
     public ArrayList<JournalDetailEntity> detailAccountList(String accountCode);
 
@@ -30,7 +30,7 @@ public interface BusinessService {
 
     public void removeSlip(String slipNo);
 
-    public String modifySlip(SlipreqDto slipEntity, ArrayList<JournalreqDto> journalEntities);
+    public String modifySlip(SlipreqDto slipEntity, ArrayList<JournalreqDto> journalEntities, ArrayList<JournalDetailreqDto> journalDetailEntities);
 
     public void approveSlip(ArrayList<SlipreqDto> slipDtos);
 

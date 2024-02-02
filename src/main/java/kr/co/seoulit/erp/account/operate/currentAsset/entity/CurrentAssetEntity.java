@@ -50,5 +50,5 @@ public class CurrentAssetEntity {
     @Transient
     private String accumulatedAmortization;     // 당기말상각누계액
     @Transient
-    private String bookValueEnd;                // 당기말장부
+    private String bookValueEnd;                // 당기말장부가액
 }

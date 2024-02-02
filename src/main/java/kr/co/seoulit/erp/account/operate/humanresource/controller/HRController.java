@@ -21,16 +21,13 @@ import kr.co.seoulit.erp.account.operate.humanresource.to.EmployeeEntity;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 
 @RestController
-@RequestMapping("/operate")
+@RequestMapping("/acc/operate")
 public class HRController {
 
-    private HumanResourceService humanResourceService;
-    private DatasetToBeanMapper datasetToBeanMapper;
     @Autowired
-    public HRController(HumanResourceService humanResourceService, DatasetToBeanMapper datasetToBeanMapper) {
-    	this.humanResourceService=humanResourceService;
-    	this.datasetToBeanMapper = datasetToBeanMapper;
-    }
+    private HumanResourceService humanResourceService;
+    @Autowired
+    private DatasetToBeanMapper datasetToBeanMapper;
 
     ModelAndView mav;
     ModelMap map = new ModelMap();
@@ -139,9 +136,8 @@ public class HRController {
     @RequestMapping("/selectdeptCode")
     public ArrayList<DepartmentBean> selectdeptCode(@RequestAttribute("reqData") PlatformData reqData,
     		                                        @RequestAttribute("resData") PlatformData resData) throws Exception{
-    		String code=reqData.getVariable("code").getString();
 
-    	ArrayList<DepartmentBean> deptList = humanResourceService.selectdeptCode(code);
+    	ArrayList<DepartmentBean> deptList = humanResourceService.selectdeptCode();
     	datasetToBeanMapper.beansToDataset(resData, deptList, DepartmentBean.class);
 
     	return null;

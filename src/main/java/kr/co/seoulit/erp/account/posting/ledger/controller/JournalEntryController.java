@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "JournalEntryController", description = "<b>[posting/ledger]</b> 분개장 API")
 @RestController
-@RequestMapping("/posting")
+@RequestMapping("/acc/posting")
 public class JournalEntryController {
 	
     @Autowired

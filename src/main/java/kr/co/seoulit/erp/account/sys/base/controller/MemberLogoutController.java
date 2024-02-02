@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MemberLogoutController {
 	
-	@RequestMapping("/logout")
+	@RequestMapping("/acc/logout")
     public ModelAndView logoutController(HttpServletRequest request, HttpServletResponse response) {
         
         ModelAndView modelAndView = new ModelAndView("redirect:loginform"); //veiwName값 들어가 있음

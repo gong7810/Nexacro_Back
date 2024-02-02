@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/base")
+@RequestMapping("/acc/base")
 public class ReportController{
 	
 	@Autowired

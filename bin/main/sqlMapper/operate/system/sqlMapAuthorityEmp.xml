@@ -27,7 +27,6 @@
 
     <select id="selectEmpAuthorityDetailList" parameterType="String" resultType="kr.co.seoulit.erp.account.operate.system.to.AuthorityEmpBean">
 
-
         select
             id as id,
             emp_name as empName,
@@ -39,7 +38,6 @@
         from AUTHORITY_EMP
         where emp_code =#{empCode}
         order by authority_code
-
 
     </select>
 
