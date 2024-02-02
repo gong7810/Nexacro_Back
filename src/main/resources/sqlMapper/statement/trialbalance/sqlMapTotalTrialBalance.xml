@@ -35,10 +35,9 @@
 	               resultMap="accountingSettlementStatusResult"/>
 	   </parameterMap>
 
-	<select id="selectcallTotalTrialBalance"
-			parameterMap="totalTrialBalanceParams" statementType="CALLABLE">
-			<![CDATA[
-		{call P_TOTAL_TRIAL_BALANCE(? ,? ,? ,? ,?, ?)}
+	<select id="selectcallTotalTrialBalance" parameterMap="totalTrialBalanceParams" statementType="CALLABLE">
+		<![CDATA[
+			{call P_TOTAL_TRIAL_BALANCE(? ,? ,? ,? ,?, ?)}
 		]]>
 	</select>
 

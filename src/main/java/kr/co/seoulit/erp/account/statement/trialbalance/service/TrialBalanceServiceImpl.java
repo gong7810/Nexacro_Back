@@ -1,11 +1,9 @@
 package kr.co.seoulit.erp.account.statement.trialbalance.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import kr.co.seoulit.erp.account.statement.trialbalance.to.DetailTrialBalanceBean;
-import kr.co.seoulit.erp.account.statement.trialbalance.to.TotalTrialBalanceBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,13 +35,13 @@ public class TrialBalanceServiceImpl implements TrialBalanceService{
     @Override
     public HashMap<String, Object> findTotalTrialBalance(HashMap<String,Object> params) {
 
-		System.out.println("합계잔액시산표_ServiceImpl");
+		System.out.println("재무상태표결산_ServiceImpl");
 		System.out.println("accountPeriodNo : " + params);
 		System.out.println("callResult : " + params);
 
-		HashMap<String, Object> totalTrialBalance = totalTrialBalanceDAO.selectcallTotalTrialBalance(params);
+		totalTrialBalanceDAO.selectcallTotalTrialBalance(params);
 
-		return totalTrialBalance;
+		return params;
     }
 
 //    @Override
