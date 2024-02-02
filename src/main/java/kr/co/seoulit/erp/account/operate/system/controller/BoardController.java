@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.nexacro.java.xapi.data.PlatformData;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @RequestMapping("/acc/operate")
 public class BoardController {

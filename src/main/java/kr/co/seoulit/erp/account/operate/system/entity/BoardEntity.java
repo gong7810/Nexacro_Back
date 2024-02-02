@@ -27,8 +27,6 @@ public class BoardEntity extends BaseBean {
 	private Date writeDate;
 	private Date updateDateTime;
 
-	public BoardEntity(){}
-
 	//아래의 코드는 과제를 위한 생성자 DB에서 데이터를 생성자로 가져오기 위함입니다.
 	public BoardEntity(String id,
 					   String title,
