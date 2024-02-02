@@ -30,8 +30,9 @@ public class CostStatementBean extends BaseBean {
     @Column(name = "COST_SUMMARY", columnDefinition = "NUMBER")
     private String costSummary ;
 
+    @Column(name = "EARLY_COST", columnDefinition = "NUMBER")
     private String earlyCost;
-    private String earlyCostSummary;
-    private String isThisYear;
 
+    @Column(name = "EARLY_COST_SUMMARY", columnDefinition = "NUMBER")
+    private String earlyCostSummary;
 }

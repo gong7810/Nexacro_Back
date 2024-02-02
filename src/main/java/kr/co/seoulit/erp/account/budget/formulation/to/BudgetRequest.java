@@ -16,9 +16,9 @@ import org.modelmapper.ModelMapper;
 @NoArgsConstructor
 public class BudgetRequest extends BaseBean{
 
-	private String accountInnerCode;
 	private String deptCode;
 	private String workplaceCode;
+	private String accountInnerCode;
 	private String accountPeriodNo;
 	private String budgetingCode;
 	private String m1Budget;
@@ -35,11 +35,11 @@ public class BudgetRequest extends BaseBean{
 	private String m12Budget;
 
 	@Builder
-	public BudgetRequest(String deptCode,  String workplaceCode, String accountPeriodNo, String accountInnerCode, String budgetingCode) {
+	public BudgetRequest(String deptCode,  String workplaceCode, String accountInnerCode, String accountPeriodNo, String budgetingCode) {
 		this.deptCode = deptCode;
 		this.workplaceCode = workplaceCode;
-		this.accountPeriodNo = accountPeriodNo;
 		this.accountInnerCode = accountInnerCode;
+		this.accountPeriodNo = accountPeriodNo;
 		this.budgetingCode = budgetingCode;
 	}
 
@@ -50,9 +50,9 @@ public class BudgetRequest extends BaseBean{
 		BudgetEntity budgetEntity = modelMapper.map(this, BudgetEntity.class);
 		budgetEntity.setBudgetPK(
 				BudgetPK.builder()
-						.accountInnerCode(accountInnerCode)
 						.deptCode(deptCode)
 						.workplaceCode(workplaceCode)
+						.accountInnerCode(accountInnerCode)
 						.accountPeriodNo(accountPeriodNo)
 						.budgetingCode(budgetingCode)
 						.build()
@@ -63,6 +63,9 @@ public class BudgetRequest extends BaseBean{
 
 
 	public static BudgetRequest fromEntity(BudgetEntity budgetEntity){
+		if (budgetEntity == null) {
+			return null;
+		}
 		ModelMapper modelMapper = new ModelMapper();
 		return modelMapper.map(budgetEntity, BudgetRequest.class);
 	}

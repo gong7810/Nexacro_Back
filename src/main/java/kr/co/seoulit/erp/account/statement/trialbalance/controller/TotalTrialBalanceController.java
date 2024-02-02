@@ -3,6 +3,7 @@ package kr.co.seoulit.erp.account.statement.trialbalance.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.co.seoulit.erp.account.statement.financialstatements.to.FinancialPositionBean;
 import kr.co.seoulit.erp.account.sys.base.service.BaseService;
 import kr.co.seoulit.erp.account.sys.common.dao.DatasetToBeanMapper;
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ public class TotalTrialBalanceController {
 //	@Autowired
 //	private TrialBalanceService trialBalanceService;
 //	@Autowired
-//	private DatasetBeanMapper datasetBeanMapper;
+//	private DatasetToBeanMapper datasetBeanMapper;
 //	@Autowired
 //	private BaseService baseService;
 
@@ -49,51 +50,77 @@ public class TotalTrialBalanceController {
 //           return closingResult;
 //	}
 
-	  //@GetMapping("/totaltrialbalance/{accountPeriodNo}")
+	//@GetMapping("/totaltrialbalance/{accountPeriodNo}")
+
+//	@RequestMapping("/selecttotaltrialbalance")
+//	public void findEarlyStatements( @RequestAttribute("reqData") PlatformData reqData,
+//									 @RequestAttribute("resData") PlatformData resData) throws Exception {
+//
+//		String accountPeriodNo=reqData.getVariable("accountPeriodNo").getString();
+//		String callResult=reqData.getVariable("callresult").getString();
+//
+//
+//		System.out.println("나옴?");
+//
+//		HashMap<String,Object> params = new HashMap<>();
+//		params.put("accountPeriodNo",accountPeriodNo);
+//		params.put("callResult",callResult);
+//
+//		System.out.println("@@@@@@@@@@@@@@@"+params);
+//		ArrayList<TotalTrialBalanceBean> totalTrialBalanceList  = trialBalanceService.findTotalTrialBalance(params);
+//		datasetToBeanMapper.beansToDataset(resData, totalTrialBalanceList, TotalTrialBalanceBean.class);
+//	}
+
 	@RequestMapping("/totaltrialbalance")
-	public HashMap<String,Object> findTotalTrialBalance( @RequestAttribute("reqData") PlatformData reqData,
-			@RequestAttribute("resData") PlatformData resData) throws Exception {
+	public void findTotalTrialBalance(@RequestAttribute("reqData") PlatformData reqData,
+									  @RequestAttribute("resData") PlatformData resData) throws Exception {
 
-		String accountPeriodNo=reqData.getVariable("accountPeriodNo").getString();
-		String callResult=reqData.getVariable("callresult").getString();
+		String accountPeriodNo = reqData.getVariable("period").getString();
+		String callResult = reqData.getVariable("callresult").getString();
 
-		HashMap<String,Object> params = new HashMap<>();
-		params.put("accountPeriodNo",accountPeriodNo);
-		params.put("callResult",callResult);
-		//TotalTrialBalanceBean bean=(TotalTrialBalanceBean)trialBalanceService.findTotalTrialBalance(params).get("totalTrialBalanceResult");
+		System.out.println(accountPeriodNo);
+		System.out.println(callResult);
+
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("accountPeriodNo", accountPeriodNo);
+		params.put("callResult", callResult);
+
 		trialBalanceService.findTotalTrialBalance(params);
-		System.out.println("@@@@@@@@@@@@@@@"+params);
-		ArrayList<TotalTrialBalanceBean>  bean = (ArrayList<TotalTrialBalanceBean>) params.get("totalTrialBalance");
-	  	datasetToBeanMapper.beansToDataset(resData, bean, TotalTrialBalanceBean.class);
+		//TotalTrialBalanceBean bean=(TotalTrialBalanceBean)trialBalanceService.findTotalTrialBalance(params).get("totalTrialBalanceResult");
 
-
-        return null;
+		ArrayList<TotalTrialBalanceBean> bean = (ArrayList<TotalTrialBalanceBean>) params.get("totalTrialBalance");
+		datasetToBeanMapper.beansToDataset(resData, bean, TotalTrialBalanceBean.class);
 
 	}
 
 	@RequestMapping("/selecttotaltrialbalance")
-	public HashMap<String,Object> SelectTotalTrialBalance( @RequestAttribute("reqData") PlatformData reqData,
-			@RequestAttribute("resData") PlatformData resData) throws Exception {
+	public HashMap<String, Object> Selecttotaltrialbalance(@RequestAttribute("reqData") PlatformData reqData,
+														   @RequestAttribute("resData") PlatformData resData) throws Exception {
 
-		String accountPeriodNo=reqData.getVariable("accountPeriodNo").getString();
-		String callResult=reqData.getVariable("callresult").getString();
+		String date = reqData.getVariable("date").getString();
+		String callResult = reqData.getVariable("callresult").getString();
 
+		// date로 값받아올때 ex) 20170717 이런식으로 받아와서 -> 2017-07-17 이런식으로 값을 바꿔줌
+		String year = date.substring(0, 4);
+		String month = date.substring(4, 6);
+		String day = date.substring(5, 7);
 
-		//String accountPeriodNo = baseService.findPeriodNo(year);
+		String ddate = year + "-" + month + "-" + day;
 
-		HashMap<String,Object> params = new HashMap<>();
-		params.put("accountPeriodNo",accountPeriodNo);
-		params.put("callResult",callResult);
+		String accountPeriodNo = baseService.findPeriodNo(ddate);
+
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("accountPeriodNo", accountPeriodNo); // 회계년도 번호 구하는 로직
+		params.put("callResult", callResult);
 		//TotalTrialBalanceBean bean=(TotalTrialBalanceBean)trialBalanceService.findTotalTrialBalance(params).get("totalTrialBalanceResult");
-		trialBalanceService.findEarlyStatements(params);
-		System.out.println("@@@@@@@@@@@@@@@"+params);
-		ArrayList<TotalTrialBalanceBean>  bean = (ArrayList<TotalTrialBalanceBean>) params.get("totalTrialBalance");
-	    datasetToBeanMapper.beansToDataset(resData, bean, TotalTrialBalanceBean.class);
+		trialBalanceService.findTotalTrialBalance(params);
+		System.out.println("@@@@@@@@@@@@@@@" + params);
+		ArrayList<TotalTrialBalanceBean> bean = (ArrayList<TotalTrialBalanceBean>) params.get("totalTrialBalance");
+		datasetToBeanMapper.beansToDataset(resData, bean, TotalTrialBalanceBean.class);
+
+		return null;
 
 
-        return null;
-
-	}
 //	@PostMapping("/totaltrialbalancecancle")
 //	public void findcancelClosing(@RequestParam String accountPeriodNo,
 //										  @RequestParam String callResult) {
@@ -101,4 +128,5 @@ public class TotalTrialBalanceController {
 //		trialBalanceService.findchangeAccountingSettlement(accountPeriodNo, callResult);
 //	}
 
+	}
 }

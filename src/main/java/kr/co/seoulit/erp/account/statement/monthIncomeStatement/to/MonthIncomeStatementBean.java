@@ -9,8 +9,8 @@ import javax.persistence.*;
 
 
 @Entity
-@Dataset(name = "ds_tmpmonthIncomeStatement")
-@Table(name = "TMP_MONTH_INCOME_STATEMENT2")
+@Dataset(name = "ds_mincomeStatement")
+@Table(name = "TMP_MINCOME_STATEMENT")
 @Getter @Setter
 public class MonthIncomeStatementBean extends BaseBean {
 
